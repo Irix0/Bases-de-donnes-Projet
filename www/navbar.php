@@ -19,7 +19,7 @@
       </div>
       <nav :class="{'flex': open, 'hidden': !open}"
          class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row">
-         <a class="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600" href="#">
+         <a class="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600" href="index.php">
             A propos
          </a>
 
@@ -34,59 +34,44 @@
                // If signed in log out button
                if (isset($_SESSION['login'])) {
                   ?>
-                  <form method="post" action="login.php">
-                     <p>
-                        <input type="hidden" name="disconnect" value="yes">
-                        <input class="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit" value="Se déconnecter">
-                     </p>
-                  </form>
-               <?php
+            <form method="post" action="login.php">
+               <p>
+                  <input type="hidden" name="disconnect" value="yes">
+                  <input class="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit"
+                     value="Se déconnecter">
+               </p>
+            </form>
+            <?php
                } else {
                ?>
-                  <a class='px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline' href='login.php'>Sign in</a>
-               <?php
+            <a class='px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline'
+               href='login.php'>Sign in</a>
+            <?php
                }
             ?>
          </div>
       </nav>
    </div>
+   <?php
+      // if on dashboard page show this
+      if($currentPage == 'dashboard') {
+      ?>
    <div
       class="flex items-center justify-between w-full px-8 overflow-y-auto border-t whitespace-nowrap scroll-hidden md:px-6">
       <a class="py-4 pr-2 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
          href="#">
-         Overview
+         Aperçu général
       </a>
       <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
          href="#">
-         Integrations
+         Lieux
       </a>
       <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
          href="#">
-         Activity
-      </a>
-      <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
-         href="#">
-         Domains
-      </a>
-      <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
-         href="#">
-         Usage
-      </a>
-      <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
-         href="#">
-         Settings
-      </a>
-      <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
-         href="#">
-         Feedback
-      </a>
-      <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
-         href="#">
-         Changelog
-      </a>
-      <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
-         href="#">
-         Docs
+         CD
       </a>
    </div>
+   <?php
+      }
+   ?>
 </div>
