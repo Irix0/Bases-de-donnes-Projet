@@ -19,13 +19,19 @@
       </div>
       <nav :class="{'flex': open, 'hidden': !open}"
          class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row">
-         <a class="px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600" href="index.php">
-            A propos
-         </a>
+         <?php 
+         if ($currentPage == 'index') {
+            echo "<a class='px-2 py-2 text-sm text-blue-500 lg:px-6 md:px-3 hover:text-gray-500' aria-current='page' href='/index.php'>A propos</a>";
+         } else {
+            echo "<a class='px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600' href='/index.php'>A propos</a>";
+         }
+         ?>
 
          <?php 
-         if (isset($_SESSION['login'])) {
-            echo "<a class='px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600' href='dashboard.php'>Dashboard</a>";
+         if (isset($_SESSION['login']) && $currentPage == 'dashboard') {
+            echo "<a class='px-2 py-2 text-sm text-blue-500 lg:px-6 md:px-3 hover:text-gray-500' aria-current='page' href='dashboard/overview.php'>Dashboard</a>";
+         } else if (isset($_SESSION['login']) && $currentPage != 'dashboard') {
+            echo "<a class='px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600' href='dashboard/overview.php'>Dashboard</a>";
          }
          ?>
 
@@ -57,18 +63,22 @@
       if($currentPage == 'dashboard') {
       ?>
    <div
-      class="flex items-center justify-between w-full px-8 overflow-y-auto border-t whitespace-nowrap scroll-hidden md:px-6">
+      class="flex flex-row w-full px-8 overflow-y-auto border-t whitespace-nowrap scroll-hidden md:px-6">
       <a class="py-4 pr-2 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
-         href="#">
+         href="/dashboard/overview.php">
          Aperçu général
       </a>
       <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
-         href="#">
+         href="/dashboard/locations.php">
          Lieux
       </a>
       <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
          href="#">
          CD
+      </a>
+      <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
+         href="#">
+         Evénements
       </a>
    </div>
    <?php

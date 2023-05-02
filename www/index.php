@@ -1,7 +1,9 @@
-<?php session_start(); ?>
-<?php $title = 'A propos'; ?>
-<?php $currentPage = 'index'; ?>
-<?php require_once('head.php'); ?>
+<?php 
+session_start();
+$title = 'A propos';
+$currentPage = 'index';
+require_once('head.php'); 
+?>
 
 <body>
    <?php

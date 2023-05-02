@@ -36,7 +36,7 @@
               </div>";
         }
         if (isset($_SESSION['login'])) {
-            echo "<script type='text/javascript'>document.location.replace('dashboard.php');</script>";
+            echo "<script type='text/javascript'>document.location.replace('dashboard/overview.php');</script>";
         } else {
         ?>
 
