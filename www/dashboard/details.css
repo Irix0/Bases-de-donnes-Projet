@@ -1,0 +1,39 @@
+/* Ajoute une marge en haut et en bas de la page */
+body {
+    margin: 20px 0;
+  }
+  
+  /* Ajoute une bordure autour de la section principale */
+  .py-6 {
+    border: 2px solid #ddd;
+    padding: 20px;
+  }
+  
+  /* Donne un style différent aux titres */
+  .text-3xl {
+    color: #444;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Augmente la taille des listes */
+  ul {
+    font-size: 1.1rem;
+  }
+  
+  /* Ajoute un espacement supplémentaire entre les éléments de liste */
+  li {
+    margin-bottom: 10px;
+  }
+  
+  /* Change la couleur du texte des éléments de liste pour la rendre plus lisible */
+  li:not(:first-child) {
+    color: #555;
+  }
+  
+  /* Donne une couleur de fond aux éléments de liste */
+  li:nth-child(odd) {
+    background-color: #f7f7f7;
+  }
+
+  
