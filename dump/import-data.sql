@@ -1,8 +1,16 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET foreign_key_checks = 1;
-SET autocommit = 1;
+
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+/* --------------------------- USERS --------------------------- */
+/* USER */
+CREATE TABLE `groupXX`.`users` (
+  `Login` varchar(20) NOT NULL,
+  `Pass` varchar(20) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
+
+LOAD DATA INFILE '/docker-entrypoint-initdb.d/data/users.csv' INTO TABLE `users` FIELDS TERMINATED BY ',' ENCLOSED BY '"' IGNORE 1 ROWS;
 
 
 /* --------------------------- CLIENTS --------------------------- */
