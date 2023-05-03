@@ -1,7 +1,8 @@
 <?php session_start();
-$title = 'Tableau de bord : Evénements';
+$title = 'Tableau de bord : Événements';
 $currentPage = 'dashboard'; 
 define('__ROOT__', dirname(dirname(__FILE__)));
+date_default_timezone_set('Europe/Brussels');
 require_once(__ROOT__.'/head.php');
 $resultsPerPage = 10;
 ?>
@@ -50,7 +51,7 @@ $resultsPerPage = 10;
 
                 $page_nb = ceil($rows_nb / $resultsPerPage);  
 
-                $req = $bdd->query('SELECT ID, NAME, RENTAL_FEE, DATE from event ORDER BY DATE DESC, NAME ASC; ' . $pageFirstResult . ',' . $resultsPerPage);
+                $req = $bdd->query('SELECT ID, NAME, RENTAL_FEE, DATE from event ORDER BY DATE DESC, NAME ASC LIMIT ' . $pageFirstResult . ',' . $resultsPerPage);
 
                 while($row = $req->fetch()) {
                     echo "
@@ -77,7 +78,7 @@ $resultsPerPage = 10;
                             " . ($row['RENTAL_FEE'] + 1500) . " €
                         </td>
                         <td class='px-6 py-4 text-right text-sm leading-5 font-medium'>
-                            <a href='details.php?id=" . $row['ID'] . "' class='text-indigo-600 hover:text-indigo-900'>Voir</a>
+                            <a href='details.php?id=" . $row['ID'] . "' class='text-indigo-600 hover:text-indigo-900'>Détails</a>
                         </td>
                     </tr>
                     ";                
