@@ -2,7 +2,7 @@
 $title = 'Tableau de bord : Aperçu général';
 $currentPage = 'dashboard'; 
 define('__ROOT__', dirname(dirname(__FILE__)));
-require_once(__ROOT__.'/head.php'); ?>
+require_once(__ROOT__.'/head.php'); 
 ?>
 
 <body>
