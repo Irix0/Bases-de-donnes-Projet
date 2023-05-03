@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="details.css">
+<title>Détails</title>
 
 <body>
 
@@ -18,7 +19,7 @@
     <h1 class="text-3xl font-bold"><?php echo $event['NAME']; ?></h1>
     <p class="text-lg"><?php echo $event['DESCRIPTION']; ?></p>
     <ul class="list-disc pl-5 mt-4">
-      <li>Date : <?php echo $event['DATE']; ?></li>
+      <li>Date : <?php echo date('l j F Y', strtotime($event['DATE'])); ?></li>
       <li>Client ID : <?php echo $event['CLIENT']; ?></li>
       <li>Manager ID : <?php echo $event['MANAGER']; ?></li>
       <li>Event Planner ID : <?php echo $event['EVENT_PLANNER']; ?></li>
