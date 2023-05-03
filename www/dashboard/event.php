@@ -19,27 +19,27 @@ $resultsPerPage = 10;
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
 ?>
 
-   <div class="table-auto overflow-x-auto shadow-md sm:rounded-lg mt-10 ml-80 mr-80">
-      <table class="w-full text-sm text-left text-gray-500">
+   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10 ml-80 mr-80">
+      <table class="table-fixed w-full text-sm text-left text-gray-500">
          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                <tr>
-                <th scope = "col" class = "px-6 py-3">
-                    Nom de l'événement
-                </th>
-                <th scope = "col" class = "px-6 py-3">
-                    Date
-                <th scope = "col" class = "px-6 py-3">
-                    Statut
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Coût*
-                </th>
-                <th scope = "col" class = "">
-                </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+            <tr>
+               <th scope="col" class="w-4/12 px-6 py-3">
+                  Nom de l'événement
+               </th>
+               <th scope="col" class="w-2/12 px-6 py-3">
+                  Date
+               <th scope="col" class="w-2/12 px-6 py-3">
+                  Statut
+               </th>
+               <th scope="col" class="w-2/12 px-6 py-3">
+                  Coût*
+               </th>
+               <th scope="col" class="w-2/12">
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <?php
                 if (!isset ($_GET['page']) ) {  
                     $page = 1;  
                 } else {  
@@ -84,10 +84,10 @@ $resultsPerPage = 10;
                     ";                
                 }
                 ?>
-            </tbody>
-        </table>
+         </tbody>
+      </table>
 
-        <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center">
          <!-- Help text -->
          <span class="text-sm text-gray-700">
             <span class="font-semibold text-gray-900"><?php echo $pageFirstResult+1; ?> </span> à <span
@@ -96,7 +96,8 @@ $resultsPerPage = 10;
                   echo $rows_nb;
                } else {
                   echo ($pageFirstResult + $resultsPerPage);
-               } ?></span> entitées montrées sur <span class="font-semibold text-gray-900"><?php echo "$rows_nb"; ?></span>
+               } ?></span> entitées montrées sur <span
+               class="font-semibold text-gray-900"><?php echo "$rows_nb"; ?></span>
          </span>
          <!-- Buttons -->
 
@@ -122,11 +123,9 @@ $resultsPerPage = 10;
                ?>
             </ul>
          </nav>
-    </div>
+      </div>
 
-        <div style="font-size: 10px;">
-                <p>* Les coûts comprennent un forfait de 1500 EUR pour l'organisation de l'événement.</p>
-        </div>
+      <div style="font-size: 10px;">
+         <p>* Les coûts comprennent un forfait de 1500 EUR pour l'organisation de l'événement.</p>
+      </div>
 </body>
-
-

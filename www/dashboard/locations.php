@@ -16,18 +16,34 @@ $resultsPerPage = 10;
 
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
 
-   if (isset($_POST['street'])) {
-      if(empty($_POST['id'])){
-         $_POST['id'] = NULL;
-      }
-   
-      if(empty($_POST['comment'])){
-         $_POST['comment'] = NULL;
-      }
-
+   if (isset($_POST['street'])) { // Add new location
+      // Check if ZIP is numeric
+      if (!is_numeric($_POST['zip'])) {
+         echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                <p class='font-bold'>Mauvaise entrée</p>
+                <p>Le code postal donné n'est pas numérique.</p>
+              </div>";
+      } else {
       $sql = 'INSERT INTO `location` (`ID`, `STREET`, `CITY`, `POSTAL_CODE`, `COUNTRY`, `COMMENT`) VALUES (:id, :street, :city, :postal, :country, :comment);';
       $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-      $sth->execute(array('id' => NULL, 'street' => $_POST["street"], 'city' => $_POST["city"], 'postal' => $_POST["zip"], 'country' => $_POST["country"], 'comment' => $_POST["comment"]));
+      if(!$sth->execute(array('id' => NULL, 'street' => $_POST["street"], 'city' => $_POST["city"], 'postal' => $_POST["zip"], 'country' => $_POST["country"], 'comment' => $_POST["comment"]))){
+         echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                <p class='font-bold'>Erreur</p>
+                <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
+              </div>";
+      }
+   }
+}
+
+   if(isset($_POST['id_delete'])){ // Delete location
+      $sql = 'DELETE FROM `location` WHERE `location`.`ID` = :id';
+      $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+      if(!$sth->execute(array('id' => $_POST["id_delete"]))){
+         echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                <p class='font-bold'>Erreur</p>
+                <p>Une erreur est survenue. Veuillez réessayer.</p>
+              </div>";
+      }
    }
 ?>
 
@@ -38,26 +54,26 @@ $resultsPerPage = 10;
       Ajouter un lieu
    </button>
    <!-- Main table -->
-   <div class="table-auto overflow-x-auto shadow-md sm:rounded-lg mt-6 ml-80 mr-80">
-      <table class="w-full text-sm text-left text-gray-500">
+   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6 ml-80 mr-80">
+      <table class="table-fixed w-full text-sm text-left text-gray-500">
          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-               <th scope="col" class="px-6 py-3">
+               <th scope="col" class="w-1/12 px-6 py-3">
                   Rue
                </th>
-               <th scope="col" class="px-6 py-3">
+               <th scope="col" class="w-1/12 px-6 py-3">
                   Ville
                </th>
-               <th scope="col" class="px-3 py-3">
+               <th scope="col" class="w-1/12 px-3 py-3">
                   Code postal
                </th>
-               <th scope="col" class="px-6 py-3">
+               <th scope="col" class="w-1/12 px-6 py-3">
                   Pays
                </th>
-               <th scope="col" class="px-6 py-3">
+               <th scope="col" class="w-2/12 px-6 py-3">
                   Commentaires
                </th>
-               <th scope="col" class="">
+               <th scope="col" class="w-1/12">
                </th>
             </tr>
          </thead>
@@ -78,7 +94,7 @@ $resultsPerPage = 10;
             while($row = $req->fetch()) {
                echo "
                <tr class='bg-white border-b hover:bg-gray-50'>
-                  <th scope='row' class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap'>
+                  <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
                      ".$row['STREET']."
                   </th>
                   <td class='px-6 py-4'>
@@ -93,10 +109,16 @@ $resultsPerPage = 10;
                   <td class='px-6 py-4'>
                      ".$row['COMMENT']."
                   </td>
-                  <td class='px-6 py-4'>
+                  <td class='py-2'>
+                     <div class='flex'>
                      <a href='/edit-location.php?id=".$row['ID']."'>
-                        <button type='button' class='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'>Editer</button>
+                        <button type='button' class='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-solid fa-pen'></i></button>
                      </a>
+                     <form method='post' action='#'>
+                        <input type='hidden' name='id_delete' value='".$row['ID']."'>
+                        <button type='submit' class='text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-sharp fa-solid fa-trash'></i></button>
+                     </form>
+                     </div>
                   </td>
                </tr>
                ";
@@ -129,7 +151,7 @@ $resultsPerPage = 10;
                      <a
                         class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
                         href = "locations.php?page=' . $i . '"> ' . $i . ' <span
-          class="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]"
+          class="absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0,0,0,0)]"
           >(current)</span></a>
           </li>';
                   } else {
@@ -165,7 +187,7 @@ $resultsPerPage = 10;
                </button>
                <div class="px-6 py-6 lg:px-8">
                   <h3 class="mb-4 text-xl font-medium text-gray-900">Ajouter un lieu</h3>
-                  <form method="post" class="space-y-6" action="locations.php">
+                  <form method="post" class="space-y-6" action="#">
                      <div>
                         <label for="street" class="block mb-2 text-sm font-medium text-gray-900">Rue*</label>
                         <input type="text" name="street" id="street"
@@ -216,4 +238,5 @@ $resultsPerPage = 10;
 
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+      <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
 </body>
