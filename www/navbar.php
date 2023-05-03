@@ -3,8 +3,8 @@
       class="relative flex flex-col w-full p-5 mx-auto bg-white md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
       <div class="flex flex-row items-center justify-between lg:justify-start">
          <a class="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl" href="/">
-            <span class="lg:text-lg uppecase focus:ring-0">
-               WENDY
+            <span class="lg:text-lg focus:ring-0">
+               WEND(Y)
             </span>
          </a>
          <button @click="open = !open"
@@ -40,7 +40,7 @@
                // If signed in log out button
                if (isset($_SESSION['login'])) {
                   ?>
-            <form method="post" action="login.php">
+            <form method="post" action="/login.php">
                <p>
                   <input type="hidden" name="disconnect" value="yes">
                   <input class="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit"
