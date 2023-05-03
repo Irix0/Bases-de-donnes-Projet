@@ -10,7 +10,7 @@
         if (isset($_POST['disconnect'])) {
             session_unset();
             // Redirect to home page
-            echo "<script> window.location.replace('index.php'); </script>";
+            echo "<script type='text/javascript'>document.location.replace('/index.php');</script>";
         }
         $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
         if ($bdd == NULL)
