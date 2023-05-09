@@ -24,24 +24,45 @@ $resultsPerPage = 10;
                 <p>Le code postal donné n'est pas numérique.</p>
               </div>";
       } else {
-      $sql = 'INSERT INTO `location` (`ID`, `STREET`, `CITY`, `POSTAL_CODE`, `COUNTRY`, `COMMENT`) VALUES (:id, :street, :city, :postal, :country, :comment);';
-      $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-      if(!$sth->execute(array('id' => NULL, 'street' => $_POST["street"], 'city' => $_POST["city"], 'postal' => $_POST["zip"], 'country' => $_POST["country"], 'comment' => $_POST["comment"]))){
-         echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-                <p class='font-bold'>Erreur</p>
-                <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
-              </div>";
+         if(empty($_POST['comment'])) $_POST['comment'] = NULL; // If comment is empty, set it to NULL (to avoid SQL error)
+         if(empty($_POST['id'])) $_POST['id'] = NULL; // If id is empty, set it to NULL (to avoid SQL error)
+
+         $sql = 'INSERT INTO `location` (`ID`, `STREET`, `CITY`, `POSTAL_CODE`, `COUNTRY`, `COMMENT`) VALUES (:id, :street, :city, :postal, :country, :comment);';
+         $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+         if(!$sth->execute(array('id' => $_POST["id"], 'street' => $_POST["street"], 'city' => $_POST["city"], 'postal' => $_POST["zip"], 'country' => $_POST["country"], 'comment' => $_POST["comment"]))){
+            echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                  <p class='font-bold'>Erreur</p>
+                  <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
+                  <p>Ce message peut vous aider à résoudre votre erreur : [code " . $sth->errorInfo()[0] . "] `" . $sth->errorInfo()[2] . "´.</p>
+               </div>";
+         }
       }
-   }
 }
 
    if(isset($_POST['id_delete'])){ // Delete location
+      // Check if location is used in a reservation
+      $sql = 'SELECT COUNT(*) FROM `event` WHERE `event`.`LOCATION` = :id';
+      $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+      $sth->execute(array('id' => $_POST["id_delete"]));
+      $result = $sth->fetch();
+      if($result[0] == 0){
       $sql = 'DELETE FROM `location` WHERE `location`.`ID` = :id';
       $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
       if(!$sth->execute(array('id' => $_POST["id_delete"]))){
          echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                 <p class='font-bold'>Erreur</p>
                 <p>Une erreur est survenue. Veuillez réessayer.</p>
+              </div>";
+         } else {
+            echo "<div class='ml-80 mr-80 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
+                   <p class='font-bold'>Succès</p>
+                   <p>Lieu supprimé avec succès.</p>
+                 </div>";
+         }
+      } else {
+         echo "<div class='ml-80 mr-80 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4' role='alert'>
+                <p class='font-bold'>Erreur</p>
+                <p>Impossible de supprimer ce lieu car il est utilisé dans une réservation.</p>
               </div>";
       }
    }
@@ -111,7 +132,7 @@ $resultsPerPage = 10;
                   </td>
                   <td class='py-2'>
                      <div class='flex'>
-                     <a href='/edit-location.php?id=".$row['ID']."'>
+                     <a href='edit-location.php?id=".$row['ID']."'>
                         <button type='button' class='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-solid fa-pen'></i></button>
                      </a>
                      <form method='post' action='#'>
@@ -128,7 +149,7 @@ $resultsPerPage = 10;
          </tbody>
       </table>
 
-      <div class="flex flex-col items-center">
+      <div class="mt-3 flex flex-col items-center">
          <!-- Help text -->
          <span class="text-sm text-gray-700">
             <span class="font-semibold text-gray-900"><?php echo $pageFirstResult+1; ?> </span> à <span
@@ -137,12 +158,12 @@ $resultsPerPage = 10;
                   echo $rows_nb;
                } else {
                   echo ($pageFirstResult + $resultsPerPage);
-               } ?></span> entitées montrées sur <span
+               } ?></span> résultats montrés sur <span
                class="font-semibold text-gray-900"><?php echo "$rows_nb"; ?></span>
          </span>
          <!-- Buttons -->
 
-         <nav>
+         <nav class="mt-1 mb-2">
             <ul class="list-style-none flex">
                <?php
                for($i = 1; $i<= $page_nb; $i++) {
@@ -168,7 +189,7 @@ $resultsPerPage = 10;
       </div>
 
 
-      <!-- Main modal -->
+      <!-- Add modal -->
       <div id="add-location-modal" tabindex="-1" aria-hidden="true"
          class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
          <div class="relative w-full max-w-md max-h-full">
@@ -202,11 +223,11 @@ $resultsPerPage = 10;
                               required>
                         </div>
                         <div>
-                           <label for="city" class="block mb-2 text-sm font-medium text-gray-900">Code
-                              postal* (4 chars max)</label>
+                           <label for="zip" class="block mb-2 text-sm font-medium text-gray-900">Code
+                              postal* (8 chars max)</label>
                            <input type="text" name="zip" id="zip" placeholder="4000"
                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                              required maxlength="4">
+                              required maxlength="8">
                         </div>
                      </div>
                      <div>
@@ -240,3 +261,5 @@ $resultsPerPage = 10;
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
       <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
 </body>
+
+</html>

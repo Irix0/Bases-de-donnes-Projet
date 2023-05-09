@@ -96,7 +96,7 @@ $resultsPerPage = 10;
                   echo $rows_nb;
                } else {
                   echo ($pageFirstResult + $resultsPerPage);
-               } ?></span> entitées montrées sur <span
+               } ?></span> résultats montrés sur <span
                class="font-semibold text-gray-900"><?php echo "$rows_nb"; ?></span>
          </span>
          <!-- Buttons -->
