@@ -4,7 +4,7 @@
       <div class="flex flex-row items-center justify-between lg:justify-start">
          <a class="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl" href="/">
             <span class="lg:text-lg focus:ring-0">
-               WEND(Y)
+               WeND(Y)’s
             </span>
          </a>
          <button @click="open = !open"
@@ -73,8 +73,8 @@
          Lieux
       </a>
       <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
-         href="/dashboard/cd-usage.php">
-         Utilisation des CD
+         href="/dashboard/cd.php">
+         CD
       </a>
       <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
          href="/dashboard/event.php">
