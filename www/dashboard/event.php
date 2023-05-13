@@ -138,7 +138,7 @@ $resultsPerPage = 10;
          </nav>
       </div>
 
-      <div style="font-size: 10px;">
-         <p>* Les coûts comprennent un forfait de 1500 EUR pour l'organisation de l'événement.</p>
+      <div>
+         <p class="text-left text-xs">* Les coûts comprennent un forfait de 1500 EUR pour l'organisation de l'événement.</p>
       </div>
 </body>
