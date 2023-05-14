@@ -111,10 +111,10 @@ require_once(__ROOT__.'/head.php');
          </div>
          <!-- Date -->
          <div>
-            <label for="date" class="block mb-2 text-sm font-medium text-gray-900">Date de l'événement*</label>
+            <label for="date" class="block mb-2 text-sm font-medium text-gray-900">Date de l'événement</label>
             <input type="date" name="date" id="date" value="<?php echo $row['DATE']; ?>"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-               min="<?php echo date('Y-m-d'); ?>" required>
+               min="<?php echo date('Y-m-d'); ?>">
          </div>
          <!-- Client -->
          <div>
@@ -217,10 +217,9 @@ require_once(__ROOT__.'/head.php');
          <div class="flex space-x-4">
             <!-- Theme -->
             <div class="w-1/2">
-               <label for="theme" class="block mb-2 text-sm font-medium text-gray-900">Thème*</label>
+               <label for="theme" class="block mb-2 text-sm font-medium text-gray-900">Thème</label>
                <select name="theme" id="theme"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required>
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                   <?php 
                      foreach ($theme_table as $theme) {
                         if($theme['NAME'] == $row['THEME']){
@@ -234,10 +233,9 @@ require_once(__ROOT__.'/head.php');
             </div>
             <!-- Playlist -->
             <div class="w-1/2">
-               <label for="playlist" class="block mb-2 text-sm font-medium text-gray-900">Playlist*</label>
+               <label for="playlist" class="block mb-2 text-sm font-medium text-gray-900">Playlist</label>
                <select name="playlist" id="playlist"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required>
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                   <?php 
                      foreach ($playlist_table as $playlist) {
                         if($playlist['NAME'] == $row['PLAYLIST']){
@@ -252,10 +250,9 @@ require_once(__ROOT__.'/head.php');
          </div>
          <!-- Location -->
          <div>
-            <label for="location" class="block mb-2 text-sm font-medium text-gray-900">Lieu*</label>
+            <label for="location" class="block mb-2 text-sm font-medium text-gray-900">Lieu</label>
             <select name="location" id="location"
-               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-               required>
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                <?php 
                   foreach ($location_table as $location) {
                      if($location['ID'] == $row['LOCATION']){
@@ -271,17 +268,15 @@ require_once(__ROOT__.'/head.php');
          <div class="flex space-x-4">
             <!-- Type -->
             <div class="w-1/2">
-               <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Type*</label>
+               <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Type</label>
                <input type="text" name="type" id="type" value="<?php echo $row['TYPE']; ?>"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required>
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
             </div>
             <!-- Rental Fee -->
             <div class="w-1/2">
-               <label for="rentalFee" class="block mb-2 text-sm font-medium text-gray-900">Frais de location*</label>
+               <label for="rentalFee" class="block mb-2 text-sm font-medium text-gray-900">Frais de location</label>
                <input type="number" name="rentalFee" id="rentalFee" value="<?php echo $row['RENTAL_FEE']; ?>"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required>
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
             </div>
          </div>
          <!-- Description -->
@@ -293,9 +288,10 @@ require_once(__ROOT__.'/head.php');
          </div>
          <!-- ID -->
          <div>
-            <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
+            <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID*</label>
             <input type="number" name="id" id="id" value="<?php echo $row['ID']; ?>"
-               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+               required>
          </div>
          <!-- Submit -->
          <div>
