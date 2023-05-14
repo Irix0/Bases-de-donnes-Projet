@@ -4,7 +4,7 @@
       <div class="flex flex-row items-center justify-between lg:justify-start">
          <a class="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl" href="/">
             <span class="lg:text-lg focus:ring-0">
-               WeND(Y)’s
+               WeND(Y)
             </span>
          </a>
          <button @click="open = !open"
