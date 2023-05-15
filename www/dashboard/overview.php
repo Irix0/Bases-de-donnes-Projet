@@ -43,30 +43,30 @@ require_once(__ROOT__ . '/head.php');
                <form method="post" action="#">
                   <input type="hidden" name="action" value="clients">
                   <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
-                  <input type="number" name="id" placeholder="ID" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="number" name="id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <div class="flex space-x-8">
                      <div class="basis-1/2">
                         <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Prénom</label>
                         <input type="text" name="first_name" placeholder="Prénom"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                      <div class="basis-1/2">
                         <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Nom</label>
                         <input type="text" name="last_name" placeholder="Nom"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
                   <div class="flex space-x-8">
                      <div class="basis-1/2">
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Adresse e-mail</label>
                         <input type="text" name="email" placeholder="Adresse e-mail"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                      <div class="basis-1/2">
                         <label for="phone_nb" class="block mb-2 text-sm font-medium text-gray-900">Numéro de
                            téléphone</label>
                         <input type="text" name="phone_nb" placeholder="Numéro de téléphone"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
                   <button type="submit"
@@ -93,17 +93,17 @@ require_once(__ROOT__ . '/head.php');
                <form method="post" action="#">
                   <input type="hidden" name="action" value="employees">
                   <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
-                  <input type="number" name="id" placeholder="ID" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="number" name="id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <div class="flex space-x-8">
                      <div class="basis-1/2">
                         <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Prénom</label>
                         <input type="text" name="first_name" placeholder="Prénom"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                      <div class="basis-1/2">
                         <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Nom</label>
                         <input type="text" name="last_name" placeholder="Nom"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
                   <button type="submit"
@@ -130,26 +130,26 @@ require_once(__ROOT__ . '/head.php');
                <form method="post" action="#">
                   <input type="hidden" name="action" value="locations">
                   <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
-                  <input type="number" name="id" placeholder="ID" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="number" name="id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <label for="street" class="block mb-2 text-sm font-medium text-gray-900">Rue</label>
-                  <input type="text" name="street" placeholder="Rue" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="text" name="street" placeholder="Rue" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <div class="flex space-x-8">
                      <div class="basis-1/2">
                         <label for="city" class="block mb-2 text-sm font-medium text-gray-900">Ville</label>
                         <input type="text" name="city" placeholder="Ville"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                      <div class="basis-1/2">
                         <label for="zip" class="block mb-2 text-sm font-medium text-gray-900">Code postal</label>
                         <input type="text" name="zip" placeholder="Code postal"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
                   <label for="country" class="block mb-2 text-sm font-medium text-gray-900">Pays</label>
-                  <input type="text" name="country" placeholder="Pays" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="text" name="country" placeholder="Pays" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <label for="comment" class="block mb-2 text-sm font-medium text-gray-900"> Commentaire</label>
                   <input type="text" name="comment" placeholder="Commentaire"
-                     class="w-full px-4 py-2 mb-4 border rounded-lg">
+                     class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <button type="submit"
                      class="w-full text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Chercher</button>
                </form>
@@ -174,55 +174,62 @@ require_once(__ROOT__ . '/head.php');
                <form method="post" action="#">
                   <input type="hidden" name="action" value="locations">
                   <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
-                  <input type="number" name="id" placeholder="ID" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="number" name="id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nom</label>
-                  <input type="text" name="name" placeholder="Nom" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="text" name="name" placeholder="Nom" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <div class="block">
                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 mt-3 pointer-events-none">
                         <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                      </div>
                      <label for="date" class="block mb-2 text-sm font-medium text-gray-900">Date</label>
-                     <input datepicker datepicker-autohide datepicker-format="yyyy/mm/dd" type="date" name="date" class="w-full px-4 py-2 mb-4 border rounded-lg pl-10" placeholder="Date">
+                     <input type="date" name="date" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg pl-10" placeholder="Date">
                   </div>
-                  <div class="flex flex-wrap space-x-8">
-                     <div class="basis-72">
-                        <label for="client_id" class="block mb-2 text-sm font-medium text-gray-900">Client ID</label>
-                        <select id="playlist" class="appearance-none border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                  <div class="flex space-x-8">
+                     <div class="basis-4/12">
+                        <label for="client" class="block mb-2 text-sm font-medium text-gray-900">Client</label>
+                        <input type="text" name="client" placeholder="Client"
+                           class="bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                     </div>
+                     <div class="basis-4/12">
+                        <label for="manager" class="block mb-2 text-sm font-medium text-gray-900">Manager</label>
+                        <select id="manager" name="manager" class="bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                            <?php
-                           // Get all client name and id column
-                           $clients = $bdd->query('SELECT CLIENT_NUMBER, FIRST_NAME, LAST_NAME FROM client');
-                           foreach ($clients as $client) {
-                              echo "<option value='".$client['CLIENT_NUMBER']."'>".$client['FIRST_NAME']." ".$client['LAST_NAME']."</option>";
+                           // Get all manager name and id column
+                           $managers = $bdd->query('SELECT * FROM manager JOIN employee ON manager.ID = employee.ID');
+                           foreach ($managers as $manager) {
+                              echo "<option value='".$manager['ID']."'>".$manager['FIRSTNAME']." ".$manager['LASTNAME']."</option>";
                            }
                            ?>
                         </select>
                      </div>
-                     <div class="basis-72">
-                        <label for="manager_id" class="block mb-2 text-sm font-medium text-gray-900">Manager ID</label>
-                        <input type="number" name="id" placeholder="ID" class="w-full px-4 py-2 mb-4 border rounded-lg">
-                     </div>
-                     <div>
+                     <div class="basis-4/12">
                         <label for="ep_id" class="block mb-2 text-sm font-medium text-gray-900">Event Planner ID</label>
-                        <input type="number" name="ep_id" placeholder="ID" class="w-full px-4 py-2 mb-4 border rounded-lg">
-                     </div>
-                     <div>
-                        <label for="dj_id" class="block mb-2 text-sm font-medium text-gray-900">DJ ID</label>
-                        <input type="number" name="dj_id" placeholder="ID" class="w-full px-4 py-2 mb-4 border rounded-lg">
-                     </div>
-                     <div>
-                        <label for="location_id" class="block mb-2 text-sm font-medium text-gray-900">Location ID</label>
-                        <input type="number" name="location_id" placeholder="ID" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                        <input type="number" name="ep_id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
-                  <div class="basis-1/2">
+                  <div class="flex space-x-8">
+                     <div class="basis-4/12">
+                        <label for="dj_id" class="block mb-2 text-sm font-medium text-gray-900">DJ ID</label>
+                        <input type="number" name="dj_id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                     </div>
+                     <div class="basis-4/12">
+                        <label for="location_id" class="block mb-2 text-sm font-medium text-gray-900">Location ID</label>
+                        <input type="number" name="location_id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                     </div>
+                     <div class="basis-4/12">
+                        <label for="fees" class="block mb-2 text-sm font-medium text-gray-900">Frais de location</label>
+                        <input type="number" name="fees" placeholder="Frais de location" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                     </div>
+                  </div>
+                  <div>
                      <label for="desc" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
                      <input type="text" name="desc" placeholder="Description"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   </div>
                   <div class="flex space-x-8">
                      <div class="basis-4/12">
                         <label for="theme" class="block mb-2 text-sm font-medium text-gray-900">Thème</label>
-                        <select id="theme" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="theme" name="theme" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                            <?php
                               // Get all theme name column
                               $theme_names = $bdd->query('SELECT * FROM theme');
@@ -234,7 +241,7 @@ require_once(__ROOT__ . '/head.php');
                      </div>
                      <div class="basis-4/12">
                         <label for="playlist" class="block mb-2 text-sm font-medium text-gray-900"> Playlist</label>
-                        <select id="playlist" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select id="playlist" name="playlist" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                            <?php
                            // Get all playlist name column
                            $playlists_names = $bdd->query('SELECT * FROM playlist');
@@ -246,12 +253,10 @@ require_once(__ROOT__ . '/head.php');
                      </div>
                      <div class="basis-4/12">
                         <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Type</label>
-                        <input type="text" name="Type" placeholder="type"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                        <input type="text" name="yype" placeholder="Type"
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
-                  <label for="fees" class="block mb-2 text-sm font-medium text-gray-900">Frais de location</label>
-                  <input type="number" name="fees" placeholder="Frais de location" class="w-full px-4 py-2 mb-4 border rounded-lg">
                   <button type="submit"
                      class="w-full text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Chercher</button>
                </form>
@@ -277,24 +282,24 @@ require_once(__ROOT__ . '/head.php');
                   <input type="hidden" name="action" value="song">
                   <label for="cd_number" class="block mb-2 text-sm font-medium text-gray-900">Numéro de CD</label>
                   <input type="number" name="cd_number" placeholder="Numéro de CD" class="w-full px-4 py-2 mb-4 border rounded-lg">
-                  <label for="track_number" class="block mb-2 text-sm font-medium text-gray-900">Numéro de piste</label>
-                  <input type="number" name="track_number" placeholder="Numéro de piste" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <label for="track_number" class="bg-gray-50 block mb-2 text-sm font-medium text-gray-900">Numéro de piste</label>
+                  <input type="number" name="track_number" placeholder="Numéro de piste" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Titre</label>
-                  <input type="text" name="title" placeholder="Titre" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="text" name="title" placeholder="Titre" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <div class="flex space-x-8">
                      <div class="basis-1/2">
                         <label for="artist" class="block mb-2 text-sm font-medium text-gray-900">Artiste</label>
                         <input type="text" name="artist" placeholder="Artiste"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                      <div class="basis-1/2">
                         <label for="duration" class="block mb-2 text-sm font-medium text-gray-900">Durée</label>
                         <input type="text" name="duration" placeholder="00:00"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
                   <label for="genre" class="block mb-2 text-sm font-medium text-gray-900">Genre</label>
-                  <input type="text" name="genre" placeholder="Genre" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="text" name="genre" placeholder="Genre" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <button type="submit"
                      class="w-full text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Chercher</button>
                </form>
@@ -319,26 +324,26 @@ require_once(__ROOT__ . '/head.php');
                <form method="post" action="#">
                   <input type="hidden" name="action" value="locations">
                   <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
-                  <input type="number" name="id" placeholder="ID" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="number" name="id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <label for="street" class="block mb-2 text-sm font-medium text-gray-900">Rue</label>
-                  <input type="text" name="street" placeholder="Rue" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="text" name="street" placeholder="Rue" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <div class="flex space-x-8">
                      <div class="basis-1/2">
                         <label for="city" class="block mb-2 text-sm font-medium text-gray-900">Ville</label>
                         <input type="text" name="city" placeholder="Ville"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                      <div class="basis-1/2">
                         <label for="zip" class="block mb-2 text-sm font-medium text-gray-900">Code postal</label>
                         <input type="text" name="zip" placeholder="Code postal"
-                           class="w-full px-4 py-2 mb-4 border rounded-lg">
+                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
                   <label for="country" class="block mb-2 text-sm font-medium text-gray-900">Pays</label>
-                  <input type="text" name="country" placeholder="Pays" class="w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="text" name="country" placeholder="Pays" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <label for="comment" class="block mb-2 text-sm font-medium text-gray-900"> Commentaire</label>
                   <input type="text" name="comment" placeholder="Commentaire"
-                     class="w-full px-4 py-2 mb-4 border rounded-lg">
+                     class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <button type="submit"
                      class="w-full text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Chercher</button>
                </form>
@@ -648,8 +653,6 @@ require_once(__ROOT__ . '/head.php');
       </table>
    </div>
 
-
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
    <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
 </body>
