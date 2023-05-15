@@ -53,6 +53,8 @@ $resultsPerPage = 10;
 
                 $req = $bdd->query('SELECT ID, NAME, RENTAL_FEE, DATE from event ORDER BY DATE DESC, NAME ASC LIMIT ' . $pageFirstResult . ',' . $resultsPerPage);
 
+                $today = date("Y-m-d");
+
                 while($row = $req->fetch()) {
                     echo "
                     <tr class='bg-white border-b hover:bg-gray-50'>
@@ -64,7 +66,6 @@ $resultsPerPage = 10;
                         </td>
                         <td class='px-6 py-4'>
                             ";
-                            $today = date("Y-m-d");
                             if ($row['DATE'] == $today) {
                                 echo "AUJOURD'HUI";
                             } elseif ($row['DATE'] < $today) {
@@ -77,11 +78,20 @@ $resultsPerPage = 10;
                         <td class='px-6 py-4'>
                             " . ($row['RENTAL_FEE'] + 1500) . " €
                         </td>
-                        <td class='px-6 py-4 text-right text-sm leading-5 font-medium'>
-                            <a href='details.php?id=" . $row['ID'] . "' class='text-indigo-600 hover:text-indigo-900'>Détails</a>
-                        </td>
-                    </tr>
-                    ";                
+                        ";
+
+                        if ($row['DATE'] <= $today) {
+                           echo "
+                           <td class='px-6 py-4'>
+                           <a href='details.php?id=".$row['ID']."' class='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-5 rounded-full'>Détails</a>
+                           </td>";
+                       } else {
+                           echo "
+                           <td class='px-6 py-4'>
+                           <a href='modify_event.php?id=".$row['ID']."' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>Modifier</a>
+                           </td>";
+                       }
+                    echo "</tr>";                
                 }
                 ?>
          </tbody>
