@@ -41,37 +41,25 @@ $resultsPerPage = 10;
       }
 }
 
-   if(isset($_POST['cd_number_delete'])){ // Delete location
-      // Check if song is used in a reservation
-      $sql = 'SELECT COUNT(*) FROM `song` WHERE `song`.`CD_NUMBER` = :cd_number';
-      $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-      $sth->execute(array('cd_number' => $_POST["cd_number_delete"]));
-      $result = $sth->fetch();
-      if($result[0] == 0){
-      $sql = 'DELETE FROM `song` WHERE `song`.`CD_NUMBER` = :cd_number AND `song`.`TRACK_NUMBER` = :track_number';
-      $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-      if(!$sth->execute(array('cd_number' => $_POST["cd_number_delete"]))){
-         echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-                <p class='font-bold'>Erreur</p>
-                <p>Une erreur est survenue. Veuillez réessayer.</p>
-              </div>";
-         } else {
-            echo "<div class='ml-80 mr-80 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
-                   <p class='font-bold'>Succès</p>
-                   <p>Chanson supprimée avec succès.</p>
-                 </div>";
-         }
+if(isset($_POST['cd_number_delete'])){ // Delete song
+   $sql = 'DELETE FROM `song` WHERE `song`.`CD_NUMBER` = :cd_number AND `song`.`TRACK_NUMBER` = :track_number';
+   $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+   if(!$sth->execute(array('cd_number' => $_POST["cd_number_delete"], 'track_number' => $_POST["track_number_delete"]))){
+      echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+            <p class='font-bold'>Erreur</p>
+            <p>Une erreur est survenue. Veuillez réessayer.</p>
+         </div>";
       } else {
-         echo "<div class='ml-80 mr-80 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4' role='alert'>
-                <p class='font-bold'>Erreur</p>
-                <p>Impossible de supprimer cette chanson car elle est utilisée dans une réservation.</p>
-              </div>";
+         echo "<div class='ml-80 mr-80 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
+               <p class='font-bold'>Succès</p>
+               <p>Chanson supprimée avec succès.</p>
+            </div>";
       }
-   }
+}
 ?>
 
-   <!-- Add song modal toggle -->
-   <button data-modal-target="add-song-modal" data-modal-toggle="add-song-modal"
+<!-- Add location modal toggle -->
+<button data-modal-target="add-song-modal" data-modal-toggle="add-song-modal"
       class="ml-80 mr-80 mt-10 block bg-blue-50 rounded text-sm font-medium text-blue-500 hover:bg-blue-100 hover:text-blue-600 px-5 py-2.5 text-center"
       type="button">
       Ajouter une chanson
@@ -109,7 +97,7 @@ $resultsPerPage = 10;
 
          $page_nb = ceil($rows_nb / $resultsPerPage);
 
-         $req = $bdd->query('SELECT * FROM cd LIMIT ' . $pageFirstResult . ',' . $resultsPerPage);
+         $req = $bdd->query('SELECT DISTINCT * FROM cd INNER JOIN song ON cd.CD_NUMBER = song.CD_NUMBER WHERE cd.CD_NUMBER = ' . $_GET['cd_number'] . ' LIMIT ' . $pageFirstResult . ',' . $resultsPerPage);
 
          while($row = $req->fetch()) {
             echo "
@@ -133,6 +121,7 @@ $resultsPerPage = 10;
                   </a>
                     <form method='post' action='#'>
                         <input type='hidden' name='cd_number_delete' value='".$row['CD_NUMBER']."'>
+                        <input type='hidden' name='track_number_delete' value='".$row['TRACK_NUMBER']."'>
                         <button type='submit' class='text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-sharp fa-solid fa-trash'></i></button>
                      </form>
                   </div>

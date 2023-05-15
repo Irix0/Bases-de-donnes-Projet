@@ -15,8 +15,8 @@ require_once(__ROOT__.'/head.php');
 
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
    $trackNumber = $_GET['track_number'];
-   $cdNumber = $GET['cd_number'];
-   $req = $bdd->query('SELECT COUNT(*) FROM song WHERE TRACK_NUMBER = ' . $trackNumber .' AND CD_NUMBER = '. $cdNumber);
+   $cdNumber = $_GET['cd_number'];
+   $req = $bdd->query('SELECT * FROM song WHERE TRACK_NUMBER = ' . $trackNumber .' AND CD_NUMBER = '. $cdNumber);
    $row = $req->fetch();
    if(empty($row)) {
       echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
@@ -25,7 +25,7 @@ require_once(__ROOT__.'/head.php');
     </div>";
    } else {
       if($_POST['action'] == 'edit') {
-         $sql = "UPDATE song SET TRACK_NUMBER = :new_track_number, TITLE = :title, ARTIST = :artist, DURATION = :duration, GENRE = :genre WHERE TRACK_NUMBER = :track_number";
+         $sql = "UPDATE song SET TRACK_NUMBER = :new_track_number, TITLE = :title, ARTIST = :artist, DURATION = :duration, GENRE = :genre WHERE TRACK_NUMBER = :track_number AND CD_NUMBER = :cd_number";
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          $res = $sth->execute(array(
             ':new_track_number' => $_POST['track_number'],
@@ -33,7 +33,8 @@ require_once(__ROOT__.'/head.php');
             ':artist' => $_POST['artist'],
             ':duration' => $_POST['duration'],
             ':genre' => $_POST['genre'],
-            ':track_number' => $trackNumber
+            ':track_number' => $trackNumber,
+            ':cd_number' => $cdNumber
          ));
          // Check if id has changed : if so change $id and the url
          if($_POST['track_number'] != $trackNumber && $res) {
@@ -46,7 +47,7 @@ require_once(__ROOT__.'/head.php');
             <p class='font-bold'>Succès</p>
             <p>La chanson a été modifiée.</p>
             </div>";
-            $req = $bdd->query('SELECT * FROM song WHERE TRACK_NUMBER = ' . $trackNumber);
+            $req = $bdd->query('SELECT * FROM song WHERE TRACK_NUMBER = ' . $trackNumber .' AND CD_NUMBER = '. $cdNumber);
             $row = $req->fetch();
          } else {
             echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
@@ -60,7 +61,7 @@ require_once(__ROOT__.'/head.php');
    <div class="ml-80 mr-80 mt-2 px-6 py-6 lg:px-8">
       <div class="flex content-center items-center">
          <div class="basis-1/12">
-            <button onclick="document.song.replace('/dashboard/edit-song.php')"
+            <button onclick="document.location.replace('/dashboard/edit-cd.php?cd_number=<?php echo $cdNumber;?>')"
                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm px-3 py-5 inline-flex items-center">
                <i class="fa-solid fa-angle-left fa-2xl"></i>
                <span class="sr-only">Retour</span>
@@ -94,6 +95,12 @@ require_once(__ROOT__.'/head.php');
          <div>
             <label for="GENRE" class="block mb-2 text-sm font-medium text-gray-900">Genre*</label>
             <input type="text" name="genre" id="genre" value="<?php echo $row['GENRE']; ?>"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+               required>
+         </div>
+         <div>
+            <label for="TRACK_NUMBER" class="block mb-2 text-sm font-medium text-gray-900">Numéro de piste*</label>
+            <input type="text" name="track_number" id="track_number" value="<?php echo $row['TRACK_NUMBER']; ?>"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                required>
          </div>
