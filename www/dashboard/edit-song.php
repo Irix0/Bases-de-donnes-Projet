@@ -16,7 +16,7 @@ require_once(__ROOT__.'/head.php');
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
    $trackNumber = $_GET['track_number'];
    $cdNumber = $GET['cd_number'];
-   $req = $bdd->query('SELECT * FROM song WHERE TRACK_NUMBER = ' . $trackNumber .' AND CD_NUMBER = '. $cdNumber);
+   $req = $bdd->query('SELECT COUNT(*) FROM song WHERE TRACK_NUMBER = ' . $trackNumber .' AND CD_NUMBER = '. $cdNumber);
    $row = $req->fetch();
    if(empty($row)) {
       echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
@@ -73,27 +73,27 @@ require_once(__ROOT__.'/head.php');
       <form id="form" method="post" class="mt-3 space-y-6" action="#">
          <div>
             <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Titre*</label>
-            <input type="text" name="title" track_number="title" value="<?php echo $row['TITLE']; ?>"
+            <input type="text" name="title" id="title" value="<?php echo $row['TITLE']; ?>"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                required>
          </div>
          <div class="flex space-x-8">
             <div class="basis-1/2">
                <label for="artist" class="block mb-2 text-sm font-medium text-gray-900">Artist*</label>
-               <input type="text" name="artist" track_number="artist" value="<?php echo $row['ARTIST']; ?>"
+               <input type="text" name="artist" id="artist" value="<?php echo $row['ARTIST']; ?>"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   required>
             </div>
             <div class="basis-1/2">
                <label for="duration" class="block mb-2 text-sm font-medium text-gray-900">Duration*</label>
-               <input type="text" name="duration" track_number="duration" value="<?php echo $row['DURATION']; ?>"
+               <input type="text" name="duration" id="duration" value="<?php echo $row['DURATION']; ?>"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   required maxlength="8">
             </div>
          </div>
          <div>
             <label for="GENRE" class="block mb-2 text-sm font-medium text-gray-900">Genre*</label>
-            <input type="text" name="genre" track_number="genre" value="<?php echo $row['GENRE']; ?>"
+            <input type="text" name="genre" id="genre" value="<?php echo $row['GENRE']; ?>"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                required>
          </div>

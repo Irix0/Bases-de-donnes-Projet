@@ -128,7 +128,7 @@ $resultsPerPage = 10;
                </td>
                <td class='py-2'>
                   <div class='flex'>
-                  <a href='edit-song.php?cd_number=".$row['CD_NUMBER']."&track_number=".$row['TRACK_NUMBER']."'>
+                  <a href='edit-song.php?cd_number=".$row['CD_NUMBER']. "&track_number=".$row['TRACK_NUMBER']."'>
                      <button type='button' class='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-solid fa-pen'></i></button>
                   </a>
                     <form method='post' action='#'>
@@ -146,19 +146,103 @@ $resultsPerPage = 10;
    </table>
 
    <div class="mt-3 flex flex-col items-center">
-      <!-- Help text -->
-      <span class="text-sm text-gray-700">
-         <span class="font-semibold text-gray-900"><?php echo $pageFirstResult+1; ?> </span> à <span
-            class="font-semibold text-gray-900"><?php 
-            if(($pageFirstResult + $resultsPerPage) > $rows_nb){
-               echo $rows_nb;
-            } else {
-               echo ($pageFirstResult + $resultsPerPage);
-            } ?></span> résultats montrés sur <span
-            class="font-semibold text-gray-900"><?php echo "$rows_nb"; ?></span>
-      </span>
-   </div>
-</div>
+         <!-- Help text -->
+         <span class="text-sm text-gray-700">
+            <span class="font-semibold text-gray-900"><?php echo $pageFirstResult+1; ?> </span> à <span
+               class="font-semibold text-gray-900"><?php 
+               if(($pageFirstResult + $resultsPerPage) > $rows_nb){
+                  echo $rows_nb;
+               } else {
+                  echo ($pageFirstResult + $resultsPerPage);
+               } ?></span> résultats montrés sur <span
+               class="font-semibold text-gray-900"><?php echo "$rows_nb"; ?></span>
+         </span>
+         <!-- Buttons -->
+
+         <nav class="mt-1 mb-2">
+            <ul class="list-style-none flex">
+               <?php
+               for($i = 1; $i<= $page_nb; $i++) {
+                  if($i == $page){
+                     echo '<li>
+                     <a
+                        class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
+                        href = "edit-cd.php?page=' . $i . '"> ' . $i . ' <span
+          class="absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0,0,0,0)]"
+          >(current)</span></a>
+          </li>';
+                  } else {
+                  echo '<li>
+                  <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
+                     href = "edit-cd.php?page=' . $i . '">' . $i . ' </a>
+               </li>';
+                  }
+               }
+               ?>
+            </ul>
+         </nav>
+
+      </div>
+
+      <!-- Add modal -->
+      <div id="add-song-modal" tabindex="-1" aria-hidden="true"
+         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+         <div class="relative w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow">
+               <button
+                  class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                  data-modal-hide="add-song-modal">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                     xmlns="http://www.w3.org/2000/svg">
+                     <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">Fermer le modal</span>
+               </button>
+               <div class="px-6 py-6 lg:px-8">
+                  <h3 class="mb-4 text-xl font-medium text-gray-900">Ajouter une chanson</h3>
+                  <form method="post" class="space-y-6" action="#">
+                     <div>
+                        <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Titre*</label>
+                        <input type="text" name="street" id="title"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                           placeholder="Rue Fond des Tawes 251" required>
+                     </div>
+                     <div class="flex space-x-8">
+                        <div>
+                           <label for="artist" class="block mb-2 text-sm font-medium text-gray-900">Artiste*</label>
+                           <input type="text" name="artist" id="artist" placeholder="Liège"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                              required>
+                        </div>
+                        <div>
+                           <label for="duration" class="block mb-2 text-sm font-medium text-gray-900">Durée* (8 chars max)</label>
+                           <input type="text" name="duration" id="duration" placeholder="4000"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                              required maxlength="8">
+                        </div>
+                     </div>
+                     <div>
+                        <label for="genre" class="block mb-2 text-sm font-medium text-gray-900">Genre*</label>
+                        <input type="text" name="genre" id="genre"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                           placeholder="Belgique" required>
+                     </div>
+                     <div>
+                        <label for="track_number" class="block mb-2 text-sm font-medium text-gray-900">Track Number</label>
+                        <input type="number" name="track_number" id="track_number"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                           placeholder="20">
+                     </div>
+                     <button type="submit"
+                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Ajouter</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
    <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
