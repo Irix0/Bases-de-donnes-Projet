@@ -14,7 +14,7 @@
         }
         $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
         if ($bdd == NULL)
-        echo "<div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+        echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
         <p class='font-bold'>Erreur fatale</p>
         <p>Une erreur s'est produite lors de la connexion à la base de données.</p>
         <p>Veuillez contacter l'administrateur.</p>
@@ -30,7 +30,7 @@
             if ($tuple) {
                 $_SESSION['login'] = $tuple["Login"];
             } else
-                echo "<div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                 <p class='font-bold'>Erreur</p>
                 <p>Mauvaise combinaison utilisateur/mot de passe.</p>
               </div>";
