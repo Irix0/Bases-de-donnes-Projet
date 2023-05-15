@@ -14,7 +14,15 @@ require_once(__ROOT__.'/head.php');
    }
 
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
-   $id = $_GET['id'];
+   if(isset($_GET['id']))
+      $id = $_GET['id'];
+   else {
+      echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+      <p class='font-bold'>Mauvais accès</p>
+      <p>Les accès directs à cette page sont interdits.</p>
+      </div>";
+      die();
+   }
    $req = $bdd->query('SELECT * FROM location WHERE ID = ' . $id);
    $row = $req->fetch();
    if(empty($row)) {
