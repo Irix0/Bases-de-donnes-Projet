@@ -7,3 +7,6 @@ ErrorDocument 408 /error.php
 ErrorDocument 500 /error.php
 ErrorDocument 502 /error.php
 ErrorDocument 504 /error.php
+
+RedirectMatch 403 ^/navbar.php$
+RedirectMatch 403 ^/head.php$

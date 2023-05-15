@@ -24,7 +24,7 @@ require_once(__ROOT__.'/head.php');
     </div>";
    } else {
       if($_POST['action'] == 'edit') {
-         $sql = "UPDATE location SET ID= :new_id, STREET = :street, CITY = :city, POSTAL_CODE = :postal_code, COUNTRY = :country WHERE ID = :id";
+         $sql = "UPDATE location SET ID= :new_id, STREET = :street, CITY = :city, POSTAL_CODE = :postal_code, COUNTRY = :country, COMMENT = :comment WHERE ID = :id";
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          $res = $sth->execute(array(
             ':new_id' => $_POST['id'],
@@ -32,7 +32,8 @@ require_once(__ROOT__.'/head.php');
             ':city' => $_POST['city'],
             ':postal_code' => $_POST['zip'],
             ':country' => $_POST['country'],
-            ':id' => $id
+            ':id' => $id,
+            ':comment' => $_POST['comment']
          ));
          // Check if id has changed : if so change $id and the url
          if($_POST['id'] != $id && $res) {

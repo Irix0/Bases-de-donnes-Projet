@@ -1,3 +1,7 @@
+<?php
+   // Check if page is directely accessed
+   isset($title) or die("403 - Forbidden");
+?>
 <!DOCTYPE html>
 <html>
 <head>
