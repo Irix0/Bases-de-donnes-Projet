@@ -294,7 +294,7 @@ require_once(__ROOT__ . '/head.php');
                      </div>
                      <div class="basis-1/2">
                         <label for="duration" class="block mb-2 text-sm font-medium text-gray-900">Durée</label>
-                        <input type="text" name="duration" placeholder="00:00"
+                        <input type="text" name="duration" placeholder="00:00:00"
                            class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
@@ -322,28 +322,25 @@ require_once(__ROOT__ . '/head.php');
          <div id="accordion-color-body-6" class="hidden" aria-labelledby="accordion-color-heading-6">
             <div class="p-5 border border-t-0 border-gray-200">
                <form method="post" action="#">
-                  <input type="hidden" name="action" value="locations">
-                  <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
-                  <input type="number" name="id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
-                  <label for="street" class="block mb-2 text-sm font-medium text-gray-900">Rue</label>
-                  <input type="text" name="street" placeholder="Rue" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                  <input type="hidden" name="action" value="cd">
+                  <label for="cd_number" class="block mb-2 text-sm font-medium text-gray-900">Numéro du CD</label>
+                  <input type="number" name="cd_number" placeholder="Numéro du CD" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                  <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Titre</label>
+                  <input type="text" name="title" placeholder="Titre" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <div class="flex space-x-8">
                      <div class="basis-1/2">
-                        <label for="city" class="block mb-2 text-sm font-medium text-gray-900">Ville</label>
-                        <input type="text" name="city" placeholder="Ville"
+                        <label for="producer" class="block mb-2 text-sm font-medium text-gray-900">Producteur</label>
+                        <input type="text" name="producer" placeholder="Producteur"
                            class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                      <div class="basis-1/2">
-                        <label for="zip" class="block mb-2 text-sm font-medium text-gray-900">Code postal</label>
-                        <input type="text" name="zip" placeholder="Code postal"
+                        <label for="year" class="block mb-2 text-sm font-medium text-gray-900">Année de sortie</label>
+                        <input type="number" name="year" placeholder="1999"
                            class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
-                  <label for="country" class="block mb-2 text-sm font-medium text-gray-900">Pays</label>
-                  <input type="text" name="country" placeholder="Pays" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
-                  <label for="comment" class="block mb-2 text-sm font-medium text-gray-900"> Commentaire</label>
-                  <input type="text" name="comment" placeholder="Commentaire"
-                     class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                  <label for="copies" class="block mb-2 text-sm font-medium text-gray-900">Nombre de copies</label>
+                  <input type="number" name="copies" placeholder="Nombre de copies" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <button type="submit"
                      class="w-full text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Chercher</button>
                </form>
@@ -638,6 +635,78 @@ require_once(__ROOT__ . '/head.php');
                            </td>
                            <td class='px-6 py-4'>
                               " . $result['GENRE'] . "
+                           </td>
+                        </tr>";
+                     $result = $query->fetch();
+                  }
+               }
+               break;
+            case 'cd':
+               $sql = "SELECT * FROM cd WHERE CD_NUMBER LIKE :cd_number OR TITLE LIKE :title OR PRODUCER LIKE :producer OR YEAR LIKE :year OR COPIES LIKE :copies";
+               $query = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+               empty($_POST['cd_number']) ? $cd_number = NULL : $cd_number = $_POST['cd_number'];
+               empty($_POST['title']) ? $title = NULL : $title = "%" . $_POST['title'] . "%";
+               empty($_POST['producer']) ? $producer = NULL : $producer = "%" . $_POST['producer'] . "%";
+               empty($_POST['year']) ? $year = NULL : $year = $_POST['year'];
+               empty($_POST['copies']) ? $copies = NULL : $copies = $_POST['copies'];
+               if (
+                  !$query->execute(
+                     array(
+                        'cd_number' => $cd_number,
+                        'title' => $title,
+                        'producer' => $producer,
+                        'year' => $year,
+                        'copies' => $copies
+                     )
+                  )
+               ) {
+                  echo "<div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                  <p class='font-bold'>Erreur</p>
+                  <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
+                  <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
+               </div>";
+               } else {
+                  echo '<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
+                  <table class="table-fixed w-full text-sm text-left text-gray-500">
+                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                           <th scope="col" class="w-1/12 px-6 py-3">
+                              Numéro de CD
+                           </th>
+                           <th scope="col" class="w-1/12 px-6 py-3">
+                              Titre
+                           </th>
+                           <th scope="col" class="w-1/12 px-3 py-3">
+                              Producteur
+                           </th>
+                           <th scope="col" class="w-1/12 px-6 py-3">
+                              Année de sortie
+                           </th>
+                           <th scope="col" class="w-2/12 px-6 py-3">
+                              Nombre de copies
+                           </th>
+                        </tr>
+                     </thead>
+                     <tbody>';
+                  $result = $query->fetch();
+                  // Show lines
+                  while ($result) {
+                     echo "
+                        <tr class='bg-white border-b hover:bg-gray-50'>
+                           <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
+                              " . $result['CD_NUMBER'] . "
+                           </th>
+                           <td class='px-6 py-4'>
+                              " . $result['TITLE'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['PRODUCER'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['YEAR'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['COPIES'] . "
                            </td>
                         </tr>";
                      $result = $query->fetch();
