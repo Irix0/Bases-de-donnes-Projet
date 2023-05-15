@@ -9,14 +9,14 @@ $resultsPerPage = 10;
 <body>
    <?php
    if(!isset($_SESSION['login'])) {
-      echo "<script type='text/javascript'>document.cd.replace('/login.php');</script>";
+      echo "<script type='text/javascript'>document.location.replace('/login.php');</script>";
    } else {
       require_once(__ROOT__.'/navbar.php');
    }
 
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
    if(isset($_GET['cd_number']))
-      $trackNumber = $_GET['cd_number'];
+      $cdNumber = $_GET['cd_number'];
    else {
       echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
       <p class='font-bold'>Mauvais accès</p>
@@ -102,7 +102,7 @@ if(isset($_POST['cd_number_delete'])){ // Delete song
                $page = $_GET['page'];  
            }  
          $pageFirstResult = ($page-1) * $resultsPerPage;
-         $rows_nb = $bdd->query('SELECT COUNT(*) FROM song s INNER JOIN cd cd ON cd.cd_number = s.cd_number')->fetchColumn();
+         $rows_nb = $bdd->query('SELECT COUNT(*) FROM `song` WHERE CD_NUMBER=' . $cdNumber)->fetchColumn();
 
          $page_nb = ceil($rows_nb / $resultsPerPage);
 
@@ -165,14 +165,14 @@ if(isset($_POST['cd_number_delete'])){ // Delete song
                      echo '<li>
                      <a
                         class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
-                        href = "edit-cd.php?page=' . $i . '"> ' . $i . ' <span
+                        href = "edit-cd.php?page=' . $i . '&cd_number='.$cdNumber.'"> ' . $i . ' <span
           class="absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0,0,0,0)]"
           >(current)</span></a>
           </li>';
                   } else {
                   echo '<li>
                   <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
-                     href = "edit-cd.php?page=' . $i . '">' . $i . ' </a>
+                     href = "edit-cd.php?page=' . $i . '&cd_number='.$cdNumber.'">' . $i . ' </a>
                </li>';
                   }
                }
@@ -189,7 +189,7 @@ if(isset($_POST['cd_number_delete'])){ // Delete song
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow">
                <button
-                  class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                  class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                   data-modal-hide="add-song-modal">
                   <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                      xmlns="http://www.w3.org/2000/svg">

@@ -8,14 +8,22 @@ require_once(__ROOT__.'/head.php');
 <body>
    <?php
    if(!isset($_SESSION['login'])) {
-      echo "<script type='text/javascript'>document.cd.replace('/login.php');</script>";
+      echo "<script type='text/javascript'>document.location.replace('/login.php');</script>";
    } else {
       require_once(__ROOT__.'/navbar.php');
    }
 
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
-   $trackNumber = $_GET['track_number'];
-   $cdNumber = $_GET['cd_number'];
+   if(isset($_GET['track_number']) && isset($_GET['cd_number'])){
+      $trackNumber = $_GET['track_number'];
+      $cdNumber = $_GET['cd_number'];
+   } else {
+      echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+      <p class='font-bold'>Mauvais accès</p>
+      <p>Les accès directs à cette page sont interdits.</p>
+      </div>";
+      die();
+   }
    $req = $bdd->query('SELECT * FROM song WHERE TRACK_NUMBER = ' . $trackNumber .' AND CD_NUMBER = '. $cdNumber);
    $row = $req->fetch();
    if(empty($row)) {
@@ -39,7 +47,7 @@ require_once(__ROOT__.'/head.php');
          // Check if id has changed : if so change $id and the url
          if($_POST['track_number'] != $trackNumber && $res) {
             $trackNumber = $_POST['track_number'];
-            echo "<script type='text/javascript'>document.song.replace('/dashboard/edit-song.php?track_number=" . $trackNumber . "');</script>";
+            echo "<script type='text/javascript'>document.location.replace('/dashboard/edit-song.php?track_number=" . $trackNumber . "');</script>";
          }
 
          if($res) {

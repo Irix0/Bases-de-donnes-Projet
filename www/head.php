@@ -12,6 +12,9 @@
 <!-- Dans l'énoncé de la partie 1, dans la description de l'entreprise, il est bien dit :
     <<My company is called “WeND(Y)'s,” which stands for “We’re not dead (yet).”>>
 -->
+<script>
+    document.documentElement.classList.remove("dark");
+</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="#">
 </head>

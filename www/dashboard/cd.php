@@ -9,7 +9,7 @@ $resultsPerPage = 10;
 <body>
    <?php
    if(!isset($_SESSION['login'])) {
-      echo "<script type='text/javascript'>document.cd.replace('/login.php');</script>";
+      echo "<script type='text/javascript'>document.location.replace('/login.php');</script>";
    } else {
       require_once(__ROOT__.'/navbar.php');
    }
