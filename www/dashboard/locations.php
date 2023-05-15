@@ -24,6 +24,7 @@ $resultsPerPage = 10;
                 <p>Le code postal donné n'est pas numérique.</p>
               </div>";
       } else {
+<<<<<<< HEAD
          empty($_POST['comment']) ? $comment = NULL : $comment = $_POST['comment']; // If comment is empty, set it to NULL (to avoid SQL error)
          if(empty($_POST['comment'])) echo "aaaa";
          empty($_POST['id']) ? $id = NULL : $id = $_POST['id']; // If id is empty, set it to NULL (to avoid SQL error
@@ -31,6 +32,14 @@ $resultsPerPage = 10;
          $sql = 'INSERT INTO `location` (`ID`, `STREET`, `CITY`, `POSTAL_CODE`, `COUNTRY`, `COMMENT`) VALUES (:id, :street, :city, :postal, :country, :comment);';
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          if(!$sth->execute(array('id' => $id, 'street' => $_POST["street"], 'city' => $_POST["city"], 'postal' => $_POST["zip"], 'country' => $_POST["country"], 'comment' => $comment))){
+=======
+         if(empty($_POST['comment'])) $_POST['comment'] = NULL; // If comment is empty, set it to NULL (to avoid SQL error)
+         if(empty($_POST['id'])) $_POST['id'] = NULL; // If id is empty, set it to NULL (to avoid SQL error)
+
+         $sql = 'INSERT INTO `location` (`ID`, `STREET`, `CITY`, `POSTAL_CODE`, `COUNTRY`, `COMMENT`) VALUES (:id, :street, :city, :postal, :country, :comment);';
+         $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+         if(!$sth->execute(array('id' => $_POST["id"], 'street' => $_POST["street"], 'city' => $_POST["city"], 'postal' => $_POST["zip"], 'country' => $_POST["country"], 'comment' => $_POST["comment"]))){
+>>>>>>> main
             echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                   <p class='font-bold'>Erreur</p>
                   <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
@@ -239,7 +248,11 @@ $resultsPerPage = 10;
                      </div>
                      <div>
                         <label for="comment" class="block mb-2 text-sm font-medium text-gray-900">Commentaire</label>
+<<<<<<< HEAD
                         <textarea id="comment" name="comment" rows="4"
+=======
+                        <textarea id="comment" rows="4"
+>>>>>>> main
                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                            placeholder="Ajouter un commentaire"></textarea>
                      </div>
