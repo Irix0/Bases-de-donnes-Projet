@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><?php echo($title); ?> - WeND(Y)</title>
+<title><?php echo($title); ?> - WeND(Y)'s</title>
 <!-- Le nom est bien WeND(Y) et non WeND(Y)'s -->
 <!-- Le 's n'est là que quand on parle du WeND(Y)’s Party Management System, et sert à indiquer la possession. -->
 <!-- Soit pour ne pas dire "Party Management System of WeND(Y)" -->
