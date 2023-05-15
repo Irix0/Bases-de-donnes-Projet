@@ -68,6 +68,12 @@ $resultsPerPage = 10;
    }
 ?>
 
+<!-- Add location modal toggle -->
+<button data-modal-target="add-location-modal" data-modal-toggle="add-location-modal"
+      class="ml-80 mr-80 mt-10 block bg-blue-50 rounded text-sm font-medium text-blue-500 hover:bg-blue-100 hover:text-blue-600 px-5 py-2.5 text-center"
+      type="button">
+      Ajouter un lieu
+   </button>
 
    <!-- Main table -->
    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6 ml-80 mr-80">
@@ -219,7 +225,7 @@ $resultsPerPage = 10;
                         </div>
                         <div>
                            <label for="zip" class="block mb-2 text-sm font-medium text-gray-900">Code
-                              postal* (8 chars max)</label>
+                              postal*</label>
                            <input type="text" name="zip" id="zip" placeholder="4000"
                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                               required maxlength="8">
