@@ -79,6 +79,7 @@
       <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
          href="/dashboard/cd-usage.php">
          Utilisation des CD
+      </a>
       <a class="px-2 py-4 text-sm text-gray-500 transition ease-in-out transform border-b-2 border-transparent duration-650 focus:outline-none focus:shadow-none md:my-0 hover:border-blue-500 hover:text-blue-600"
          href="/dashboard/event.php">
          Événements
