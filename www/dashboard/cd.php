@@ -66,7 +66,7 @@ $resultsPerPage = 10;
                      ".$row['TITLE']."
                   </th>
                   <td class='px-6 py-4'>
-                     ".$row['PRODUCTER']."
+                     ".$row['PRODUCER']."
                   </td>
                   <td class='px-6 py-4'>
                      ".$row['YEAR']."
@@ -145,26 +145,6 @@ $resultsPerPage = 10;
                   </svg>
                   <span class="sr-only">Fermer le modal</span>
                </button>
-               <div class="px-6 py-6 lg:px-8">
-                  <h3 class="mb-4 text-xl font-medium text-gray-900">Ajouter un CD</h3>
-                  <form method="post" class="space-y-6" action="#">
-                     <div>
-                        <label for="street" class="block mb-2 text-sm font-medium text-gray-900">Rue*</label>
-                        <input type="text" name="street" id="street"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                           placeholder="Rue Fond des Tawes 251" required>
-                     </div>
-                     <div class="flex space-x-8">
-                        <div>
-                           <label for="city" class="block mb-2 text-sm font-medium text-gray-900">Ville*</label>
-                           <input type="text" name="city" id="city" placeholder="Liège"
-                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                              required>
-                        </div>
-                     <button type="submit"
-                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Ajouter</button>
-                  </form>
-               </div>
             </div>
          </div>
       </div>
