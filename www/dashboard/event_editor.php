@@ -40,6 +40,9 @@ require_once(__ROOT__.'/head.php');
    $client_table = $client_req->fetchAll();
    $manager_req = $bdd->query('SELECT * FROM manager');
    $manager_table = $manager_req->fetchAll();
+   // We need to get the supervised employees of the manager
+   $supervised_employees = $bdd->query('SELECT EMPLOYEE_ID FROM supervision WHERE SUPERVISOR_ID = ' . $row['MANAGER']);
+   $supervised_employees = $supervised_employees->fetchAll(PDO::FETCH_COLUMN, 0);
    $eventPlanner_req = $bdd->query('SELECT * FROM event_planner');
    $eventPlanner_table = $eventPlanner_req->fetchAll();
    $dj_req = $bdd->query('SELECT * FROM dj');
@@ -64,15 +67,13 @@ require_once(__ROOT__.'/head.php');
     </div>";
    } else {
       if($_POST['action'] == 'edit') {
-         $sql = "UPDATE event SET ID = :new_id, NAME = :new_name, DATE = :new_date, DESCRIPTION = :new_description, CLIENT = :new_client, MANAGER = :new_manager, EVENT_PLANNER = :new_eventPlanner, DJ = :new_dj, THEME = :new_theme, TYPE = :new_type, LOCATION = :new_location, RENTAL_FEE = :new_rentalFee, PLAYLIST = :new_playlist WHERE ID = :id";
+         $sql = "UPDATE event SET ID = :new_id, NAME = :new_name, DATE = :new_date, DESCRIPTION = :new_description, EVENT_PLANNER = :new_eventPlanner, DJ = :new_dj, THEME = :new_theme, TYPE = :new_type, LOCATION = :new_location, RENTAL_FEE = :new_rentalFee, PLAYLIST = :new_playlist WHERE ID = :id";
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          $res = $sth->execute(array(
             ':new_id' => $_POST['id'],
             ':new_name' => $_POST['name'],
             ':new_date' => $_POST['date'],
             ':new_description' => $_POST['description'],
-            ':new_client' => $_POST['client'],
-            ':new_manager' => $_POST['manager'],
             ':new_eventPlanner' => $_POST['eventPlanner'],
             ':new_dj' => $_POST['dj'],
             ':new_theme' => $_POST['theme'],
@@ -135,43 +136,23 @@ require_once(__ROOT__.'/head.php');
          </div>
          <!-- Client -->
          <div>
-            <label for="client" class="block mb-2 text-sm font-medium text-gray-900">Client*</label>
-            <select name="client" id="client"
-               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-               required>
-               <?php 
-                  foreach ($client_table as $client) {
-                     if($client['CLIENT_NUMBER'] == $row['CLIENT']){
-                        echo "<option value='". $client['CLIENT_NUMBER'] ."' selected>". $client['FIRST_NAME'] ." ". $client['LAST_NAME'] ."</option>";
-                     } else {
-                        echo "<option value='". $client['CLIENT_NUMBER'] ."'>". $client['FIRST_NAME'] ." ". $client['LAST_NAME'] ."</option>";
-                     }
-                  }
-               ?>
-            </select>
+            <label for="client" class="block mb-2 text-sm font-medium text-gray-900">Client</label>
+            <?php 
+               $client_name = $bdd->query('SELECT FIRST_NAME, LAST_NAME FROM client WHERE CLIENT_NUMBER = ' . $row['CLIENT']);
+               $client_name = $client_name->fetch();
+            ?>
+            <input type="text" name="client" id="client" value="<?php echo $client_name['FIRST_NAME'] ." ". $client_name['LAST_NAME']; ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" disabled>
          </div>
          <!-- Manager and Event planner and DJ-->
          <div class="flex space-x-4">
             <!-- Manager -->
             <div class="w-1/3">
-               <label for="manager" class="block mb-2 text-sm font-medium text-gray-900">Manager*</label>
-               <select name="manager" id="manager"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required>
-                  <?php 
-                     foreach ($manager_table as $manager) {
-                        if($manager['ID'] == $row['MANAGER']){
-                           $manager_name = $bdd->query('SELECT FIRSTNAME, LASTNAME FROM employee WHERE ID = ' . $manager['ID']);
-                           $manager_name = $manager_name->fetch();
-                           echo "<option value='". $manager['ID'] ."' selected>". $manager_name['FIRSTNAME'] ." ". $manager_name['LASTNAME'] ."</option>";
-                        } else {
-                           $manager_name = $bdd->query('SELECT FIRSTNAME, LASTNAME FROM employee WHERE ID = ' . $manager['ID']);
-                           $manager_name = $manager_name->fetch();
-                           echo "<option value='". $manager['ID'] ."'>". $manager_name['FIRSTNAME'] ." ". $manager_name['LASTNAME'] ."</option>";
-                        }
-                     }
-                  ?>
-               </select>
+               <label for="manager" class="block mb-2 text-sm font-medium text-gray-900">Manager</label>
+               <?php 
+                  $manager_name = $bdd->query('SELECT FIRSTNAME, LASTNAME FROM employee WHERE ID = ' . $row['MANAGER']);
+                  $manager_name = $manager_name->fetch();
+               ?>
+               <input type="text" name="manager" id="manager" value="<?php echo $manager_name['FIRSTNAME'] ." ". $manager_name['LASTNAME']; ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" disabled>
             </div>
             <!-- Event planner -->
             <div class="w-1/3">
@@ -187,7 +168,11 @@ require_once(__ROOT__.'/head.php');
                            echo "<option value='". $eventPlanner['ID'] ."' selected>". $eventPlanner_name['FIRSTNAME'] ." ". $eventPlanner_name['LASTNAME'] ."</option>";
                         } else {
                            foreach($all_events_table as $event){
-                              if($event['ID'] != $row['ID'] && $event['DATE'] == $row['DATE'] &&$eventPlanner['ID'] == $event['EVENT_PLANNER']){
+                              if($event['ID'] != $row['ID'] && $event['DATE'] == $row['DATE'] && $eventPlanner['ID'] == $event['EVENT_PLANNER']){
+                                 $eventPlanner['ID'] = -1;
+                              }
+                              // Now we're moving those who aren't supervised by the manager
+                              if($eventPlanner['ID'] != -1 && !in_array($eventPlanner['ID'], $supervised_employees)){
                                  $eventPlanner['ID'] = -1;
                               }
                            }
@@ -215,9 +200,14 @@ require_once(__ROOT__.'/head.php');
                            echo "<option value='". $dj['ID'] ."' selected>". $dj_name['FIRSTNAME'] ." ". $dj_name['LASTNAME'] ."</option>";
                         } else {
                            foreach($all_events_table as $event){
-                              if($event['ID'] != $row['ID'] && $event['DATE'] == $row['DATE'] &&$dj['ID'] == $event['DJ']){
+                              if($event['ID'] != $row['ID'] && $event['DATE'] == $row['DATE'] && $dj['ID'] == $event['DJ']){
                                  $dj['ID'] = -1;
                               }
+                              // Now we're moving those who aren't supervised by the manager
+                              if($dj['ID'] != -1 && !in_array($dj['ID'], $supervised_employees)){
+                                 $dj['ID'] = -1;
+                              }
+
                            }
                            if($dj['ID'] != -1){
                               $dj_name = $bdd->query('SELECT FIRSTNAME, LASTNAME FROM employee WHERE ID = ' . $dj['ID']);
@@ -275,7 +265,15 @@ require_once(__ROOT__.'/head.php');
                      if($location['ID'] == $row['LOCATION']){
                         echo "<option value='". $location['ID'] ."' selected>".  $location['STREET'] .", ". $location['CITY'] ." ". $location['POSTAL_CODE'] ." ". $location['COUNTRY'] ."</option>";
                      } else {
-                        echo "<option value='". $location['ID'] ."'>".  $location['STREET'] .", ". $location['CITY'] ." ". $location['POSTAL_CODE'] ." ". $location['COUNTRY'] ."</option>";
+                        // We need to check if the location is available. 
+                        foreach($all_events_table as $event){
+                           if($event['ID'] != $row['ID'] && $event['DATE'] == $row['DATE'] && $location['ID'] == $event['LOCATION']){
+                              $location['ID'] = -1;
+                           }
+                        }
+                        if($location['ID'] != -1){
+                           echo "<option value='". $location['ID'] ."'>".  $location['STREET'] .", ". $location['CITY'] ." ". $location['POSTAL_CODE'] ." ". $location['COUNTRY'] ."</option>";
+                        }
                      }
                   }
                ?>
