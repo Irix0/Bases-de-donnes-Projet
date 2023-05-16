@@ -24,12 +24,12 @@ $resultsPerPage = 10;
                 <p>Le code postal donné n'est pas numérique.</p>
               </div>";
       } else {
-         if(empty($_POST['comment'])) $_POST['comment'] = NULL; // If comment is empty, set it to NULL (to avoid SQL error)
-         if(empty($_POST['id'])) $_POST['id'] = NULL; // If id is empty, set it to NULL (to avoid SQL error)
+         empty($_POST['comment']) ? $comment = NULL : $comment = $_POST['comment']; // If comment is empty, set it to NULL (to avoid SQL error)
+         empty($_POST['id']) ? $id = NULL : $id = $_POST['id']; // If id is empty, set it to NULL (to avoid SQL error
 
          $sql = 'INSERT INTO `location` (`ID`, `STREET`, `CITY`, `POSTAL_CODE`, `COUNTRY`, `COMMENT`) VALUES (:id, :street, :city, :postal, :country, :comment);';
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-         if(!$sth->execute(array('id' => $_POST["id"], 'street' => $_POST["street"], 'city' => $_POST["city"], 'postal' => $_POST["zip"], 'country' => $_POST["country"], 'comment' => $_POST["comment"]))){
+         if(!$sth->execute(array('id' => $id, 'street' => $_POST["street"], 'city' => $_POST["city"], 'postal' => $_POST["zip"], 'country' => $_POST["country"], 'comment' => $comment))){
             echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                   <p class='font-bold'>Erreur</p>
                   <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
@@ -68,12 +68,13 @@ $resultsPerPage = 10;
    }
 ?>
 
-   <!-- Add location modal toggle -->
-   <button data-modal-target="add-location-modal" data-modal-toggle="add-location-modal"
+<!-- Add location modal toggle -->
+<button data-modal-target="add-location-modal" data-modal-toggle="add-location-modal"
       class="ml-80 mr-80 mt-10 block bg-blue-50 rounded text-sm font-medium text-blue-500 hover:bg-blue-100 hover:text-blue-600 px-5 py-2.5 text-center"
       type="button">
       Ajouter un lieu
    </button>
+
    <!-- Main table -->
    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6 ml-80 mr-80">
       <table class="table-fixed w-full text-sm text-left text-gray-500">
@@ -196,7 +197,7 @@ $resultsPerPage = 10;
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow">
                <button
-                  class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                  class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                   data-modal-hide="add-location-modal">
                   <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                      xmlns="http://www.w3.org/2000/svg">
@@ -224,7 +225,7 @@ $resultsPerPage = 10;
                         </div>
                         <div>
                            <label for="zip" class="block mb-2 text-sm font-medium text-gray-900">Code
-                              postal* (8 chars max)</label>
+                              postal*</label>
                            <input type="text" name="zip" id="zip" placeholder="4000"
                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                               required maxlength="8">
@@ -238,7 +239,7 @@ $resultsPerPage = 10;
                      </div>
                      <div>
                         <label for="comment" class="block mb-2 text-sm font-medium text-gray-900">Commentaire</label>
-                        <textarea id="comment" rows="4"
+                        <textarea id="comment" name="comment" rows="4"
                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                            placeholder="Ajouter un commentaire"></textarea>
                      </div>

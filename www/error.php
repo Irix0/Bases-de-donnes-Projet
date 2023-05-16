@@ -1,17 +1,17 @@
 <?php
 $status = $_SERVER['REDIRECT_STATUS'];
 $codes = array(
-       400 => array('400 Bad Request', 'The request cannot be fulfilled due to bad syntax.'),
-       401 => array('401 Unauthorized', 'The requested page requires higher privileges.'),
-       402 => array('402 Unprocessable Entity', 'The request was well-formed but was unable to be followed due to semantic errors.'),
-       403 => array('403 Forbidden', 'The server has refused to fulfill your request.'),
-       404 => array('404 Not Found', 'The document/file requested was not found on this server.'),
-       405 => array('405 Method Not Allowed', 'The method specified in the Request-Line is not allowed for the specified resource.'),
-       408 => array('408 Request Timeout', 'Your browser failed to send a request in the time allowed by the server.'),
-       500 => array('500 Internal Server Error', 'The request was unsuccessful due to an unexpected condition encountered by the server.'),
-       502 => array('502 Bad Gateway', 'The server received an invalid response from the upstream server while trying to fulfill the request.'),
-       503 => array('503 Service Unavailable', 'The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.'),
-       504 => array('504 Gateway Timeout', 'The upstream server failed to send a request in the time allowed by the server.'),
+       400 => array('400 - Bad Request', 'The request cannot be fulfilled due to bad syntax.'),
+       401 => array('401 - Unauthorized', 'The requested page requires higher privileges.'),
+       402 => array('402 - Unprocessable Entity', 'The request was well-formed but was unable to be followed due to semantic errors.'),
+       403 => array('403 - Forbidden', 'The server has refused to fulfill your request.'),
+       404 => array('404 - Not Found', 'The document/file requested was not found on this server.'),
+       405 => array('405 - Method Not Allowed', 'The method specified in the Request-Line is not allowed for the specified resource.'),
+       408 => array('408 - Request Timeout', 'Your browser failed to send a request in the time allowed by the server.'),
+       500 => array('500 - Internal Server Error', 'The request was unsuccessful due to an unexpected condition encountered by the server.'),
+       502 => array('502 - Bad Gateway', 'The server received an invalid response from the upstream server while trying to fulfill the request.'),
+       503 => array('503 - Service Unavailable', 'The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.'),
+       504 => array('504 - Gateway Timeout', 'The upstream server failed to send a request in the time allowed by the server.'),
 );
 $currentPage = 'index';
 $title = $codes[$status][0];
@@ -30,7 +30,7 @@ require_once('head.php');
             <div>
 
                <p class="text-4xl text-white ">
-                  Error <?php echo($status); ?>
+                  Error <?php echo($title); ?>
                </p>
                <p class="max-w-xl mt-4 text-lg tracking-tight text-gray-400">
                   <?php echo($message); ?>
