@@ -36,6 +36,9 @@ $resultsPerPage = 10;
                   Titre du CD
                </th>
                <th scope="col" class="w-1/12 px-6 py-3">
+                  Producteur/trice
+				   </th>
+               <th scope="col" class="w-1/12 px-6 py-3">
                   Année de sortie
 					</th>
 					<th scope="col" class="w-1/12">
@@ -63,13 +66,19 @@ $resultsPerPage = 10;
                      ".$row['TITLE']."
                   </th>
                   <td class='px-6 py-4'>
+                     ".$row['PRODUCTER']."
+                  </td>
+                  <td class='px-6 py-4'>
                      ".$row['YEAR']."
                   </td>
 						<td class='py-2'>
                      <div class='flex'>
-                     <a href='edit-location.php?id=".$row['ID']."'>
-                        <button type='button' class='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-4 text-center mr-2 mb-2'><i></button>
-                     </a>
+                     <a href='edit-cd.php?cd_number=".$row['CD_NUMBER']."'>
+                        <button data-modal-target='add-cd-modal' data-modal-toggle='add-cd-modal'
+                           class='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-4 text-center mr-2 mb-2'
+                           type='button'>
+                        </button>
+                       </a>
 						</th>
                </tr>
                ";
