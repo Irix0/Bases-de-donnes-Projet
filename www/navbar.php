@@ -1,14 +1,10 @@
-<?php
-   // Check if page is directely accessed
-   isset($title) or die("403 - Forbidden");
-?>
 <div class="w-full mx-auto bg-white border-b 2xl:max-w-7xl">
    <div x-data="{ open: false }"
       class="relative flex flex-col w-full p-5 mx-auto bg-white md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
       <div class="flex flex-row items-center justify-between lg:justify-start">
          <a class="text-lg tracking-tight text-black uppercase focus:outline-none focus:ring lg:text-2xl" href="/">
             <span class="lg:text-lg focus:ring-0">
-               WeND(Y)’s
+               WeND(Y)
             </span>
          </a>
          <button @click="open = !open"
@@ -33,9 +29,9 @@
 
          <?php 
          if (isset($_SESSION['login']) && $currentPage == 'dashboard') {
-            echo "<a class='px-2 py-2 text-sm text-blue-500 lg:px-6 md:px-3 hover:text-gray-500' aria-current='page' href='/dashboard/overview.php'>Dashboard</a>";
+            echo "<a class='px-2 py-2 text-sm text-blue-500 lg:px-6 md:px-3 hover:text-gray-500' aria-current='page' href='dashboard/overview.php'>Dashboard</a>";
          } else if (isset($_SESSION['login']) && $currentPage != 'dashboard') {
-            echo "<a class='px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600' href='/dashboard/overview.php'>Dashboard</a>";
+            echo "<a class='px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600' href='dashboard/overview.php'>Dashboard</a>";
          }
          ?>
 
@@ -55,7 +51,7 @@
                } else {
                ?>
             <a class='px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline'
-               href='/login.php'>Sign in</a>
+               href='login.php'>Sign in</a>
             <?php
                }
             ?>
