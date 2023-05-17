@@ -172,64 +172,56 @@ require_once(__ROOT__ . '/head.php');
          <div id="accordion-color-body-4" class="hidden" aria-labelledby="accordion-color-heading-4">
             <div class="p-5 border border-t-0 border-gray-200">
                <form method="post" action="#">
-                  <input type="hidden" name="action" value="locations">
-                  <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
-                  <input type="number" name="id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
-                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nom</label>
-                  <input type="text" name="name" placeholder="Nom" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
-                  <div class="block">
-                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 mt-3 pointer-events-none">
-                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                  <input type="hidden" name="action" value="events">
+                  <div class="flex space-x-8">
+                     <div class="basis-4/12">
+                        <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
+                        <input type="number" name="id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
-                     <label for="date" class="block mb-2 text-sm font-medium text-gray-900">Date</label>
-                     <input type="date" name="date" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg pl-10" placeholder="Date">
+                     <div class="basis-4/12">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nom</label>
+                        <input type="text" name="name" placeholder="Nom" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                     </div>
+                     <div class="basis-4/12">
+                        <label for="date" class="block mb-2 text-sm font-medium text-gray-900">Date</label>
+                        <input type="date" name="date" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg pl-10" placeholder="Date">
+                     </div>
                   </div>
                   <div class="flex space-x-8">
                      <div class="basis-4/12">
                         <label for="client" class="block mb-2 text-sm font-medium text-gray-900">Client</label>
-                        <input type="text" name="client" placeholder="Client"
+                        <input type="text" name="client" placeholder="Nom du Client"
                            class="bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                      </div>
                      <div class="basis-4/12">
                         <label for="manager" class="block mb-2 text-sm font-medium text-gray-900">Manager</label>
-                        <select id="manager" name="manager" class="bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                           <?php
-                           // Get all manager name and id column
-                           $managers = $bdd->query('SELECT * FROM manager JOIN employee ON manager.ID = employee.ID');
-                           foreach ($managers as $manager) {
-                              echo "<option value='".$manager['ID']."'>".$manager['FIRSTNAME']." ".$manager['LASTNAME']."</option>";
-                           }
-                           ?>
-                        </select>
+                        <input type="text" name="manager" placeholder="Nom du Manager"
+                           class="bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                      </div>
                      <div class="basis-4/12">
-                        <label for="ep_id" class="block mb-2 text-sm font-medium text-gray-900">Event Planner ID</label>
-                        <input type="number" name="ep_id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                        <label for="ep" class="block mb-2 text-sm font-medium text-gray-900">Plannificateur d'événements</label>
+                        <input type="text" name="ep" placeholder="Nom du PE" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
                   <div class="flex space-x-8">
                      <div class="basis-4/12">
-                        <label for="dj_id" class="block mb-2 text-sm font-medium text-gray-900">DJ ID</label>
-                        <input type="number" name="dj_id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                        <label for="dj" class="block mb-2 text-sm font-medium text-gray-900">DJ</label>
+                        <input type="text" name="dj" placeholder="Nom du DJ" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                      <div class="basis-4/12">
-                        <label for="location_id" class="block mb-2 text-sm font-medium text-gray-900">Location ID</label>
-                        <input type="number" name="location_id" placeholder="ID" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                        <label for="location_id" class="block mb-2 text-sm font-medium text-gray-900">Lieu</label>
+                        <input type="number" name="location_id" placeholder="ID du Lieu" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                      <div class="basis-4/12">
                         <label for="fees" class="block mb-2 text-sm font-medium text-gray-900">Frais de location</label>
                         <input type="number" name="fees" placeholder="Frais de location" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
-                  <div>
-                     <label for="desc" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-                     <input type="text" name="desc" placeholder="Description"
-                           class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
-                  </div>
                   <div class="flex space-x-8">
                      <div class="basis-4/12">
                         <label for="theme" class="block mb-2 text-sm font-medium text-gray-900">Thème</label>
                         <select id="theme" name="theme" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="null" selected>Sélectionnez une option</option>
                            <?php
                               // Get all theme name column
                               $theme_names = $bdd->query('SELECT * FROM theme');
@@ -242,6 +234,7 @@ require_once(__ROOT__ . '/head.php');
                      <div class="basis-4/12">
                         <label for="playlist" class="block mb-2 text-sm font-medium text-gray-900"> Playlist</label>
                         <select id="playlist" name="playlist" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                           <option value="null" selected>Sélectionnez une option</option>
                            <?php
                            // Get all playlist name column
                            $playlists_names = $bdd->query('SELECT * FROM playlist');
@@ -257,6 +250,9 @@ require_once(__ROOT__ . '/head.php');
                            class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
+                  <label for="desc" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                  <input type="text" name="desc" placeholder="Description"
+                        class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <button type="submit"
                      class="w-full text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Chercher</button>
                </form>
@@ -281,8 +277,8 @@ require_once(__ROOT__ . '/head.php');
                <form method="post" action="#">
                   <input type="hidden" name="action" value="song">
                   <label for="cd_number" class="block mb-2 text-sm font-medium text-gray-900">Numéro de CD</label>
-                  <input type="number" name="cd_number" placeholder="Numéro de CD" class="w-full px-4 py-2 mb-4 border rounded-lg">
-                  <label for="track_number" class="bg-gray-50 block mb-2 text-sm font-medium text-gray-900">Numéro de piste</label>
+                  <input type="number" name="cd_number" placeholder="Numéro de CD" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
+                  <label for="track_number" class="block mb-2 text-sm font-medium text-gray-900">Numéro de piste</label>
                   <input type="number" name="track_number" placeholder="Numéro de piste" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                   <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Titre</label>
                   <input type="text" name="title" placeholder="Titre" class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
@@ -561,6 +557,177 @@ require_once(__ROOT__ . '/head.php');
                   }
                }
                break;
+         case 'events':
+            $sql = "SELECT e.ID as ID, e.NAME as NAME, e.DATE as DATE, e.DESCRIPTION as DESCRIPTION, e.THEME as THEME, e.TYPE as TYPE, e.LOCATION as LOC, e.RENTAL_FEE as FEE, e.PLAYLIST as PLAYLIST, c.FIRST_NAME as cfname, c.LAST_NAME as clname, m.FIRSTNAME as mfname, m.LASTNAME as mlname, ep.FIRSTNAME as epfname, ep.LASTNAME as eplname, dj.FIRSTNAME as djfname, dj.LASTNAME as djlname
+            FROM `event` e
+            JOIN client c ON e.CLIENT = c.CLIENT_NUMBER
+            JOIN employee m ON e.MANAGER = m.ID
+            JOIN employee ep ON e.EVENT_PLANNER = ep.ID
+            JOIN employee dj ON e.DJ = dj.ID
+            WHERE 0 OR";
+            $params = array();
+            if(!empty($_POST['id'])){
+               $sql .= " e.ID = :id AND";
+               $params['id'] = $_POST['id'];
+            }
+            if(!empty($_POST['name'])){
+               $sql .= " e.NAME LIKE :name AND";
+               $params['name'] = "%" . $_POST['name'] . "%";
+            }
+            if(!empty($_POST['date'])){
+               $sql .= " e.DATE = :date AND";
+               $params['date'] = $_POST['date'];
+            }
+            if(!empty($_POST['client'])){
+               $sql .= " e.CLIENT IN (SELECT CLIENT_NUMBER FROM client WHERE FIRST_NAME LIKE :cname OR LAST_NAME LIKE :cname) AND";
+               $params['cname'] = "%" . $_POST['client'] . "%";
+            }
+            if(!empty($_POST['manager'])){
+               $sql .= " e.MANAGER IN (SELECT ID FROM employee NATURAL JOIN manager WHERE FIRSTNAME LIKE :mname OR LASTNAME LIKE :mname) AND";
+               $params['mname'] = "%" . $_POST['manager'] . "%";
+            }
+            if(!empty($_POST['ep'])){
+               $sql .= " e.EVENT_PLANNER IN (SELECT ID FROM employee NATURAL JOIN event_planner WHERE FIRSTNAME LIKE :epname OR LASTNAME LIKE :epname) AND";
+               $params['epname'] = "%" . $_POST['ep'] . "%";
+            }
+            if(!empty($_POST['dj'])){
+               $sql .= " e.DJ IN (SELECT ID FROM employee NATURAL JOIN dj WHERE FIRSTNAME LIKE :djname OR LASTNAME LIKE :djname) AND";
+               $params['djname'] = "%" . $_POST['dj'] . "%";
+            }
+            if(!empty($_POST['location_id'])){
+               $sql .= " e.LOCATION = :location AND";
+               $params['location'] = $_POST['location_id'];
+            }
+            if(!empty($_POST['fees'])){
+               $sql .= " e.RENTAL_FEE = :fees AND";
+               $params['fees'] = $_POST['fees'];
+            }
+            if(!empty($_POST['theme'] && $_POST['theme'] != 'null')){
+               $sql .= " e.THEME LIKE :theme AND";
+               $params['theme'] = "%" . $_POST['theme'] . "%";
+            }
+            if(!empty($_POST['playlist'] && $_POST['playlist'] != 'null')){
+               $sql .= " e.PLAYLIST LIKE :playlist AND";
+               $params['playlist'] = "%" . $_POST['playlist'] . "%";
+            }
+            if(!empty($_POST['type'])){
+               $sql .= " e.TYPE LIKE :type AND";
+               $params['type'] = "%" . $_POST['type'] . "%";
+            }
+            $sql .= " 1";
+            $sql .= " ORDER BY e.ID ASC";
+            echo $sql;
+            // Print array
+            echo "<pre>";
+            print_r($params);
+            echo "</pre>";
+
+            $query = $bdd->prepare($sql);
+
+            if (
+               !$query->execute($params)
+            ) {
+               echo "<div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                     <p class='font-bold'>Erreur</p>
+                     <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
+                     <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
+                     </div>";
+            } else {
+               echo '<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
+                        <table class="table-auto w-full text-sm text-left text-gray-500">
+                           <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                              <tr>
+                                 <th scope="col" class="px-6 py-3">
+                                    ID
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Nom
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Date
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Description
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Client
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Manager
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Plannificateur d\'événements
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    DJ
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Thème
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Type
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Lieu
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Frais de location
+                                 </th>
+                                 <th scope="col" class="px-6 py-3">
+                                    Playlist
+                                 </th>
+                              </tr>
+                           </thead>
+                           <tbody>';
+               $result = $query->fetch();
+               // Show lines
+               while ($result) {
+                  echo "
+                     <tr class='bg-white border-b hover:bg-gray-50'>
+                        <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
+                           " . $result['ID'] . "
+                        </th>
+                        <td class='px-6 py-4'>
+                           " . $result['NAME'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['DATE'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['DESCRIPTION'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['cfname'] . " " . $result['clname'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['mfname'] . " " . $result['mlname'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['epfname'] . " " . $result['eplname'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['djfname'] . " " . $result['djlname'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['THEME'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['TYPE'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['LOC'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['FEE'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $result['PLAYLIST'] . "
+                        </td>
+                     </tr>";
+                  $result = $query->fetch();
+               }
+            }
+            break;
             case 'song':
                $ssql = "SELECT * FROM song WHERE CD_NUMBER = :cd_number OR TRACK_NUMBER = :track_number OR TITLE LIKE :title OR ARTIST LIKE :artist OR DURATION LIKE :duration OR GENRE LIKE :genre";
                $query = $bdd->prepare($ssql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
