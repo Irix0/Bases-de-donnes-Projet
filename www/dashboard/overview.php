@@ -17,10 +17,9 @@ require_once(__ROOT__ . '/head.php');
    // DB connection
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
    ?>
-   <div class="grid-cols-2 gap-4">
    <div class="ml-80 mr-80 mt-2 px-6 py-6 lg:px-8">
-      <h3 class="text-xl font-medium text-gray-900">Effectuer une recherche</h3>
-      <h2 class="text-s font-medium text-gray-900 mb-4">Sélectionnez une table</h2>
+      <h2 class="text-xl font-medium text-gray-900">Effectuer une recherche</h2>
+      <h3 class="text-s font-medium text-gray-500 mb-4">Sélectionnez une table pour effectuer une recherche</h3>
 
 
       <div id="accordion-color" data-accordion="collapse" data-active-classes="bg-blue-100 text-blue-600">
@@ -246,7 +245,7 @@ require_once(__ROOT__ . '/head.php');
                      </div>
                      <div class="basis-4/12">
                         <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Type</label>
-                        <input type="text" name="yype" placeholder="Type"
+                        <input type="text" name="type" placeholder="Type"
                            class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
@@ -290,7 +289,7 @@ require_once(__ROOT__ . '/head.php');
                      </div>
                      <div class="basis-1/2">
                         <label for="duration" class="block mb-2 text-sm font-medium text-gray-900">Durée</label>
-                        <input type="text" name="duration" placeholder="00:00:00"
+                        <input type="time" name="duration" placeholder="00:00:00" step="2"
                            class="bg-gray-50 w-full px-4 py-2 mb-4 border rounded-lg">
                      </div>
                   </div>
@@ -564,7 +563,7 @@ require_once(__ROOT__ . '/head.php');
             JOIN employee m ON e.MANAGER = m.ID
             JOIN employee ep ON e.EVENT_PLANNER = ep.ID
             JOIN employee dj ON e.DJ = dj.ID
-            WHERE 0 OR";
+            WHERE";
             $params = array();
             if(!empty($_POST['id'])){
                $sql .= " e.ID = :id AND";
@@ -614,16 +613,15 @@ require_once(__ROOT__ . '/head.php');
                $sql .= " e.TYPE LIKE :type AND";
                $params['type'] = "%" . $_POST['type'] . "%";
             }
+            if(!empty($_POST['desc'])){
+               $sql .= " e.DESCRIPTION LIKE :description AND";
+               $params['description'] = "%" . $_POST['desc'] . "%";
+            }
             $sql .= " 1";
             $sql .= " ORDER BY e.ID ASC";
-            echo $sql;
-            // Print array
-            echo "<pre>";
-            print_r($params);
-            echo "</pre>";
 
-            $query = $bdd->prepare($sql);
-
+            $query = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+            $start = microtime(true);
             if (
                !$query->execute($params)
             ) {
@@ -633,47 +631,53 @@ require_once(__ROOT__ . '/head.php');
                      <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
                      </div>";
             } else {
+               $end = microtime(true);
+               $time = $end - $start;
+               echo "<div class='bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
+                     <p class='font-bold'>Succès</p>
+                     <p>La requête a été exécutée avec succès en " . number_format($time, 4, ',', '.') . " secondes.</p>
+                     </div>";
                echo '<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
-                        <table class="table-auto w-full text-sm text-left text-gray-500">
+                        <table class="table-fixed w-full text-sm text-left text-gray-500">
                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                               <tr>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-8 px-6 py-3">
                                     ID
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-48 px-6 py-3">
                                     Nom
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-24 px-6 py-3">
                                     Date
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-64 px-6 py-3">
                                     Description
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-32 px-6 py-3">
                                     Client
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-32 px-6 py-3">
                                     Manager
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-32 px-4 py-3">
                                     Plannificateur d\'événements
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-32 px-6 py-3">
                                     DJ
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-32 px-6 py-3">
                                     Thème
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-32 px-6 py-3">
                                     Type
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-32 px-6 py-3">
                                     Lieu
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-32 px-6 py-3">
                                     Frais de location
                                  </th>
-                                 <th scope="col" class="px-6 py-3">
+                                 <th scope="col" class="w-32 px-6 py-3">
                                     Playlist
                                  </th>
                               </tr>
