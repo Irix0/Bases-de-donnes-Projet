@@ -14,15 +14,7 @@ require_once(__ROOT__.'/head.php');
    }
 
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
-   if(isset($_GET['id']))
-      $id = $_GET['id'];
-   else {
-      echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-      <p class='font-bold'>Mauvais accès</p>
-      <p>Les accès directs à cette page sont interdits.</p>
-      </div>";
-      die();
-   }
+   $id = $_GET['id'];
    $req = $bdd->query('SELECT * FROM location WHERE ID = ' . $id);
    $row = $req->fetch();
    if(empty($row)) {
@@ -32,7 +24,7 @@ require_once(__ROOT__.'/head.php');
     </div>";
    } else {
       if($_POST['action'] == 'edit') {
-         $sql = "UPDATE location SET ID= :new_id, STREET = :street, CITY = :city, POSTAL_CODE = :postal_code, COUNTRY = :country, COMMENT = :comment WHERE ID = :id";
+         $sql = "UPDATE location SET ID= :new_id, STREET = :street, CITY = :city, POSTAL_CODE = :postal_code, COUNTRY = :country WHERE ID = :id";
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          $res = $sth->execute(array(
             ':new_id' => $_POST['id'],
@@ -40,8 +32,7 @@ require_once(__ROOT__.'/head.php');
             ':city' => $_POST['city'],
             ':postal_code' => $_POST['zip'],
             ':country' => $_POST['country'],
-            ':id' => $id,
-            ':comment' => $_POST['comment']
+            ':id' => $id
          ));
          // Check if id has changed : if so change $id and the url
          if($_POST['id'] != $id && $res) {

@@ -36,7 +36,7 @@ $resultsPerPage = 10;
                <option value="TITLE">CD(title)</option>
             </select>
       </div>
-      <div class="basis-1/12">
+      <div class="basis-2/12">
          <label for="dir" class="block mb-2 text-sm font-medium text-gray-900">Sens de tri</label>
          <select id="dir" name="dir"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">

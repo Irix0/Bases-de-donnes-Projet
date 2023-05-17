@@ -80,17 +80,11 @@ $resultsPerPage = 10;
                         </td>
                         ";
 
-                        if ($row['DATE'] <= $today) {
-                           echo "
-                           <td class='px-6 py-4'>
-                           <a href='details.php?id=".$row['ID']."' class='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-5 rounded-full'>Détails</a>
-                           </td>";
-                       } else {
-                           echo "
-                           <td class='px-6 py-4'>
-                           <a href='modify_event.php?id=".$row['ID']."' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>Modifier</a>
-                           </td>";
-                       }
+                        echo "
+                        <td class='px-6 py-4'>
+                        <a href='details.php?id=".$row['ID']."' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full'>Détails</a>
+                        </td>";
+                        
                     echo "</tr>";                
                 }
                 ?>

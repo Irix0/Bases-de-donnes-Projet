@@ -134,7 +134,7 @@ if(isset($_POST['cd_number_delete'])){ // Delete song
                         <button type='submit' class='text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-sharp fa-solid fa-trash'></i></button>
                      </form>
                   </div>
-               </th>
+               </td>
             </tr>
             ";
          }
@@ -206,18 +206,18 @@ if(isset($_POST['cd_number_delete'])){ // Delete song
                         <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Titre*</label>
                         <input type="text" name="street" id="title"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                           placeholder="Rue Fond des Tawes 251" required>
+                           placeholder="The Queen is Dead" required>
                      </div>
                      <div class="flex space-x-8">
                         <div>
                            <label for="artist" class="block mb-2 text-sm font-medium text-gray-900">Artiste*</label>
-                           <input type="text" name="artist" id="artist" placeholder="Liège"
+                           <input type="text" name="artist" id="artist" placeholder="The Smiths"
                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                               required>
                         </div>
                         <div>
-                           <label for="duration" class="block mb-2 text-sm font-medium text-gray-900">Durée* (8 chars max)</label>
-                           <input type="text" name="duration" id="duration" placeholder="4000"
+                           <label for="duration" class="block mb-2 text-sm font-medium text-gray-900">Durée*</label>
+                           <input type="text" name="duration" id="duration" placeholder="00:00:00"
                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                               required maxlength="8">
                         </div>
@@ -226,7 +226,7 @@ if(isset($_POST['cd_number_delete'])){ // Delete song
                         <label for="genre" class="block mb-2 text-sm font-medium text-gray-900">Genre*</label>
                         <input type="text" name="genre" id="genre"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                           placeholder="Belgique" required>
+                           placeholder="Pop" required>
                      </div>
                      <div>
                         <label for="track_number" class="block mb-2 text-sm font-medium text-gray-900">Track Number</label>
