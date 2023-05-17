@@ -33,6 +33,12 @@ require_once(__ROOT__.'/head.php');
       <p class='font-bold'>Erreur</p>
       <p>L'événement est déjà passé. (ID :" .$id . ")</p>
     </div>";
+   } 
+   else if($row['DATE'] == $today) {
+      echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+      <p class='font-bold'>Erreur</p>
+      <p>L'événement est aujourd'hui. Trop tard pour le modifier. (ID :" .$id . ")</p>
+    </div>";
    } else {
 
    // We need some data to fill the dropdown lists
