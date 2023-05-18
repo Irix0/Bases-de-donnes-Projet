@@ -46,7 +46,7 @@ $resultsPerPage = 10;
                   <th scope="col" class="w-1/12 px-6 py-3">
                      Nombre d'apparition de chansons du CD
                   </th>
-                  <th scope="col" class="w-1/12 px-6 py-3">
+                  <th scope="col" class="w-2/12 px-6 py-3">
                      Tous les genres liés au CD
                   </th>
                </tr>
@@ -79,24 +79,24 @@ $resultsPerPage = 10;
                         <th class='px-6 py-4'>
                            " . $row['title'] . "
                         </th>
-                        <th class='px-6 py-4'>
+                        <td class='px-6 py-4'>
                            " . $row['tot'] . "
-                        </th>
-                        <th class='px-6 py-4'>
+                        </td>
+                        <td class='px-6 py-4'>
                            " . $row['min'] . "
-                        </th>
-                        <th class='px-6 py-4'>
+                        </td>
+                        <td class='px-6 py-4'>
                            " . $row['max'] . "
-                        </th>
-                        <th class='px-6 py-4'>
+                        </td>
+                        <td class='px-6 py-4'>
                            " . $row['avg'] . "
-                        </th>
-                        <th class='px-6 py-4'>
+                        </td>
+                        <td class='px-6 py-4'>
                            " . $row['NB_CONTAINS'] . "
-                        </th>
-                        <th class='px-6 py-4'>
+                        </td>
+                        <td class='px-6 py-4'>
                            " . $row['GENRES'] . "
-                        </th>
+                        </td>
                      </tr>
                      ";
                }
