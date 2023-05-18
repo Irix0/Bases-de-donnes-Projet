@@ -42,10 +42,6 @@ $resultsPerPage = 4;
       <h2 class="text-xl font-medium text-gray-900">Liste des événements à venir</h2>
       <h3 class="text-s font-medium text-gray-500 mb-4">Détails et modification des événements à venir</h3>
 
-   <div class="relative overflow-x-auto sm:rounded-lg mt-10 ml-80 mr-80">
-      <h2 class="text-xl font-medium text-gray-900">Modifier un événement</h2>
-      <h3 class="text-md font-medium text-gray-500 mb-4">Appuyer un événement pour le modifier</h3>
-
    <?php
         while ($row = $req->fetch()) {
     ?>
