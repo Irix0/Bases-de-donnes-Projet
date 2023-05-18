@@ -1,12 +1,12 @@
-ID,NAME,DATE,DESCRIPTION,CLIENT,MANAGER,EVENT_PLANNER,DJ,THEME,TYPE,LOCATION,RENTAL_FEE,PLAYLIST
-1,Madeline's Divorce Party I,2023-05-01,"Madeline want to celebrate her divorce and party hard. On the first day, she want to feel a bit emotional and wants a darker theme.",1,1,3,7,Vampires,Divorce,3,1500,Vampire Mood
-2,Vincent's Birthday Party,2023-05-04,"It's a birt party",5,1,4,8,Lord of the Rings,Birthday,1,950,Fantasy 2
-3,Madeline's Divorce Party II,2023-05-13,"Madeline want to celebrate her divorce and party hard. On the second day, she want to get back on her feet with a tropical theme. We need lots of balloons to brighten up the place.",1,2,5,9,Tropical,Divorce,3,1000,Summer Vibes
-4,Cynthia's Goodbye Party,2023-05-12,"Lydia wants to organise a goodbye party for her good friend Cynthia.",9,2,6,10,Tropical,Goodbye Party,2,9000,Summer Vibes
-5,Mother's Birthday Party,2023-05-25,"Sydney want's to organize a suprise party for her daugher who's really into vampires.",3,1,3,8,Vampires,Birthday,3,14000,Spooky
-6,The Wedding of the Century,2023-05-17,"It will be the wedding of the century for sure",7,2,5,10,Tropical,Wedding,5,10000,Summer Vibes
-7,Frodo's Birthday Party,2023-05-17,\N,4,1,4,8,Lord of the Rings,Birthday,1,950,Fantasy 2
+ID,NAME,DATE,DESCRIPTION,CLIENT,MANAGER,EVENT_PLANNER,DJ,THEME,TYPE,LOCATION,RENTAL_FEE,PLAYLIST 
+1,Madeline's Divorce Party I,2023-04-01,"Madeline want to celebrate her divorce and party hard. On the first day, she want to feel a bit emotional and wants a darker theme.",1,1,3,7,Vampires,Divorce,3,1500,Vampire Mood
+2,Vincent's Birthday Party,2023-04-01,"It's a birt party",5,1,4,8,Lord of the Rings,Birthday,1,950,Fantasy 2
+3,Madeline's Divorce Party II,2023-04-03,"Madeline want to celebrate her divorce and party hard. On the second day, she want to get back on her feet with a tropical theme. We need lots of balloons to brighten up the place.",1,2,5,9,Tropical,Divorce,3,1000,Summer Vibes
+4,Cynthia's Goodbye Party,2023-05-02,"Lydia wants to organise a goodbye party for her good friend Cynthia.",9,2,6,10,Tropical,Goodbye Party,2,9000,Summer Vibes
+5,Mother's Birthday Party,2023-04-05,"Sydney want's to organize a suprise party for her daugher who's really into vampires.",3,1,3,8,Vampires,Birthday,3,14000,Spooky
+6,The Wedding of the Century,2023-05-06,"It will be the wedding of the century for sure",7,2,4,10,Tropical,Wedding,5,10000,Summer Vibes
+7,Frodo's Birthday Party,2023-05-03,\N,4,1,4,8,Lord of the Rings,Birthday,1,950,Fantasy 2
 8,Diploma Party,2023-06-29,"For the end of my bachelor, I need a sick party",7,1,4,8,Clueless,Graduation,6,26450,Basic Playlist
-9,"Dracula's 592nd Birthday",2023-11-08,"Dracula wants to celebrate his 592nd birthday with a big party. He wants a vampire theme and a spooky playlist.",13,1,3,8,Vampires,Birthday,7,1650285,Vampire Mood
-10,The Wedding of the Century II,2023-08-06,"It will be the wedding of the century for sure this time",7,2,5,10,Tropical,Wedding,5,10000,Summer Vibes
-11,Birth of my first child,2023-09-01,"I want to celebrate the birth of my first child with a big party.",5,1,3,7,Mean Girls,Birth,4,10000,Beach
+9,"Dracula's 592nd Birthday",2023-11-08,"Dracula wants to celebrate his 592nd birthday with a big party. He wants a vampire theme and a spooky playlist.",13,1,3,9,Vampires,Birthday,7,1650285,Vampire Mood
+10,The Wedding of the Century II,2023-08-06,"It will be the wedding of the century for sure this time",7,2,4,10,Tropical,Wedding,5,10000,Summer Vibes
+11,Birth of my first child,2023-09-01,"I want to celebrate the birth of my first child with a big party.",5,1,3,9,Mean Girls,Birth,4,10000,Beach
