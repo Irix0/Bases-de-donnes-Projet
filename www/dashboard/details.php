@@ -64,17 +64,17 @@ require_once(__ROOT__ . '/head.php');
             <!-- Name -->
             <div>
                 <h4 class="block mb-2 text-sm font-medium text-gray-900">Nom de l'événement:</h4>
-                <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo $row['NAME']; ?></p>
+                <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo $row['NAME']; ?></p>
             </div>
             <!-- Date -->
             <div>
                 <h4 class="block mb-2 text-sm font-medium text-gray-900">Date de l'événement:</h4>
-                <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo date('l j F Y', strtotime($row['DATE'])); ?></p>
+                <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo date('l j F Y', strtotime($row['DATE'])); ?></p>
             </div>
             <!-- Client -->
             <div>
                 <h4 class="block mb-2 text-sm font-medium text-gray-900">Client:</h4>
-                <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+                <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                     <?php
                     foreach ($client_table as $client) {
                         if ($client['CLIENT_NUMBER'] == $row['CLIENT']) {
@@ -90,7 +90,7 @@ require_once(__ROOT__ . '/head.php');
                 <!-- Manager -->
                 <div class="w-1/3">
                     <label class="block mb-2 text-sm font-medium text-gray-900">Manager</label>
-                    <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg px-2.5 py-1">
+                    <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5">
                         <?php
                         foreach ($manager_table as $manager) {
                             if ($manager['ID'] == $row['MANAGER']) {
@@ -105,7 +105,7 @@ require_once(__ROOT__ . '/head.php');
                 <!-- Event planner -->
                 <div class="w-1/3">
                     <label class="block mb-2 text-sm font-medium text-gray-900">Planificateur d'événement</label>
-                    <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg px-2.5 py-1">
+                    <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5">
                         <?php
                         foreach ($eventPlanner_table as $eventPlanner) {
                             if ($eventPlanner['ID'] == $row['EVENT_PLANNER']) {
@@ -120,7 +120,7 @@ require_once(__ROOT__ . '/head.php');
                 <!-- DJ -->
                 <div class="w-1/3">
                     <label class="block mb-2 text-sm font-medium text-gray-900">DJ</label>
-                    <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg px-2.5 py-1">
+                    <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5">
                         <?php
                         foreach ($dj_table as $dj) {
                             if ($dj['ID'] == $row['DJ']) {
@@ -138,7 +138,7 @@ require_once(__ROOT__ . '/head.php');
                 <!-- Theme -->
                 <div class="w-1/2">
                     <h4 class="block mb-2 text-sm font-medium text-gray-900">Thème:</h4>
-                    <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+                    <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         <?php
                         foreach ($theme_table as $theme) {
                             if ($theme['NAME'] == $row['THEME']) {
@@ -151,7 +151,7 @@ require_once(__ROOT__ . '/head.php');
                 <!-- Playlist -->
                 <div class="w-1/2">
                     <h4 class="block mb-2 text-sm font-medium text-gray-900">Playlist:</h4>
-                    <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+                    <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         <?php
                         foreach ($playlist_table as $playlist) {
                             if ($playlist['NAME'] == $row['PLAYLIST']) {
@@ -165,7 +165,7 @@ require_once(__ROOT__ . '/head.php');
             <!-- Location -->
             <div>
                 <h4 class="block mb-2 text-sm font-medium text-gray-900">Lieu:</h4>
-                <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+                <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                     <?php
                     foreach ($location_table as $location) {
                         if ($location['ID'] == $row['LOCATION']) {
@@ -180,7 +180,7 @@ require_once(__ROOT__ . '/head.php');
                 <!-- Type -->
                 <div class="w-1/2">
                     <h4 class="block mb-2 text-sm font-medium text-gray-900">Type:</h4>
-                    <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+                    <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         <?php
                         echo $row['TYPE'];
                         ?>
@@ -189,7 +189,7 @@ require_once(__ROOT__ . '/head.php');
                 <!-- Rental fee -->
                 <div class="w-1/2">
                     <h4 class="block mb-2 text-sm font-medium text-gray-900">Coût:</h4>
-                    <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+                    <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         <?php
                         echo $row['RENTAL_FEE'] . " €";
                         ?>
@@ -199,12 +199,12 @@ require_once(__ROOT__ . '/head.php');
             <!-- Description -->
             <div>
                 <h4 class="block mb-2 text-sm font-medium text-gray-900">Description de l'événement:</h4>
-                <p class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"><?php echo $row['DESCRIPTION']; ?></p>
+                <p class="cursor-not-allowed block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"><?php echo $row['DESCRIPTION']; ?></p>
             </div>
             <!-- ID -->
             <div>
                 <h4 class="block mb-2 text-sm font-medium text-gray-900">ID:</h4>
-                <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo $row['ID']; ?></p>
+                <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo $row['ID']; ?></p>
             </div>
         </div>
     </div>
