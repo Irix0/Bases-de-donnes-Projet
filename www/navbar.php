@@ -29,9 +29,9 @@
 
          <?php 
          if (isset($_SESSION['login']) && $currentPage == 'dashboard') {
-            echo "<a class='px-2 py-2 text-sm text-blue-500 lg:px-6 md:px-3 hover:text-gray-500' aria-current='page' href='dashboard/overview.php'>Tableau de bord</a>";
+            echo "<a class='px-2 py-2 text-sm text-blue-500 lg:px-6 md:px-3 hover:text-gray-500' aria-current='page' href='/dashboard/overview.php'>Tableau de bord</a>";
          } else if (isset($_SESSION['login']) && $currentPage != 'dashboard') {
-            echo "<a class='px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600' href='dashboard/overview.php'>Tabbleau de bord</a>";
+            echo "<a class='px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600' href='/dashboard/overview.php'>Tabbleau de bord</a>";
          }
          ?>
 
