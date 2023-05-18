@@ -53,7 +53,7 @@ $resultsPerPage = 10;
             </div>
             <div>
                <input type="hidden" name="filterPost" value="true">
-               <button type="submit" name"submit" class="block mt-7 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center">Trier</button>
+               <button type="submit" name="submit" class="block mt-7 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center">Trier</button>
             </div>
          </div>
       </form>
@@ -154,17 +154,17 @@ $resultsPerPage = 10;
                      for ($i = 1; $i <= $page_nb; $i++) {
                         if ($i == $page) {
                            echo '<li>
-                     <a
-                        class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
-                        href = "cd-usage.php?page=' . $i . '&attr=' . $attr . '&dir=' . $dir . '"> ' . $i . ' <span
-          class="absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0,0,0,0)]"
-          >(current)</span></a>
-          </li>';
+                           <a
+                              class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
+                              href = "cd-usage.php?page=' . $i . '&attr=' . $attr . '&dir=' . $dir . '"> ' . $i . ' <span
+                              class="absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0,0,0,0)]"
+                              >(current)</span></a>
+                              </li>';
                         } else {
                            echo '<li>
-                  <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
-                     href = "cd-usage.php?page=' . $i . '&attr=' . $attr . '&dir=' . $dir . '">' . $i . ' </a>
-               </li>';
+                           <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
+                              href = "cd-usage.php?page=' . $i . '&attr=' . $attr . '&dir=' . $dir . '">' . $i . ' </a>
+                              </li>';
                         }
                      }
                      ?>
@@ -174,15 +174,10 @@ $resultsPerPage = 10;
          </div>
 
          <div>
-            <p class="text-left text-xs">* Le nombre de CD utilisé est le nombre de CD utilisé sur la journée pour tous les
-               événements.</p>
+            <p class="text-left text-xs">* Le nombre de CD utilisé est le nombre de CD utilisé sur la journée pour tous les événements.</p>
          </div>
       </div>
    </div>
-
-
-
-
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
    <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>

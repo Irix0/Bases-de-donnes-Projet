@@ -32,9 +32,7 @@ $resultsPerPage = 4;
     $pageFirstResult = ($page - 1) * $resultsPerPage;
 
     $rows_nb = $bdd->query('SELECT COUNT(*) FROM event WHERE DATE > "' . $today . '"')->fetchColumn();
-
     $page_nb = ceil($rows_nb / $resultsPerPage);
-
     $req = $bdd->query('SELECT ID, NAME, DATE from event WHERE DATE > "' . $today . '" ORDER BY DATE DESC, NAME ASC LIMIT ' . $pageFirstResult . ',' . $resultsPerPage);
 
     ?>
@@ -61,17 +59,17 @@ $resultsPerPage = 4;
                     for ($i = 1; $i <= $page_nb; $i++) {
                         if ($i == $page) {
                             echo '<li>
-                    <a
-                    class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
-                    href = "update_eventBoard.php?page=' . $i . '"> ' . $i . ' <span
-                    class="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]"
-                    >(current)</span></a>
-                    </li>';
+                                <a
+                                    class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
+                                    href = "update_eventBoard.php?page=' . $i . '"> ' . $i . ' <span
+                                    class="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]"
+                                    >(current)</span></a>
+                            </li>';
                         } else {
                             echo '<li>
-                    <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
-                        href = "update_eventBoard.php?page=' . $i . '">' . $i . ' </a>
-                </li>';
+                                <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
+                                    href = "update_eventBoard.php?page=' . $i . '">' . $i . ' </a>
+                            </li>';
                         }
                     }
                     ?>

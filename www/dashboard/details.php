@@ -209,7 +209,6 @@ require_once(__ROOT__ . '/head.php');
         </div>
     </div>
 
-
     <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
 </body>
 

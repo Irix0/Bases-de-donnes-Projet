@@ -20,10 +20,11 @@ $resultsPerPage = 10;
    if (isset($_POST['street'])) { // Add new location
       // Check if ZIP is numeric
       if (!is_numeric($_POST['zip'])) {
-         echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+         echo "
+            <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                 <p class='font-bold'>Mauvaise entrée</p>
                 <p>Le code postal donné n'est pas numérique.</p>
-              </div>";
+            </div>";
       } else {
          if (empty($_POST['comment'])) $_POST['comment'] = NULL; // If comment is empty, set it to NULL (to avoid SQL error)
          if (empty($_POST['id'])) $_POST['id'] = NULL; // If id is empty, set it to NULL (to avoid SQL error)
@@ -31,7 +32,8 @@ $resultsPerPage = 10;
          $sql = 'INSERT INTO `location` (`ID`, `STREET`, `CITY`, `POSTAL_CODE`, `COUNTRY`, `COMMENT`) VALUES (:id, :street, :city, :postal, :country, :comment);';
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          if (!$sth->execute(array('id' => $_POST["id"], 'street' => $_POST["street"], 'city' => $_POST["city"], 'postal' => $_POST["zip"], 'country' => $_POST["country"], 'comment' => $_POST["comment"]))) {
-            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+            echo "
+               <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                   <p class='font-bold'>Erreur</p>
                   <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
                   <p>Ce message peut vous aider à résoudre votre erreur : [code " . $sth->errorInfo()[0] . "] `" . $sth->errorInfo()[2] . "´.</p>
@@ -50,21 +52,24 @@ $resultsPerPage = 10;
          $sql = 'DELETE FROM `location` WHERE `location`.`ID` = :id';
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          if (!$sth->execute(array('id' => $_POST["id_delete"]))) {
-            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-                <p class='font-bold'>Erreur</p>
-                <p>Une erreur est survenue. Veuillez réessayer.</p>
-              </div>";
+            echo "
+               <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                  <p class='font-bold'>Erreur</p>
+                  <p>Une erreur est survenue. Veuillez réessayer.</p>
+               </div>";
          } else {
-            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
-                   <p class='font-bold'>Succès</p>
-                   <p>Lieu supprimé avec succès.</p>
-                 </div>";
+            echo "
+               <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
+                  <p class='font-bold'>Succès</p>
+                  <p>Lieu supprimé avec succès.</p>
+               </div>";
          }
       } else {
-         echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4' role='alert'>
-                <p class='font-bold'>Erreur</p>
-                <p>Impossible de supprimer ce lieu car il est utilisé dans une réservation.</p>
-              </div>";
+         echo "
+            <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4' role='alert'>
+               <p class='font-bold'>Erreur</p>
+               <p>Impossible de supprimer ce lieu car il est utilisé dans une réservation.</p>
+            </div>";
       }
    }
    ?>
@@ -110,42 +115,40 @@ $resultsPerPage = 10;
                $rows_nb = $bdd->query('SELECT COUNT(*) FROM location')->fetchColumn();
 
                $page_nb = ceil($rows_nb / $resultsPerPage);
-
                $req = $bdd->query('SELECT * FROM location LIMIT ' . $pageFirstResult . ',' . $resultsPerPage);
 
                while ($row = $req->fetch()) {
                   echo "
-               <tr class='bg-white border-b hover:bg-gray-50'>
-                  <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
-                     " . $row['STREET'] . "
-                  </th>
-                  <td class='px-6 py-4'>
-                     " . $row['CITY'] . "
-                  </td>
-                  <td class='px-6 py-4'>
-                     " . $row['POSTAL_CODE'] . "
-                  </td>
-                  <td class='px-6 py-4'>
-                     " . $row['COUNTRY'] . "
-                  </td>
-                  <td class='px-6 py-4'>
-                     " . $row['COMMENT'] . "
-                  </td>
-                  <td class='py-2'>
-                     <div class='flex'>
-                     <a href='edit-location.php?id=" . $row['ID'] . "'>
-                        <button type='button' class='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-solid fa-pen'></i></button>
-                     </a>
-                     <form method='post' action='#'>
-                        <input type='hidden' name='id_delete' value='" . $row['ID'] . "'>
-                        <button type='submit' class='text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-sharp fa-solid fa-trash'></i></button>
-                     </form>
-                     </div>
-                  </td>
-               </tr>
-               ";
+                     <tr class='bg-white border-b hover:bg-gray-50'>
+                        <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
+                           " . $row['STREET'] . "
+                        </th>
+                        <td class='px-6 py-4'>
+                           " . $row['CITY'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $row['POSTAL_CODE'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $row['COUNTRY'] . "
+                        </td>
+                        <td class='px-6 py-4'>
+                           " . $row['COMMENT'] . "
+                        </td>
+                        <td class='py-2'>
+                           <div class='flex'>
+                              <a href='edit-location.php?id=" . $row['ID'] . "'>
+                                 <button type='button' class='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-solid fa-pen'></i></button>
+                              </a>
+                              <form method='post' action='#'>
+                                 <input type='hidden' name='id_delete' value='" . $row['ID'] . "'>
+                                 <button type='submit' class='text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-sharp fa-solid fa-trash'></i></button>
+                              </form>
+                           </div>
+                        </td>
+                     </tr>
+                  ";
                }
-
                ?>
             </tbody>
          </table>
@@ -154,37 +157,36 @@ $resultsPerPage = 10;
             <!-- Help text -->
             <span class="text-sm text-gray-700">
                <span class="font-semibold text-gray-900"><?php echo $pageFirstResult + 1; ?> </span> à <span class="font-semibold text-gray-900"><?php
-                                                                                                                                                   if (($pageFirstResult + $resultsPerPage) > $rows_nb) {
-                                                                                                                                                      echo $rows_nb;
-                                                                                                                                                   } else {
-                                                                                                                                                      echo ($pageFirstResult + $resultsPerPage);
-                                                                                                                                                   } ?></span> résultats montrés sur <span class="font-semibold text-gray-900"><?php echo "$rows_nb"; ?></span>
+                  if (($pageFirstResult + $resultsPerPage) > $rows_nb) {
+                     echo $rows_nb;
+                  } else {
+                     echo ($pageFirstResult + $resultsPerPage);
+                  } ?></span> résultats montrés sur <span class="font-semibold text-gray-900"><?php echo "$rows_nb"; ?></span>
             </span>
-            <!-- Buttons -->
 
+            <!-- Buttons -->
             <nav class="mt-1 mb-2">
                <ul class="list-style-none flex">
                   <?php
                   for ($i = 1; $i <= $page_nb; $i++) {
                      if ($i == $page) {
                         echo '<li>
-                     <a
-                        class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
-                        href = "locations.php?page=' . $i . '"> ' . $i . ' <span
-          class="absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0,0,0,0)]"
-          >(current)</span></a>
-          </li>';
+                           <a
+                              class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
+                              href = "locations.php?page=' . $i . '"> ' . $i . ' <span
+                              class="absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0,0,0,0)]"
+                              >(current)</span></a>
+                        </li>';
                      } else {
                         echo '<li>
-                  <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
-                     href = "locations.php?page=' . $i . '">' . $i . ' </a>
-               </li>';
+                           <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
+                           href = "locations.php?page=' . $i . '">' . $i . ' </a>
+                        </li>';
                      }
                   }
                   ?>
                </ul>
             </nav>
-
          </div>
       </div>
 
@@ -239,7 +241,6 @@ $resultsPerPage = 10;
          </div>
       </div>
    </div>
-
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
    <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>

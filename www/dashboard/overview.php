@@ -22,7 +22,6 @@ require_once(__ROOT__ . '/head.php');
       <h2 class="text-xl font-medium text-gray-900">Effectuer une recherche</h2>
       <h3 class="text-s font-medium text-gray-500 mb-4">Sélectionnez une table pour effectuer une recherche</h3>
 
-
       <div id="accordion-color" data-accordion="collapse" data-active-classes="bg-blue-100 text-blue-600">
          <h2 id="accordion-color-heading-1"> <!-- CLIENTS -->
             <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-100" data-accordion-target="#accordion-color-body-1" aria-expanded="false" aria-controls="accordion-color-body-1">
@@ -308,33 +307,35 @@ require_once(__ROOT__ . '/head.php');
                      )
                   )
                ) {
-                  echo "<div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-                  <p class='font-bold'>Erreur</p>
-                  <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
-                  <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
-               </div>";
+                  echo "
+                     <div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                        <p class='font-bold'>Erreur</p>
+                        <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
+                        <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
+                     </div>";
                } else {
-                  echo '<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
-                  <table class="table-fixed w-full text-sm text-left text-gray-500">
-                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                        <tr>
-                           <th scope="col" class="w-1/12 px-6 py-3">
-                              ID
-                           </th>
-                           <th scope="col" class="w-1/12 px-6 py-3">
-                              Prénom
-                           </th>
-                           <th scope="col" class="w-1/12 px-3 py-3">
-                              Nom
-                           </th>
-                           <th scope="col" class="w-1/12 px-6 py-3">
-                              Numéro de téléphone
-                           </th>
-                           <th scope="col" class="w-2/12 px-6 py-3">
-                              Adresse e-mail
-                           </th>
-                        </tr>
-                     </thead>
+                  echo '
+                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
+                        <table class="table-fixed w-full text-sm text-left text-gray-500">
+                           <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                              <tr>
+                                 <th scope="col" class="w-1/12 px-6 py-3">
+                                    ID
+                                 </th>
+                                 <th scope="col" class="w-1/12 px-6 py-3">
+                                    Prénom
+                                 </th>
+                                 <th scope="col" class="w-1/12 px-3 py-3">
+                                    Nom
+                                 </th>
+                                 <th scope="col" class="w-1/12 px-6 py-3">
+                                    Numéro de téléphone
+                                 </th>
+                                 <th scope="col" class="w-2/12 px-6 py-3">
+                                    Adresse e-mail
+                                 </th>
+                              </tr>
+                           </thead>
                      <tbody>';
                   $result = $query->fetch();
                   // Show lines
@@ -567,19 +568,22 @@ require_once(__ROOT__ . '/head.php');
                if (
                   !$query->execute($params)
                ) {
-                  echo "<div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-                     <p class='font-bold'>Erreur</p>
-                     <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
-                     <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
+                  echo "
+                     <div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                        <p class='font-bold'>Erreur</p>
+                        <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
+                        <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
                      </div>";
                } else {
                   $end = microtime(true);
                   $time = $end - $start;
-                  echo "<div class='bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
-                     <p class='font-bold'>Succès</p>
-                     <p>La requête a été exécutée avec succès en " . number_format($time, 4, ',', '.') . " secondes.</p>
+                  echo "
+                     <div class='bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
+                        <p class='font-bold'>Succès</p>
+                        <p>La requête a été exécutée avec succès en " . number_format($time, 4, ',', '.') . " secondes.</p>
                      </div>";
-                  echo '<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
+                  echo '
+                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
                         <table class="table-fixed w-full text-sm text-left text-gray-500">
                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                               <tr>
@@ -629,47 +633,47 @@ require_once(__ROOT__ . '/head.php');
                   // Show lines
                   while ($result) {
                      echo "
-                     <tr class='bg-white border-b hover:bg-gray-50'>
-                        <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
-                           " . $result['ID'] . "
-                        </th>
-                        <td class='px-6 py-4'>
-                           " . $result['NAME'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['DATE'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['DESCRIPTION'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['cfname'] . " " . $result['clname'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['mfname'] . " " . $result['mlname'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['epfname'] . " " . $result['eplname'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['djfname'] . " " . $result['djlname'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['THEME'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['TYPE'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['LOC'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['FEE'] . "
-                        </td>
-                        <td class='px-6 py-4'>
-                           " . $result['PLAYLIST'] . "
-                        </td>
-                     </tr>";
+                        <tr class='bg-white border-b hover:bg-gray-50'>
+                           <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
+                              " . $result['ID'] . "
+                           </th>
+                           <td class='px-6 py-4'>
+                              " . $result['NAME'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['DATE'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['DESCRIPTION'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['cfname'] . " " . $result['clname'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['mfname'] . " " . $result['mlname'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['epfname'] . " " . $result['eplname'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['djfname'] . " " . $result['djlname'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['THEME'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['TYPE'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['LOC'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['FEE'] . "
+                           </td>
+                           <td class='px-6 py-4'>
+                              " . $result['PLAYLIST'] . "
+                           </td>
+                        </tr>";
                      $result = $query->fetch();
                   }
                }
@@ -695,37 +699,39 @@ require_once(__ROOT__ . '/head.php');
                      )
                   )
                ) {
-                  echo "<div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-                  <p class='font-bold'>Erreur</p>
-                  <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
-                  <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
-               </div>";
+                  echo "
+                     <div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                        <p class='font-bold'>Erreur</p>
+                        <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
+                        <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
+                     </div>";
                } else {
-                  echo '<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
-                  <table class="table-fixed w-full text-sm text-left text-gray-500">
-                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                        <tr>
-                           <th scope="col" class="w-1/12 px-6 py-3">
-                              Numéro de CD
-                           </th>
-                           <th scope="col" class="w-1/12 px-6 py-3">
-                              Numéro de piste
-                           </th>
-                           <th scope="col" class="w-1/12 px-3 py-3">
-                              Titre
-                           </th>
-                           <th scope="col" class="w-1/12 px-6 py-3">
-                              Artiste
-                           </th>
-                           <th scope="col" class="w-2/12 px-6 py-3">
-                              Durée
-                           </th>
-                           <th scope="col" class="w-2/12 px-6 py-3">
-                              Genre
-                           </th>
-                        </tr>
-                     </thead>
-                     <tbody>';
+                  echo '
+                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
+                        <table class="table-fixed w-full text-sm text-left text-gray-500">
+                           <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                              <tr>
+                                 <th scope="col" class="w-1/12 px-6 py-3">
+                                    Numéro de CD
+                                 </th>
+                                 <th scope="col" class="w-1/12 px-6 py-3">
+                                    Numéro de piste
+                                 </th>
+                                 <th scope="col" class="w-1/12 px-3 py-3">
+                                    Titre
+                                 </th>
+                                 <th scope="col" class="w-1/12 px-6 py-3">
+                                    Artiste
+                                 </th>
+                                 <th scope="col" class="w-2/12 px-6 py-3">
+                                    Durée
+                                 </th>
+                                 <th scope="col" class="w-2/12 px-6 py-3">
+                                    Genre
+                                 </th>
+                              </tr>
+                           </thead>
+                           <tbody>';
                   $result = $query->fetch();
                   // Show lines
                   while ($result) {
@@ -773,34 +779,36 @@ require_once(__ROOT__ . '/head.php');
                      )
                   )
                ) {
-                  echo "<div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-                  <p class='font-bold'>Erreur</p>
-                  <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
-                  <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
-               </div>";
+                  echo "
+                     <div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                        <p class='font-bold'>Erreur</p>
+                        <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
+                        <p>Ce message peut vous aider à résoudre votre erreur : [code " . $query->errorInfo()[0] . "] `" . $query->errorInfo()[2] . "´.</p>
+                     </div>";
                } else {
-                  echo '<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
-                  <table class="table-fixed w-full text-sm text-left text-gray-500">
-                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                        <tr>
-                           <th scope="col" class="w-1/12 px-6 py-3">
-                              Numéro de CD
-                           </th>
-                           <th scope="col" class="w-1/12 px-6 py-3">
-                              Titre
-                           </th>
-                           <th scope="col" class="w-1/12 px-3 py-3">
-                              Producteur
-                           </th>
-                           <th scope="col" class="w-1/12 px-6 py-3">
-                              Année de sortie
-                           </th>
-                           <th scope="col" class="w-2/12 px-6 py-3">
-                              Nombre de copies
-                           </th>
-                        </tr>
-                     </thead>
-                     <tbody>';
+                  echo '
+                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
+                        <table class="table-fixed w-full text-sm text-left text-gray-500">
+                           <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                              <tr>
+                                 <th scope="col" class="w-1/12 px-6 py-3">
+                                    Numéro de CD
+                                 </th>
+                                 <th scope="col" class="w-1/12 px-6 py-3">
+                                    Titre
+                                 </th>
+                                 <th scope="col" class="w-1/12 px-3 py-3">
+                                    Producteur
+                                 </th>
+                                 <th scope="col" class="w-1/12 px-6 py-3">
+                                    Année de sortie
+                                 </th>
+                                 <th scope="col" class="w-2/12 px-6 py-3">
+                                    Nombre de copies
+                                 </th>
+                              </tr>
+                           </thead>
+                           <tbody>';
                   $result = $query->fetch();
                   // Show lines
                   while ($result) {

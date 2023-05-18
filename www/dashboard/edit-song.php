@@ -20,10 +20,11 @@ require_once(__ROOT__ . '/head.php');
    $req = $bdd->query('SELECT * FROM song WHERE TRACK_NUMBER = ' . $trackNumber . ' AND CD_NUMBER = ' . $cdNumber);
    $row = $req->fetch();
    if (empty($row)) {
-      echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-      <p class='font-bold'>Erreur</p>
-      <p>La chanson n'a pas été trouvée. (TRACK_NUMBER :" . $trackNumber . ")</p>
-    </div>";
+      echo "
+         <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+            <p class='font-bold'>Erreur</p>
+            <p>La chanson n'a pas été trouvée. (TRACK_NUMBER :" . $trackNumber . ")</p>
+         </div>";
    } else {
       if ($_POST['action'] == 'edit') {
          $sql = "UPDATE song SET TRACK_NUMBER = :new_track_number, TITLE = :title, ARTIST = :artist, DURATION = :duration, GENRE = :genre WHERE TRACK_NUMBER = :track_number AND CD_NUMBER = :cd_number";
@@ -44,18 +45,20 @@ require_once(__ROOT__ . '/head.php');
          }
 
          if ($res) {
-            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
-            <p class='font-bold'>Succès</p>
-            <p>La chanson a été modifiée.</p>
-            </div>";
+            echo "
+               <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
+                  <p class='font-bold'>Succès</p>
+                  <p>La chanson a été modifiée.</p>
+               </div>";
             $req = $bdd->query('SELECT * FROM song WHERE TRACK_NUMBER = ' . $trackNumber . ' AND CD_NUMBER = ' . $cdNumber);
             $row = $req->fetch();
          } else {
-            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-            <p class='font-bold'>Erreur</p>
-            <p>La chanson n'a pas pu être modifiée.</p>
-            <p>Ce message peut vous aider à résoudre votre erreur : [code " . $sth->errorInfo()[0] . "] `" . $sth->errorInfo()[2] . "´.</p>
-            </div>";
+            echo "
+               <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                  <p class='font-bold'>Erreur</p>
+                  <p>La chanson n'a pas pu être modifiée.</p>
+                  <p>Ce message peut vous aider à résoudre votre erreur : [code " . $sth->errorInfo()[0] . "] `" . $sth->errorInfo()[2] . "´.</p>
+               </div>";
          }
       }
    ?>
@@ -100,10 +103,10 @@ require_once(__ROOT__ . '/head.php');
             </div>
          </form>
       </div>
-
    <?php
    }
    ?>
+
    <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
 </body>
 

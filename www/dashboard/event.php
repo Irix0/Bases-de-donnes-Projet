@@ -83,12 +83,10 @@ $resultsPerPage = 10;
                             " . ($row['RENTAL_FEE'] + 1500) . " €
                         </td>
                         ";
-
                   echo "
                         <td class='px-6 py-4'>
                         <a href='details.php?id=" . $row['ID'] . "' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full'>Détails</a>
                         </td>";
-
                   echo "</tr>";
                }
                ?>
@@ -106,25 +104,25 @@ $resultsPerPage = 10;
                      echo ($pageFirstResult + $resultsPerPage);
                   } ?></span> résultats montrés sur <span class="font-semibold text-gray-900"><?php echo "$rows_nb"; ?></span>
             </span>
-            <!-- Buttons -->
 
+            <!-- Buttons -->
             <nav>
                <ul class="list-style-none flex">
                   <?php
                   for ($i = 1; $i <= $page_nb; $i++) {
                      if ($i == $page) {
                         echo '<li>
-                     <a
-                        class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
-                        href = "event.php?page=' . $i . '"> ' . $i . ' <span
-          class="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]"
-          >(current)</span></a>
-          </li>';
+                           <a
+                              class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
+                              href = "event.php?page=' . $i . '"> ' . $i . ' <span
+                              class="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]"
+                              >(current)</span></a>
+                        </li>';
                      } else {
                         echo '<li>
-                  <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
-                     href = "event.php?page=' . $i . '">' . $i . ' </a>
-               </li>';
+                           <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
+                              href = "event.php?page=' . $i . '">' . $i . ' </a>
+                        </li>';
                      }
                   }
                   ?>
