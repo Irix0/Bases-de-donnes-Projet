@@ -62,14 +62,14 @@ $resultsPerPage = 10;
          <table class="table-fixed w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                <tr>
-                  <th scope="col" class="w-1/12 px-6 py-3">
+                  <th scope="col" class="w-2/12 px-6 py-3">
                      Date
                   </th>
                   <th scope="col" class="w-2/12 px-6 py-3">
                      CD
                   </th>
-                  <th scope="col" class="w-3/12 px-6 py-3">
-                     utilisé(s)/possédé(s)*
+                  <th scope="col" class="w-2/12 px-6 py-3">
+                     Nombre de copies utilisé(s)/possédé(s)*
                   </th>
                </tr>
             </thead>
