@@ -18,6 +18,9 @@ $resultsPerPage = 10;
    if (isset($_POST['attr'])) {
       $attr = $_POST['attr'];
       $dir = $_POST['dir'];
+   } else if (isset($_GET['attr']) && isset($_GET['dir'])) {
+      $attr = $_GET['attr'];
+      $dir = $_GET['dir'];
    } else {
       $attr = 'DATE';
       $dir = 'DESC';
@@ -153,14 +156,14 @@ $resultsPerPage = 10;
                            echo '<li>
                      <a
                         class="relative block rounded bg-blue-100 px-3 py-1.5 text-sm font-medium text-primary-700 transition-all duration-300"
-                        href = "cd-usage.php?page=' . $i . '"> ' . $i . ' <span
+                        href = "cd-usage.php?page=' . $i . '&attr=' . $attr . '&dir=' . $dir . '"> ' . $i . ' <span
           class="absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0,0,0,0)]"
           >(current)</span></a>
           </li>';
                         } else {
                            echo '<li>
                   <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100"
-                     href = "cd-usage.php?page=' . $i . '">' . $i . ' </a>
+                     href = "cd-usage.php?page=' . $i . '&attr=' . $attr . '&dir=' . $dir . '">' . $i . ' </a>
                </li>';
                         }
                      }
