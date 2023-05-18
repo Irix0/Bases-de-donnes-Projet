@@ -37,6 +37,10 @@ $resultsPerPage = 4;
     $req = $bdd->query('SELECT ID, NAME, DATE from event WHERE DATE > "' . $today . '" ORDER BY DATE DESC, NAME ASC LIMIT ' . $pageFirstResult . ',' . $resultsPerPage);
 
 ?>
+<div class="ml-80 mr-80 mt-2 px-6 py-6 lg:px-8">
+      <!-- title -->
+      <h2 class="text-xl font-medium text-gray-900">Liste des événements à venir</h2>
+      <h3 class="text-s font-medium text-gray-500 mb-4">Détails et modification des événements à venir</h3>
 
    <div class="relative overflow-x-auto sm:rounded-lg mt-10 ml-80 mr-80">
       <h2 class="text-xl font-medium text-gray-900">Modifier un événement</h2>

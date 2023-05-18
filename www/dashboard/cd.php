@@ -25,6 +25,9 @@ $resultsPerPage = 10;
          <table class="table-fixed w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                <tr>
+               <th scope="col" class="w-1/12 px-6 py-3">
+                     Numéro du CD
+                  </th>
                   <th scope="col" class="w-1/12 px-6 py-3">
                      Titre du CD
                   </th>
@@ -56,6 +59,9 @@ $resultsPerPage = 10;
                   echo "
                <tr class='bg-white border-b hover:bg-gray-50'>
                   <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
+                     ".$row['CD_NUMBER']."
+                  </th>
+                  <th class='px-6 py-4'>
                      " . $row['TITLE'] . "
                   </th>
                   <td class='px-6 py-4'>
@@ -68,7 +74,7 @@ $resultsPerPage = 10;
                      <div class='flex'>
                      <a href='edit-cd.php?cd_number=" . $row['CD_NUMBER'] . "'>
                         <button data-modal-target='add-cd-modal' data-modal-toggle='add-cd-modal'
-                           class='faa-parent animated-hover text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-3 py-2 text-center mr-2 mb-2'
+                           class='faa-parent animated-hover text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-3 py-2 text-center mt-2 mr-2 mb-2'
                            type='button'>
                            <i class='fa-solid fa-arrow-right faa-bounce'></i>
                         </button>
@@ -119,29 +125,7 @@ $resultsPerPage = 10;
             </nav>
          </div>
       </div>
-
-
-      <!-- Add modal -->
-      <div id="add-cd-modal" tabindex="-1" aria-hidden="true"
-         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-         <div class="relative w-full max-w-md max-h-full">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow">
-               <button
-                  class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                  data-modal-hide="add-cd-modal">
-                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                     xmlns="http://www.w3.org/2000/svg">
-                     <path fill-rule="evenodd"
-                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                        clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="sr-only">Fermer le modal</span>
-               </button>
-            </div>
-         </div>
-      </div>
-
+   </div>
 
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
