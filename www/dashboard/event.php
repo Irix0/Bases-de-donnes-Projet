@@ -19,8 +19,10 @@ $resultsPerPage = 10;
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
 ?>
 
-   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10 ml-80 mr-80">
-      <table class="table-fixed w-full text-sm text-left text-gray-500">
+   <div class="relative overflow-x-auto sm:rounded-lg mt-10 ml-80 mr-80">
+   <h2 class="text-xl font-medium text-gray-900">Tableau de bord des événements</h2>
+   <h3 class="text-md font-medium text-gray-500 mb-6">Appuyer sur détails pour voir les détails d'un événement</h3>
+      <table class="table-fixed w-full text-sm text-left text-gray-500 shadow-md rounded-lg border-2">
          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
                <th scope="col" class="w-4/12 px-6 py-3">

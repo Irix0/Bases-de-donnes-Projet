@@ -175,7 +175,27 @@ require_once(__ROOT__.'/head.php');
             ?>
             </p>
         </div>
-            
+        <!-- Type and Rental fee-->
+        <div class="flex space-x-4">
+        <!-- Type -->
+        <div class = "w-1/2">
+            <h4 class="block mb-2 text-sm font-medium text-gray-900">Type:</h4>
+            <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+            <?php 
+                echo $row['TYPE'];
+            ?>
+            </p>
+        </div>
+        <!-- Rental fee -->
+        <div class = "w-1/2">
+            <h4 class="block mb-2 text-sm font-medium text-gray-900">Coût:</h4>
+            <p class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+            <?php 
+                echo $row['RENTAL_FEE'] ." €";
+            ?>
+            </p>
+        </div>
+        </div>
         <!-- Description -->
         <div>
             <h4 class="block mb-2 text-sm font-medium text-gray-900">Description de l'événement:</h4>

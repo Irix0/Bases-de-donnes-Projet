@@ -38,7 +38,9 @@ $resultsPerPage = 4;
 
 ?>
 
-   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10 ml-80 mr-80">
+   <div class="relative overflow-x-auto sm:rounded-lg mt-10 ml-80 mr-80">
+      <h2 class="text-xl font-medium text-gray-900">Modifier un événement</h2>
+      <h3 class="text-md font-medium text-gray-500 mb-4">Appuyer un événement pour le modifier</h3>
 
    <?php
         while ($row = $req->fetch()) {
