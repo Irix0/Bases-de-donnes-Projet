@@ -21,7 +21,7 @@
          class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row">
          <?php 
          if ($currentPage == 'index') {
-            echo "<a class='px-2 py-2 text-sm text-blue-500 lg:px-6 md:px-3 hover:text-gray-500' aria-current='page' href='/index.php'>A propos</a>";
+            echo "<a class='px-2 py-2 text-sm text-blue-500 lg:px-6 md:px-3 hover:text-gray-500' aria-current='page' href='/index.php'>À propos</a>";
          } else {
             echo "<a class='px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600' href='/index.php'>A propos</a>";
          }
@@ -51,7 +51,7 @@
                } else {
                ?>
             <a class='px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline'
-               href='login.php'>Sign in</a>
+               href='login.php'>Se connecter</a>
             <?php
                }
             ?>
