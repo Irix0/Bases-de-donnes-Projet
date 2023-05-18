@@ -12,6 +12,7 @@ $resultsPerPage = 10;
    <?php
    if (!isset($_SESSION['login'])) {
       echo "<script type='text/javascript'>document.location.replace('/login.php');</script>";
+      die("Please login first. If you see this the JavaScript script didn't redirect you properly. Try to enable JavaScript in your browser.");
    } else {
       require_once(__ROOT__ . '/navbar.php');
    }

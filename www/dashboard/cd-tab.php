@@ -10,6 +10,7 @@ $resultsPerPage = 10;
    <?php
    if (!isset($_SESSION['login'])) {
       echo "<script type='text/javascript'>document.location.replace('/login.php');</script>";
+      die("Please login first. If you see this the JavaScript script didn't redirect you properly. Try to enable JavaScript in your browser.");
    } else {
       require_once(__ROOT__ . '/navbar.php');
    }
@@ -52,19 +53,17 @@ $resultsPerPage = 10;
                </tr>
             </thead>
             <tbody>
-               <?php
-               if (!isset($_GET['page'])) {
-                  $page = 1;
-               } else {
-                  $page = $_GET['page'];
-               }
-               $pageFirstResult = ($page - 1) * $resultsPerPage;
-               //$rows_nb = $bdd->query('SELECT COUNT(*) FROM song WHERE CD_NUMBER =' . $cdNumber)->fetchColumn();
-               $rows_nb = $bdd->query('SELECT COUNT(*) FROM cd')->fetchColumn();
+             <?php
+               // if (!isset($_GET['page'])) {
+               //    $page = 1;
+               // } else {
+               //    $page = $_GET['page'];
+               // }
+               // $pageFirstResult = ($page - 1) * $resultsPerPage;
+               // //$rows_nb = $bdd->query('SELECT COUNT(*) FROM song WHERE CD_NUMBER =' . $cdNumber)->fetchColumn();
+               // $rows_nb = $bdd->query('SELECT COUNT(*) FROM cd')->fetchColumn(); 
 
                $page_nb = ceil($rows_nb / $resultsPerPage);
-
-               //!!!! faire des transacttions quand on fait des SELECT différents
 
                $sql1 = "SELECT * FROM (SELECT CD_NUMBER, COUNT(CD_NUMBER) as NB_CONTAINS FROM contains GROUP BY CD_NUMBER) t1 JOIN (SELECT song.CD_NUMBER, TIME_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(DURATION))), '%H:%i:%s') as tot, MIN(DURATION) as min, MAX(DURATION) as max, TIME_FORMAT(SEC_TO_TIME(AVG(TIME_TO_SEC(DURATION))), '%H:%i:%s') as avg, cd.title FROM `song`, `cd` WHERE song.cd_number = cd.cd_number GROUP BY cd.cd_number) t2 ON t2.CD_NUMBER = t1.CD_NUMBER JOIN (SELECT CD_NUMBER, GROUP_CONCAT(DISTINCT song.GENRE, IFNULL(CONCAT(', ', t2.subgenres_concat), '') SEPARATOR ', ') AS GENRES FROM song LEFT JOIN (SELECT specializes.SUBGENRE, GROUP_CONCAT(DISTINCT specializes.GENRE SEPARATOR ', ') AS subgenres_concat FROM specializes GROUP BY specializes.SUBGENRE) t2 ON song.GENRE = t2.SUBGENRE GROUP BY CD_NUMBER) t3 ON t3.CD_NUMBER = t1.CD_NUMBER; ";
 

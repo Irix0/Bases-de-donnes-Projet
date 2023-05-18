@@ -10,6 +10,7 @@ $resultsPerPage = 10;
    <?php
    if (!isset($_SESSION['login'])) {
       echo "<script type='text/javascript'>document.location.replace('/login.php');</script>";
+      die("Please login first. If you see this the JavaScript script didn't redirect you properly. Try to enable JavaScript in your browser.");
    } else {
       require_once(__ROOT__ . '/navbar.php');
    }
@@ -85,7 +86,7 @@ $resultsPerPage = 10;
                      <p class='font-bold'>Erreur</p>
                      <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
                      </div>";
-                     die();
+                  die();
                }
 
                $pageFirstResult = ($page - 1) * $resultsPerPage;
@@ -101,7 +102,7 @@ $resultsPerPage = 10;
 
                $sql .= " ORDER BY $attr $dir LIMIT $pageFirstResult, $resultsPerPage";
                $req = $bdd->prepare($sql);
-               
+
 
                if (!$req->execute()) {
                   echo "<div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
@@ -111,8 +112,8 @@ $resultsPerPage = 10;
                      </div>";
                   die();
                } else {
-               while ($row = $req->fetch()) {
-                  echo "
+                  while ($row = $req->fetch()) {
+                     echo "
                      <tr class='bg-white border-b hover:bg-gray-50'>
                         <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
                            " . $row['DATE'] . "
@@ -125,8 +126,8 @@ $resultsPerPage = 10;
                         </td>
                      </tr>
                      ";
+                  }
                }
-            }
                ?>
             </tbody>
          </table>
@@ -180,8 +181,8 @@ $resultsPerPage = 10;
 
 
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-      <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+   <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

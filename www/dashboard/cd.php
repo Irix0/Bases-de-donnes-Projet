@@ -9,7 +9,8 @@ $resultsPerPage = 10;
 <body>
    <?php
    if (!isset($_SESSION['login'])) {
-      echo "<script type='text/javascript'>document.cd.replace('/login.php');</script>";
+      echo "<script type='text/javascript'>document.location.replace('/login.php');</script>";
+      die("Please login first. If you see this the JavaScript script didn't redirect you properly. Try to enable JavaScript in your browser.");
    } else {
       require_once(__ROOT__ . '/navbar.php');
    }
@@ -25,7 +26,7 @@ $resultsPerPage = 10;
          <table class="table-fixed w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                <tr>
-               <th scope="col" class="w-1/12 px-6 py-3">
+                  <th scope="col" class="w-1/12 px-6 py-3">
                      Numéro du CD
                   </th>
                   <th scope="col" class="w-1/12 px-6 py-3">
@@ -59,7 +60,7 @@ $resultsPerPage = 10;
                   echo "
                <tr class='bg-white border-b hover:bg-gray-50'>
                   <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
-                     ".$row['CD_NUMBER']."
+                     " . $row['CD_NUMBER'] . "
                   </th>
                   <th class='px-6 py-4'>
                      " . $row['TITLE'] . "
@@ -128,8 +129,8 @@ $resultsPerPage = 10;
    </div>
 
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-      <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+   <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

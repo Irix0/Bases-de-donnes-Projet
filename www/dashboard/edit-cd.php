@@ -10,12 +10,13 @@ $resultsPerPage = 10;
    <?php
    if (!isset($_SESSION['login'])) {
       echo "<script type='text/javascript'>document.location.replace('/login.php');</script>";
+      die("Please login first. If you see this the JavaScript script didn't redirect you properly. Try to enable JavaScript in your browser.");
    } else {
       require_once(__ROOT__ . '/navbar.php');
    }
 
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
-   if (isset($_GET['cd_number'])){
+   if (isset($_GET['cd_number'])) {
       $cdNumber = $_GET['cd_number'];
       $cdTitle = $bdd->query('SELECT TITLE FROM cd WHERE CD_NUMBER = ' . $cdNumber)->fetchColumn();
    } else {
