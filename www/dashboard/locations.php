@@ -20,7 +20,7 @@ $resultsPerPage = 10;
    if (isset($_POST['street'])) { // Add new location
       // Check if ZIP is numeric
       if (!is_numeric($_POST['zip'])) {
-         echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+         echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                 <p class='font-bold'>Mauvaise entrée</p>
                 <p>Le code postal donné n'est pas numérique.</p>
               </div>";
@@ -31,7 +31,7 @@ $resultsPerPage = 10;
          $sql = 'INSERT INTO `location` (`ID`, `STREET`, `CITY`, `POSTAL_CODE`, `COUNTRY`, `COMMENT`) VALUES (:id, :street, :city, :postal, :country, :comment);';
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          if (!$sth->execute(array('id' => $_POST["id"], 'street' => $_POST["street"], 'city' => $_POST["city"], 'postal' => $_POST["zip"], 'country' => $_POST["country"], 'comment' => $_POST["comment"]))) {
-            echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                   <p class='font-bold'>Erreur</p>
                   <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
                   <p>Ce message peut vous aider à résoudre votre erreur : [code " . $sth->errorInfo()[0] . "] `" . $sth->errorInfo()[2] . "´.</p>
@@ -50,25 +50,25 @@ $resultsPerPage = 10;
          $sql = 'DELETE FROM `location` WHERE `location`.`ID` = :id';
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          if (!$sth->execute(array('id' => $_POST["id_delete"]))) {
-            echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                 <p class='font-bold'>Erreur</p>
                 <p>Une erreur est survenue. Veuillez réessayer.</p>
               </div>";
          } else {
-            echo "<div class='ml-80 mr-80 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
+            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
                    <p class='font-bold'>Succès</p>
                    <p>Lieu supprimé avec succès.</p>
                  </div>";
          }
       } else {
-         echo "<div class='ml-80 mr-80 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4' role='alert'>
+         echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4' role='alert'>
                 <p class='font-bold'>Erreur</p>
                 <p>Impossible de supprimer ce lieu car il est utilisé dans une réservation.</p>
               </div>";
       }
    }
    ?>
-   <div class='ml-80 mr-80 mt-2 px-6 py-6 lg:px-8'>
+   <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 mt-2 px-6 py-6 lg:px-8'>
       <h2 class="text-xl font-medium text-gray-900">Liste des lieux</h2>
       <h3 class="text-md font-medium text-gray-500">Sélectionnez un lieu pour le modifier ou le supprimer</h3>
       <!-- Add location modal toggle -->

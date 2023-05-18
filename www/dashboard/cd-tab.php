@@ -19,7 +19,7 @@ $resultsPerPage = 10;
    ?>
 
 
-   <div class="ml-80 mr-80 mt-2 px-6 py-6 lg:px-8">
+   <div class="2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 mt-2 px-6 py-6 lg:px-8">
       <!-- title -->
       <h2 class="text-xl font-medium text-gray-900">Table d'informations sur le contenu des CD</h2>
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
@@ -32,16 +32,16 @@ $resultsPerPage = 10;
                   <th scope="col" class="w-1/12 px-6 py-3">
                      Titre de CD
                   </th>
-                  <th scope="col" class="w-1/12 px-6 py-3">
+                  <th scope="col" class="w-10 px-6 py-3">
                      Durée totale
                   </th>
-                  <th scope="col" class="w-1/12 px-6 py-3">
+                  <th scope="col" class="w-10 px-6 py-3">
                      Durée minimale
                   </th>
-                  <th scope="col" class="w-1/12 px-6 py-3">
+                  <th scope="col" class="w-10 px-6 py-3">
                      Durée maximale
                   </th>
-                  <th scope="col" class="w-1/12 px-6 py-3">
+                  <th scope="col" class="w-10 px-6 py-3">
                      Durée moyenne
                   </th>
                   <th scope="col" class="w-1/12 px-6 py-3">

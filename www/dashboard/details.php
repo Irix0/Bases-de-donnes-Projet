@@ -42,13 +42,13 @@ require_once(__ROOT__ . '/head.php');
     // End of table
 
     if (empty($row)) {
-        echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+        echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
       <p class='font-bold'>Erreur</p>
       <p>L'événement n'a pas été trouvé. (ID :" . $id . ")</p>
     </div>";
     }
     ?>
-    <div class="ml-80 mr-80 mt-2 px-6 py-6 lg:px-8">
+    <div class="2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 mt-2 px-6 py-6 lg:px-8">
         <div class="flex content-center items-center">
             <div class="basis-1/12">
                 <button onclick="document.location.replace('/dashboard/event.php')" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm px-3 py-5 inline-flex items-center">

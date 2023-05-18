@@ -18,7 +18,7 @@ require_once(__ROOT__ . '/head.php');
    // DB connection
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
    ?>
-   <div class="ml-80 mr-80 mt-2 px-6 py-6 lg:px-8">
+   <div class="2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 mt-2 px-6 py-6 lg:px-8">
       <h2 class="text-xl font-medium text-gray-900">Effectuer une recherche</h2>
       <h3 class="text-s font-medium text-gray-500 mb-4">Sélectionnez une table pour effectuer une recherche</h3>
 

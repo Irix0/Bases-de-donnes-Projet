@@ -21,7 +21,7 @@ require_once(__ROOT__ . '/head.php');
 
    // On vérifie que l'événement existe
    if (empty($row)) {
-      echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+      echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
       <p class='font-bold'>Erreur</p>
       <p>L'événement n'a pas été trouvé. (ID :" . $id . ")</p>
     </div>";
@@ -30,12 +30,12 @@ require_once(__ROOT__ . '/head.php');
       // On vérifie que l'événement n'est pas déjà passé
       $today = date("Y-m-d");
       if ($row['DATE'] < $today) {
-         echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+         echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
       <p class='font-bold'>Erreur</p>
       <p>L'événement est déjà passé. (ID :" . $id . ")</p>
     </div>";
       } else if ($row['DATE'] == $today) {
-         echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+         echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
       <p class='font-bold'>Erreur</p>
       <p>L'événement est aujourd'hui. Trop tard pour le modifier. (ID :" . $id . ")</p>
     </div>";
@@ -67,7 +67,7 @@ require_once(__ROOT__ . '/head.php');
          // End of table
 
          if (empty($row)) {
-            echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
       <p class='font-bold'>Erreur</p>
       <p>L'événement n'a pas été trouvé. (ID :" . $id . ")</p>
     </div>";
@@ -96,14 +96,14 @@ require_once(__ROOT__ . '/head.php');
                }
 
                if ($res) {
-                  echo "<div class='ml-80 mr-80 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
+                  echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
             <p class='font-bold'>Succès</p>
             <p>L'événement a été modifié.</p>
             </div>";
                   $req = $bdd->query('SELECT * FROM event WHERE ID = ' . $id);
                   $row = $req->fetch();
                } else {
-                  echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                  echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
             <p class='font-bold'>Erreur</p>
             <p>L'événement n'a pas pu être modifié.</p>
             <p>Référer vous à l'erreur suivante : [code " . $sth->errorInfo()[0] . "] `" . $sth->errorInfo()[2] . "´.</p>
@@ -111,7 +111,7 @@ require_once(__ROOT__ . '/head.php');
                }
             }
    ?>
-            <div class="ml-80 mr-80 mt-2 px-6 py-6 lg:px-8">
+            <div class="2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 mt-2 px-6 py-6 lg:px-8">
                <div class="flex content-center items-center">
                   <div class="basis-1/12">
                      <button onclick="document.location.replace('/dashboard/update_eventBoard.php')" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm px-3 py-5 inline-flex items-center">

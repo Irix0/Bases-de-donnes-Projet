@@ -20,7 +20,7 @@ $resultsPerPage = 10;
       $cdNumber = $_GET['cd_number'];
       $cdTitle = $bdd->query('SELECT TITLE FROM cd WHERE CD_NUMBER = ' . $cdNumber)->fetchColumn();
    } else {
-      echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+      echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
       <p class='font-bold'>Mauvais accès</p>
       <p>Les accès directs à cette page sont interdits.</p>
       </div>";
@@ -31,7 +31,7 @@ $resultsPerPage = 10;
    if (isset($_POST['title'])) { // Add new song
       // Check if ZIP is numeric
       if (!is_numeric($_POST['duration'])) {
-         echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+         echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                 <p class='font-bold'>Mauvaise entrée</p>
                 <p>La durée donnée n'est pas numérique.</p>
               </div>";
@@ -43,7 +43,7 @@ $resultsPerPage = 10;
          $sql = 'INSERT INTO `song` (`CD_NUMBER`, `TRACK_NUMBER`, `TITLE`, `ARTIST`, `DURATION`, `GENRE`) VALUES (:cd_number, :track_number, :title, :artist, :duration, :genre);';
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          if (!$sth->execute(array('cd_number' => $_POST["cd_number"], 'track_number' => $_POST["track_number"], 'title' => $_POST["title"], 'artist' => $_POST["artist"], 'duration' => $_POST["duration"], 'genre' => $_POST["genre"]))) {
-            echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                   <p class='font-bold'>Erreur</p>
                   <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
                   <p>Ce message peut vous aider à résoudre votre erreur : [code " . $sth->errorInfo()[0] . "] `" . $sth->errorInfo()[2] . "´.</p>
@@ -56,19 +56,19 @@ $resultsPerPage = 10;
       $sql = 'DELETE FROM `song` WHERE `song`.`CD_NUMBER` = :cd_number AND `song`.`TRACK_NUMBER` = :track_number';
       $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
       if (!$sth->execute(array('cd_number' => $_POST["cd_number_delete"], 'track_number' => $_POST["track_number_delete"]))) {
-         echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+         echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
             <p class='font-bold'>Erreur</p>
             <p>Une erreur est survenue. Veuillez réessayer.</p>
          </div>";
       } else {
-         echo "<div class='ml-80 mr-80 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
+         echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
                <p class='font-bold'>Succès</p>
                <p>Chanson supprimée avec succès.</p>
             </div>";
       }
    }
    ?>
-   <div class="ml-80 mr-80 mt-2 px-6 py-6 lg:px-8">
+   <div class="2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 mt-2 px-6 py-6 lg:px-8">
       <!-- title -->
       <h2 class="text-xl font-medium text-gray-900">Contenu du CD « <?php echo $cdTitle; ?> »</h2>
       <h3 class="text-s font-medium text-gray-500 mb-4">Visionner, ajouter, supprimer, ou éditer les chansons contenues sur ce CD</h3>

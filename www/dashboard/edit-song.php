@@ -20,7 +20,7 @@ require_once(__ROOT__ . '/head.php');
    $req = $bdd->query('SELECT * FROM song WHERE TRACK_NUMBER = ' . $trackNumber . ' AND CD_NUMBER = ' . $cdNumber);
    $row = $req->fetch();
    if (empty($row)) {
-      echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+      echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
       <p class='font-bold'>Erreur</p>
       <p>La chanson n'a pas été trouvée. (TRACK_NUMBER :" . $trackNumber . ")</p>
     </div>";
@@ -44,14 +44,14 @@ require_once(__ROOT__ . '/head.php');
          }
 
          if ($res) {
-            echo "<div class='ml-80 mr-80 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
+            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
             <p class='font-bold'>Succès</p>
             <p>La chanson a été modifiée.</p>
             </div>";
             $req = $bdd->query('SELECT * FROM song WHERE TRACK_NUMBER = ' . $trackNumber . ' AND CD_NUMBER = ' . $cdNumber);
             $row = $req->fetch();
          } else {
-            echo "<div class='ml-80 mr-80 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+            echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
             <p class='font-bold'>Erreur</p>
             <p>La chanson n'a pas pu être modifiée.</p>
             <p>Ce message peut vous aider à résoudre votre erreur : [code " . $sth->errorInfo()[0] . "] `" . $sth->errorInfo()[2] . "´.</p>
@@ -59,7 +59,7 @@ require_once(__ROOT__ . '/head.php');
          }
       }
    ?>
-      <div class="ml-80 mr-80 mt-2 px-6 py-6 lg:px-8">
+      <div class="2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 mt-2 px-6 py-6 lg:px-8">
          <div class="flex content-center items-center">
             <div class="basis-1/12">
                <button onclick="document.location.replace('/dashboard/edit-cd.php?cd_number=<?php echo $cdNumber; ?>')" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm px-3 py-5 inline-flex items-center">
