@@ -18,7 +18,6 @@ $resultsPerPage = 10;
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
    ?>
 
-
    <div class="2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 mt-2 px-6 py-6 lg:px-8">
       <!-- title -->
       <h2 class="text-xl font-medium text-gray-900">Table d'informations sur le contenu des CD</h2>
