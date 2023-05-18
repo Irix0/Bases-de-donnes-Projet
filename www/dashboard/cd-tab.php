@@ -17,25 +17,37 @@ $resultsPerPage = 10;
    $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
    ?>
 
+
    <div class="ml-80 mr-80 mt-2 px-6 py-6 lg:px-8">
       <!-- title -->
-      <h2 class="text-xl font-medium text-gray-900">Liste des CD</h2>
-      <h3 class="text-s font-medium text-gray-500 mb-4">Sélectionnez un CD pour en voir les chansons et les éditer</h3>
-
+      <h2 class="text-xl font-medium text-gray-900">Table d'informations sur le contenu des CD</h2>
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
          <table class="table-fixed w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                <tr>
                   <th scope="col" class="w-1/12 px-6 py-3">
-                     Titre du CD
+                     Numéro de CD
                   </th>
                   <th scope="col" class="w-1/12 px-6 py-3">
-                     Producteur/trice
+                     Titre de CD
                   </th>
                   <th scope="col" class="w-1/12 px-6 py-3">
-                     Année de sortie
+                     Durée totale
                   </th>
-                  <th scope="col" class="w-1/12">
+                  <th scope="col" class="w-1/12 px-6 py-3">
+                     Durée minimale
+                  </th>
+                  <th scope="col" class="w-1/12 px-6 py-3">
+                     Durée maximale
+                  </th>
+                  <th scope="col" class="w-1/12 px-6 py-3">
+                     Durée moyenne
+                  </th>
+                  <th scope="col" class="w-1/12 px-6 py-3">
+                     Nombre d'apparition de chansons du CD
+                  </th>
+                  <th scope="col" class="w-1/12 px-6 py-3">
+                     Tous les genres liés au CD
                   </th>
                </tr>
             </thead>
@@ -47,58 +59,57 @@ $resultsPerPage = 10;
                   $page = $_GET['page'];
                }
                $pageFirstResult = ($page - 1) * $resultsPerPage;
+               //$rows_nb = $bdd->query('SELECT COUNT(*) FROM song WHERE CD_NUMBER =' . $cdNumber)->fetchColumn();
                $rows_nb = $bdd->query('SELECT COUNT(*) FROM cd')->fetchColumn();
 
                $page_nb = ceil($rows_nb / $resultsPerPage);
 
-               $req = $bdd->query('SELECT * FROM cd LIMIT ' . $pageFirstResult . ',' . $resultsPerPage);
+               //!!!! faire des transacttions quand on fait des SELECT différents
 
+               $sql1 = "SELECT * FROM (SELECT CD_NUMBER, COUNT(CD_NUMBER) as NB_CONTAINS FROM contains GROUP BY CD_NUMBER) t1 JOIN (SELECT song.CD_NUMBER, TIME_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(DURATION))), '%H:%i:%s') as tot, MIN(DURATION) as min, MAX(DURATION) as max, TIME_FORMAT(SEC_TO_TIME(AVG(TIME_TO_SEC(DURATION))), '%H:%i:%s') as avg, cd.title FROM `song`, `cd` WHERE song.cd_number = cd.cd_number GROUP BY cd.cd_number) t2 ON t2.CD_NUMBER = t1.CD_NUMBER JOIN (SELECT CD_NUMBER, GROUP_CONCAT(DISTINCT song.GENRE, IFNULL(CONCAT(', ', t2.subgenres_concat), '') SEPARATOR ', ') AS GENRES FROM song LEFT JOIN (SELECT specializes.SUBGENRE, GROUP_CONCAT(DISTINCT specializes.GENRE SEPARATOR ', ') AS subgenres_concat FROM specializes GROUP BY specializes.SUBGENRE) t2 ON song.GENRE = t2.SUBGENRE GROUP BY CD_NUMBER) t3 ON t3.CD_NUMBER = t1.CD_NUMBER; ";
+
+               $req = $bdd->prepare($sql1);
+               $req->execute();
                while ($row = $req->fetch()) {
                   echo "
-               <tr class='bg-white border-b hover:bg-gray-50'>
-                  <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
-                     " . $row['TITLE'] . "
-                  </th>
-                  <td class='px-6 py-4'>
-                     " . $row['PRODUCER'] . "
-                  </td>
-                  <td class='px-6 py-4'>
-                     " . $row['YEAR'] . "
-                  </td>
-				<td class='py-2'>
-                     <div class='flex'>
-                     <a href='edit-tab-cd.php?cd_number=" . $row['CD_NUMBER'] . "'>
-                        <button data-modal-target='add-cd-modal' data-modal-toggle='add-cd-modal'
-                           class='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-4 text-center mr-2 mb-2'
-                           type='button'>
-                        </button>
-                       </a>
-					</td>
-               </tr>
-               ";
+                     <tr class='bg-white border-b hover:bg-gray-50'>
+                        <td scope='row' class='px-6 py-4 font-medium text-gray-900'>
+                           " . $row['CD_NUMBER'] . "
+                        </td>
+                        <th class='px-6 py-4'>
+                           " . $row['title'] . "
+                        </th>
+                        <th class='px-6 py-4'>
+                           " . $row['tot'] . "
+                        </th>
+                        <th class='px-6 py-4'>
+                           " . $row['min'] . "
+                        </th>
+                        <th class='px-6 py-4'>
+                           " . $row['max'] . "
+                        </th>
+                        <th class='px-6 py-4'>
+                           " . $row['avg'] . "
+                        </th>
+                        <th class='px-6 py-4'>
+                           " . $row['NB_CONTAINS'] . "
+                        </th>
+                        <th class='px-6 py-4'>
+                           " . $row['GENRES'] . "
+                        </th>
+                     </tr>
+                     ";
                }
 
                ?>
             </tbody>
-         </table>
 
-         <div class="mt-3 flex flex-col items-center">
-            <!-- Help text -->
-            <span class="text-sm text-gray-700">
-               <span class="font-semibold text-gray-900"><?php echo $pageFirstResult + 1; ?> </span> à <span class="font-semibold text-gray-900">
-                  <?php
-                  if (($pageFirstResult + $resultsPerPage) > $rows_nb) {
-                     echo $rows_nb;
-                  } else {
-                     echo ($pageFirstResult + $resultsPerPage);
-                  } ?></span> résultats montrés sur <span class="font-semibold text-gray-900"><?php echo "$rows_nb"; ?></span>
-            </span>
-         </div>
+            </tbody>
       </div>
-   </div>
+      </table>
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-   <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+      <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
