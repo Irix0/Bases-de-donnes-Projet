@@ -25,6 +25,9 @@ $resultsPerPage = 10;
          <table class="table-fixed w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                <tr>
+               <th scope="col" class="w-1/12 px-6 py-3">
+                     Numéro du CD
+                  </th>
                   <th scope="col" class="w-1/12 px-6 py-3">
                      Titre du CD
                   </th>
@@ -56,6 +59,9 @@ $resultsPerPage = 10;
                   echo "
                <tr class='bg-white border-b hover:bg-gray-50'>
                   <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
+                     ".$row['CD_NUMBER']."
+                  </th>
+                  <th class='px-6 py-4'>
                      " . $row['TITLE'] . "
                   </th>
                   <td class='px-6 py-4'>

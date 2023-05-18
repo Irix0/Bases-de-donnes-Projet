@@ -79,6 +79,9 @@ if(isset($_POST['cd_number_delete'])){ // Delete song
       <thead class="text-xs text-gray-700 uppercase bg-gray-50">
          <tr>
             <th scope="col" class="w-1/12 px-6 py-3">
+               Numéro de piste
+            </th>
+            <th scope="col" class="w-1/12 px-6 py-3">
                Titre de la chason
             </th>
             <th scope="col" class="w-1/12 px-6 py-3">
@@ -112,6 +115,9 @@ if(isset($_POST['cd_number_delete'])){ // Delete song
             echo "
             <tr class='bg-white border-b hover:bg-gray-50'>
                <th scope='row' class='px-6 py-4 font-medium text-gray-900'>
+                  ".$row['TRACK_NUMBER']."
+               </th>
+               <th class='px-6 py-4'>
                   ".$row['TITLE']."
                </th>
                <td class='px-6 py-4'>
