@@ -153,11 +153,11 @@ $resultsPerPage = 10;
                         <td class='py-2'>
                            <div class='flex'>
                               <a href='edit-location.php?id=" . $row['ID'] . "'>
-                                 <button type='button' class='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-solid fa-pen'></i></button>
+                                 <button type='button' class='faa-parent animated-hover text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-solid fa-pen faa-pulse'></i></button>
                               </a>
                               <form method='post' action='#'>
                                  <input type='hidden' name='id_delete' value='" . $row['ID'] . "'>
-                                 <button type='submit' class='text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-sharp fa-solid fa-trash'></i></button>
+                                 <button type='submit' class='faa-parent animated-hover text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center mr-2 mb-2'><i class='fa-sharp fa-solid fa-trash faa-slow faa-flash'></i></button>
                               </form>
                            </div>
                         </td>
