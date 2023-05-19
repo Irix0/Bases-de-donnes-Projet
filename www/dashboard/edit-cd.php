@@ -126,7 +126,7 @@ $resultsPerPage = 10;
                $rows_nb = $bdd->query('SELECT COUNT(*) FROM `song` WHERE CD_NUMBER=' . $cdNumber)->fetchColumn();
 
                $page_nb = ceil($rows_nb / $resultsPerPage);
-               $req = $bdd->query('SELECT DISTINCT * FROM cd INNER JOIN song ON cd.CD_NUMBER = song.CD_NUMBER WHERE cd.CD_NUMBER = ' . $_GET['cd_number'] . ' LIMIT ' . $pageFirstResult . ',' . $resultsPerPage);
+               $req = $bdd->query('SELECT song.* FROM cd INNER JOIN song ON cd.CD_NUMBER = song.CD_NUMBER WHERE cd.CD_NUMBER = ' . $_GET['cd_number'] . ' LIMIT ' . $pageFirstResult . ',' . $resultsPerPage);
 
                while ($row = $req->fetch()) {
                   echo "
