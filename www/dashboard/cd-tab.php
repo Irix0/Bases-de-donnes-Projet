@@ -54,7 +54,13 @@ $resultsPerPage = 10;
             <tbody>
             <?php
             $page_nb = ceil($rows_nb / $resultsPerPage);
-            $sql1 = "SELECT * FROM (SELECT CD_NUMBER, COUNT(CD_NUMBER) as NB_CONTAINS FROM contains GROUP BY CD_NUMBER) t1 JOIN (SELECT song.CD_NUMBER, TIME_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(DURATION))), '%H:%i:%s') as tot, MIN(DURATION) as min, MAX(DURATION) as max, TIME_FORMAT(SEC_TO_TIME(AVG(TIME_TO_SEC(DURATION))), '%H:%i:%s') as avg, cd.title FROM `song`, `cd` WHERE song.cd_number = cd.cd_number GROUP BY cd.cd_number) t2 ON t2.CD_NUMBER = t1.CD_NUMBER JOIN (SELECT CD_NUMBER, GROUP_CONCAT(DISTINCT song.GENRE, IFNULL(CONCAT(', ', t2.subgenres_concat), '') SEPARATOR ', ') AS GENRES FROM song LEFT JOIN (SELECT specializes.SUBGENRE, GROUP_CONCAT(DISTINCT specializes.GENRE SEPARATOR ', ') AS subgenres_concat FROM specializes GROUP BY specializes.SUBGENRE) t2 ON song.GENRE = t2.SUBGENRE GROUP BY CD_NUMBER) t3 ON t3.CD_NUMBER = t1.CD_NUMBER; ";
+            $sql1 = "SELECT * FROM (SELECT CD_NUMBER, COUNT(CD_NUMBER) as NB_CONTAINS FROM contains GROUP BY CD_NUMBER)
+                     t1 JOIN (SELECT song.CD_NUMBER, TIME_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(DURATION))), '%H:%i:%s') as tot,
+                     MIN(DURATION) as min, MAX(DURATION) as max, TIME_FORMAT(SEC_TO_TIME(AVG(TIME_TO_SEC(DURATION))), '%H:%i:%s') as avg,
+                     cd.title FROM `song`, `cd` WHERE song.cd_number = cd.cd_number GROUP BY cd.cd_number) t2 ON t2.CD_NUMBER = t1.CD_NUMBER
+                     JOIN (SELECT CD_NUMBER, GROUP_CONCAT(DISTINCT song.GENRE, IFNULL(CONCAT(', ', t2.subgenres_concat), '') SEPARATOR ', ') AS GENRES
+                     FROM song LEFT JOIN (SELECT specializes.SUBGENRE, GROUP_CONCAT(DISTINCT specializes.GENRE SEPARATOR ', ') AS subgenres_concat
+                     FROM specializes GROUP BY specializes.SUBGENRE) t2 ON song.GENRE = t2.SUBGENRE GROUP BY CD_NUMBER) t3 ON t3.CD_NUMBER = t1.CD_NUMBER; ";
             $req = $bdd->prepare($sql1);
             $req->execute();
 
