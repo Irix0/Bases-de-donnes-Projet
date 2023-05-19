@@ -78,7 +78,7 @@ require_once(__ROOT__ . '/head.php');
 
                $manager_name_req = $bdd->query('SELECT FIRSTNAME, LASTNAME FROM employee WHERE ID = ' . $_POST['manager']);
                $manager_name = $manager_name_req->fetch();
-               if(!in_array($_POST['eventPlanner'], $supervised_employees) || !in_array($_POST['dj'], $supervised_employees)){
+               if(in_array($_POST['eventPlanner'], $supervised_employees) || in_array($_POST['dj'], $supervised_employees)){
                   echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
                   <p class='font-bold'>Erreur</p>
                   <p>Le manager " . $manager_name['FIRSTNAME'] . " " . $manager_name['LASTNAME'] . " ne peut superviser que les employés suivants : ";
