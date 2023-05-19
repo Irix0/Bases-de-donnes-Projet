@@ -182,16 +182,9 @@ require_once(__ROOT__ . '/head.php');
                                  $manager_name = $manager_name->fetch();
                                  echo "<option value='" . $manager['ID'] . "' selected>" . $manager_name['FIRSTNAME'] . " " . $manager_name['LASTNAME'] . "</option>";
                               } else {
-                                 foreach ($all_events_table as $event) {
-                                    if ($event['ID'] != $row['ID'] && $event['DATE'] == $row['DATE'] && $manager['ID'] == $event['MANAGER']) {
-                                       $manager['ID'] = -1;
-                                    }
-                                 }
-                                 if ($manager['ID'] != -1) {
                                     $manager_name = $bdd->query('SELECT FIRSTNAME, LASTNAME FROM employee WHERE ID = ' . $manager['ID']);
                                     $manager_name = $manager_name->fetch();
                                     echo "<option value='" . $manager['ID'] . "'>" . $manager_name['FIRSTNAME'] . " " . $manager_name['LASTNAME'] . "</option>";
-                                 }
                               }
                            }
                            ?>
