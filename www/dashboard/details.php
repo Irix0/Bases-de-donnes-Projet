@@ -16,30 +16,27 @@ require_once(__ROOT__ . '/head.php');
 
     $bdd = new PDO('mysql:host=ms8db;dbname=groupXX', 'groupXX', 'secret');
     $id = $_GET['id'];
-    $req = $bdd->query('SELECT * FROM event WHERE ID = ' . $id);
-    $row = $req->fetch();
+    $query = 'SELECT event.name AS event_name, event.date AS DATE, event.description AS DESCRIPTION, event.rental_fee AS RENTAL_FEE, event.type AS TYPE,
+                client.first_name AS client_firstname, client.last_name AS client_lastname, 
+                manager.firstname AS manager_firstname, manager.lastname AS manager_lastname, 
+                event_planner.firstname AS planner_firstname, event_planner.lastname AS planner_lastname, 
+                dj.firstname AS dj_firstname, dj.lastname AS dj_lastname, 
+                theme.name AS theme_name, playlist.name AS playlist_name,
+                location.street as STREET, location.city as CITY, location.postal_code as POSTAL_CODE, location.COUNTRY as COUNTRY
+                FROM event
+                INNER JOIN client ON event.CLIENT = client.CLIENT_NUMBER
+                INNER JOIN employee AS manager ON event.MANAGER = manager.ID
+                INNER JOIN employee AS event_planner ON event.EVENT_PLANNER = event_planner.ID
+                INNER JOIN employee AS dj ON event.DJ = dj.ID
+                INNER JOIN theme ON event.THEME = theme.NAME
+                INNER JOIN location ON event.LOCATION = location.ID
+                INNER JOIN playlist ON event.PLAYLIST = playlist.NAME
+                WHERE event.ID = :id';
+    $stmt = $bdd->prepare($query);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // We need some data to fill the dropdown lists
-    $client_req = $bdd->query('SELECT * FROM client');
-    $client_table = $client_req->fetchAll();
-    $manager_req = $bdd->query('SELECT * FROM manager');
-    $manager_table = $manager_req->fetchAll();
-    $eventPlanner_req = $bdd->query('SELECT * FROM event_planner');
-    $eventPlanner_table = $eventPlanner_req->fetchAll();
-    $dj_req = $bdd->query('SELECT * FROM dj');
-    $dj_table = $dj_req->fetchAll();
-    $theme_req = $bdd->query('SELECT * FROM theme');
-    $theme_table = $theme_req->fetchAll();
-    $location_req = $bdd->query('SELECT * FROM location');
-    $location_table = $location_req->fetchAll();
-    $playlist_req = $bdd->query('SELECT * FROM playlist');
-    $playlist_table = $playlist_req->fetchAll();
-    // End of dropdown lists
-
-    // We need a table with all the event to avoid conflicts
-    $all_events_req = $bdd->query('SELECT * FROM event');
-    $all_events_table = $all_events_req->fetchAll();
-    // End of table
 
     if (empty($row)) {
         echo "<div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
@@ -63,73 +60,41 @@ require_once(__ROOT__ . '/head.php');
         <div class="mt-3 space-y-6">
             <!-- Name -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">Nom de l'événement</h4>
-                <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo $row['NAME']; ?></p>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">Nom de l'événement:</h4>
+                <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo $row['event_name']; ?></p>
             </div>
             <!-- Date -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">Date de l'événement</h4>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">Date de l'événement:</h4>
                 <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo date('l j F Y', strtotime($row['DATE'])); ?></p>
             </div>
             <!-- Client -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">Client</h4>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">Client:</h4>
                 <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
-                    <?php
-                    foreach ($client_table as $client) {
-                        if ($client['CLIENT_NUMBER'] == $row['CLIENT']) {
-                            $client_name = $bdd->query('SELECT FIRST_NAME, LAST_NAME FROM client WHERE CLIENT_NUMBER = ' . $client['CLIENT_NUMBER']);
-                            $client_name = $client_name->fetch();
-                            echo $client_name['FIRST_NAME'] . " " . $client_name['LAST_NAME'];
-                        }
-                    }
-                    ?>
+                    <?php echo $row['client_firstname'] . " " . $row['client_lastname']; ?>
             </div>
             <!-- Manager, Event planner, DJ -->
             <div class="flex space-x-4">
                 <!-- Manager -->
                 <div class="w-1/3">
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Manager</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Manager:</label>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5">
-                        <?php
-                        foreach ($manager_table as $manager) {
-                            if ($manager['ID'] == $row['MANAGER']) {
-                                $manager_name = $bdd->query('SELECT FIRSTNAME, LASTNAME FROM employee WHERE ID = ' . $manager['ID']);
-                                $manager_name = $manager_name->fetch();
-                                echo $manager_name['FIRSTNAME'] . " " . $manager_name['LASTNAME'];
-                            }
-                        }
-                        ?>
+                        <?php echo $row['manager_firstname'] . " " . $row['manager_lastname']; ?>
                     </p>
                 </div>
                 <!-- Event planner -->
                 <div class="w-1/3">
-                    <label class="block mb-2 text-sm font-medium text-gray-900">Planificateur d'événement</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Planificateur d'événement:</label>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5">
-                        <?php
-                        foreach ($eventPlanner_table as $eventPlanner) {
-                            if ($eventPlanner['ID'] == $row['EVENT_PLANNER']) {
-                                $eventPlanner_name = $bdd->query('SELECT FIRSTNAME, LASTNAME FROM employee WHERE ID = ' . $eventPlanner['ID']);
-                                $eventPlanner_name = $eventPlanner_name->fetch();
-                                echo $eventPlanner_name['FIRSTNAME'] . " " . $eventPlanner_name['LASTNAME'];
-                            }
-                        }
-                        ?>
+                        <?php echo $row['planner_firstname'] . " " . $row['planner_lastname']; ?>
                     </p>
                 </div>
                 <!-- DJ -->
                 <div class="w-1/3">
-                    <label class="block mb-2 text-sm font-medium text-gray-900">DJ</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">DJ:</label>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5">
-                        <?php
-                        foreach ($dj_table as $dj) {
-                            if ($dj['ID'] == $row['DJ']) {
-                                $dj_name = $bdd->query('SELECT FIRSTNAME, LASTNAME FROM employee WHERE ID = ' . $dj['ID']);
-                                $dj_name = $dj_name->fetch();
-                                echo $dj_name['FIRSTNAME'] . " " . $dj_name['LASTNAME'];
-                            }
-                        }
-                        ?>
+                        <?php echo $row['dj_firstname'] . " " . $row['dj_lastname']; ?>
                     </p>
                 </div>
             </div>
@@ -137,49 +102,31 @@ require_once(__ROOT__ . '/head.php');
             <div class="flex space-x-4">
                 <!-- Theme -->
                 <div class="w-1/2">
-                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Thème</h4>
+                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Thème:</h4>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
-                        <?php
-                        foreach ($theme_table as $theme) {
-                            if ($theme['NAME'] == $row['THEME']) {
-                                echo $theme['NAME'];
-                            }
-                        }
-                        ?>
+                        <?php echo $row['theme_name']; ?>
                     </p>
                 </div>
                 <!-- Playlist -->
                 <div class="w-1/2">
-                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Playlist</h4>
+                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Playlist:</h4>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
-                        <?php
-                        foreach ($playlist_table as $playlist) {
-                            if ($playlist['NAME'] == $row['PLAYLIST']) {
-                                echo $playlist['NAME'];
-                            }
-                        }
-                        ?>
+                        <?php echo $row['playlist_name']; ?>
                     </p>
                 </div>
             </div>
             <!-- Location -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">Lieu</h4>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">Lieu:</h4>
                 <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
-                    <?php
-                    foreach ($location_table as $location) {
-                        if ($location['ID'] == $row['LOCATION']) {
-                            echo $location['STREET'] . ", " . $location['CITY'] . " " . $location['POSTAL_CODE'] . " " . $location['COUNTRY'];
-                        }
-                    }
-                    ?>
+                    <?php echo $row['STREET'] . ", " . $row['POSTAL_CODE'] . " " . $row['CITY'] . ", " . $row['COUNTRY']; ?>
                 </p>
             </div>
             <!-- Type and Rental fee-->
             <div class="flex space-x-4">
                 <!-- Type -->
                 <div class="w-1/2">
-                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Type</h4>
+                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Type:</h4>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         <?php
                         echo $row['TYPE'];
@@ -188,7 +135,7 @@ require_once(__ROOT__ . '/head.php');
                 </div>
                 <!-- Rental fee -->
                 <div class="w-1/2">
-                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Coût</h4>
+                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Coût:</h4>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         <?php
                         echo $row['RENTAL_FEE'] . " €";
@@ -198,16 +145,17 @@ require_once(__ROOT__ . '/head.php');
             </div>
             <!-- Description -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">Description de l'événement</h4>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">Description de l'événement:</h4>
                 <p class="cursor-not-allowed block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"><?php echo $row['DESCRIPTION']; ?></p>
             </div>
             <!-- ID -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">ID</h4>
-                <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo $row['ID']; ?></p>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">ID:</h4>
+                <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo $id ?></p>
             </div>
         </div>
     </div>
+
 
     <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
 </body>
