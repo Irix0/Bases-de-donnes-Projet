@@ -23,7 +23,7 @@
          if ($currentPage == 'index') {
             echo "<a class='px-2 py-2 text-sm text-blue-500 lg:px-6 md:px-3 hover:text-gray-500' aria-current='page' href='/index.php'>À propos</a>";
          } else {
-            echo "<a class='px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600' href='/index.php'>A propos</a>";
+            echo "<a class='px-2 py-2 text-sm text-gray-500 lg:px-6 md:px-3 hover:text-blue-600' href='/index.php'>À propos</a>";
          }
          ?>
 
