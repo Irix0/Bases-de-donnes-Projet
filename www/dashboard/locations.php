@@ -26,8 +26,21 @@ $resultsPerPage = 10;
                 <p>Le code postal donné n'est pas numérique.</p>
             </div>";
       } else {
-         if (empty($_POST['comment'])) $_POST['comment'] = NULL; // If comment is empty, set it to NULL (to avoid SQL error)
-         if (empty($_POST['id'])) $_POST['id'] = NULL; // If id is empty, set it to NULL (to avoid SQL error)
+         // Set all empty fields to null (to avoid errors, even if it does appear to be a problem for the query)
+         foreach ($_POST as $key => $value) {
+            if (empty($value)) {
+               $_POST[$key] = null;
+            }
+         }
+         // Check if ID is numeric (would not be a problem for the query but still better to check)
+         if (!is_null($_POST['id']) && !is_numeric($_POST['id'])) {
+            echo "
+               <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                   <p class='font-bold'>Mauvaise entrée</p>
+                   <p>L'ID donné n'est pas numérique.</p>
+               </div>";
+               die();
+         }
 
          $sql = 'INSERT INTO `location` (`ID`, `STREET`, `CITY`, `POSTAL_CODE`, `COUNTRY`, `COMMENT`) VALUES (:id, :street, :city, :postal, :country, :comment);';
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
@@ -226,7 +239,7 @@ $resultsPerPage = 10;
                      </div>
                      <div>
                         <label for="comment" class="block mb-2 text-sm font-medium text-gray-900">Commentaire</label>
-                        <textarea id="comment" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Ajouter un commentaire"></textarea>
+                        <textarea id="comment" name="comment" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Ajouter un commentaire"></textarea>
                      </div>
                      <div>
                         <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>

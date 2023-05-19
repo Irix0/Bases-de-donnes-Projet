@@ -63,17 +63,17 @@ require_once(__ROOT__ . '/head.php');
         <div class="mt-3 space-y-6">
             <!-- Name -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">Nom de l'événement:</h4>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">Nom de l'événement</h4>
                 <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo $row['NAME']; ?></p>
             </div>
             <!-- Date -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">Date de l'événement:</h4>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">Date de l'événement</h4>
                 <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo date('l j F Y', strtotime($row['DATE'])); ?></p>
             </div>
             <!-- Client -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">Client:</h4>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">Client</h4>
                 <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                     <?php
                     foreach ($client_table as $client) {
@@ -137,7 +137,7 @@ require_once(__ROOT__ . '/head.php');
             <div class="flex space-x-4">
                 <!-- Theme -->
                 <div class="w-1/2">
-                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Thème:</h4>
+                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Thème</h4>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         <?php
                         foreach ($theme_table as $theme) {
@@ -150,7 +150,7 @@ require_once(__ROOT__ . '/head.php');
                 </div>
                 <!-- Playlist -->
                 <div class="w-1/2">
-                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Playlist:</h4>
+                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Playlist</h4>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         <?php
                         foreach ($playlist_table as $playlist) {
@@ -164,7 +164,7 @@ require_once(__ROOT__ . '/head.php');
             </div>
             <!-- Location -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">Lieu:</h4>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">Lieu</h4>
                 <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                     <?php
                     foreach ($location_table as $location) {
@@ -179,7 +179,7 @@ require_once(__ROOT__ . '/head.php');
             <div class="flex space-x-4">
                 <!-- Type -->
                 <div class="w-1/2">
-                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Type:</h4>
+                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Type</h4>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         <?php
                         echo $row['TYPE'];
@@ -188,7 +188,7 @@ require_once(__ROOT__ . '/head.php');
                 </div>
                 <!-- Rental fee -->
                 <div class="w-1/2">
-                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Coût:</h4>
+                    <h4 class="block mb-2 text-sm font-medium text-gray-900">Coût</h4>
                     <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         <?php
                         echo $row['RENTAL_FEE'] . " €";
@@ -198,12 +198,12 @@ require_once(__ROOT__ . '/head.php');
             </div>
             <!-- Description -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">Description de l'événement:</h4>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">Description de l'événement</h4>
                 <p class="cursor-not-allowed block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"><?php echo $row['DESCRIPTION']; ?></p>
             </div>
             <!-- ID -->
             <div>
-                <h4 class="block mb-2 text-sm font-medium text-gray-900">ID:</h4>
+                <h4 class="block mb-2 text-sm font-medium text-gray-900">ID</h4>
                 <p class="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"><?php echo $row['ID']; ?></p>
             </div>
         </div>

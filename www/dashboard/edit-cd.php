@@ -81,7 +81,7 @@ $resultsPerPage = 10;
                   <span class="sr-only">Retour</span>
                </button>
             </div>
-            <div class="basis-11/12 ml-2">
+            <div class="basis-11/12 ml-2 mt-3">
                <h2 class="text-xl font-medium text-gray-900">Contenu du CD « <?php echo $cdTitle; ?> »</h2>
                <h3 class="text-s font-medium text-gray-500 mb-4">Visionner, ajouter, supprimer, ou éditer les chansons contenues sur ce CD</h3>
             </div>

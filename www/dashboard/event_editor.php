@@ -131,7 +131,7 @@ require_once(__ROOT__ . '/head.php');
          <form id="form" method="post" class="mt-3 space-y-6" action="#">
             <!-- Name -->
             <div>
-               <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nom de l'événement*</label>
+               <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nom de l'événement</label>
                <input type="text" name="name" id="name" value="<?php echo $row['NAME']; ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
             </div>
             <!-- Date -->
@@ -296,7 +296,7 @@ require_once(__ROOT__ . '/head.php');
             </div>
             <!-- ID -->
             <div>
-               <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID*</label>
+               <label for="id" class="block mb-2 text-sm font-medium text-gray-900">ID</label>
                <input type="number" name="id" id="id" value="<?php echo $row['ID']; ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
             </div>
             <!-- Submit -->
