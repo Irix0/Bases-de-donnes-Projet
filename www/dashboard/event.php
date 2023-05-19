@@ -84,8 +84,14 @@ $resultsPerPage = 10;
                         </td>
                         ";
                   echo "
-                        <td class='px-6 py-4'>
-                        <a href='details.php?id=" . $row['ID'] . "' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full'>Détails</a>
+                        <td class='px-6 py-2'>
+                        <a href='details.php?id=" . $row['ID'] . "'>
+                        <button 
+                           class='faa-parent animated-hover text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-3 py-2 text-center mt-2 mr-2 mb-2'
+                           type='button'>
+                           <i class='fa-solid fa-eye fa-lg faa-wrench'></i>
+                        </button>
+                     </a>
                         </td>";
                   echo "</tr>";
                }
@@ -134,4 +140,5 @@ $resultsPerPage = 10;
          </div>
       </div>
    </div>
+   <script src="https://kit.fontawesome.com/526a298db9.js" crossorigin="anonymous"></script>
 </body>
