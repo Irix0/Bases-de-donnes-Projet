@@ -93,9 +93,9 @@ $resultsPerPage = 10;
                }
 
                $pageFirstResult = ($page - 1) * $resultsPerPage;
-               $sql = "SELECT DISTINCT TITLE, DATE, COPIES , CD_NUMBER, COUNT(DISTINCT event.ID) as NB_USED
-               FROM contains
-               NATURAL JOIN cd NATURAL JOIN event
+               $sql = "SELECT TITLE, DATE, COPIES , CD_NUMBER, COUNT(DISTINCT event.ID) as NB_USED
+               FROM event
+               NATURAL JOIN cd NATURAL JOIN contains
                GROUP BY DATE, TITLE, CD_NUMBER";
 
                $req = $bdd->query($sql);

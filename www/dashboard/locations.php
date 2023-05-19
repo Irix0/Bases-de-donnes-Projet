@@ -57,6 +57,7 @@ $resultsPerPage = 10;
 
    if (isset($_POST['id_delete'])) { // Delete location
       // Check if location is used in a reservation
+      // Even if the database won't allow to delete the location if used in a reservation, it's better to check to give a better error message
       $sql = 'SELECT COUNT(*) FROM `event` WHERE `event`.`LOCATION` = :id';
       $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
       $sth->execute(array('id' => $_POST["id_delete"]));
@@ -65,11 +66,12 @@ $resultsPerPage = 10;
          $sql = 'DELETE FROM `location` WHERE `location`.`ID` = :id';
          $sth = $bdd->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
          if (!$sth->execute(array('id' => $_POST["id_delete"]))) {
-            echo "
-               <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
-                  <p class='font-bold'>Erreur</p>
-                  <p>Une erreur est survenue. Veuillez réessayer.</p>
-               </div>";
+            echo "<div class='bg-red-100 border-l-4 border-red-500 text-red-700 p-4' role='alert'>
+                     <p class='font-bold'>Erreur</p>
+                     <p>Une erreur est survenue. Veuillez vérifier votre entrée.</p>
+                     <p>Ce message peut vous aider à résoudre votre erreur : [code " . $req->errorInfo()[0] . "] `" . $req->errorInfo()[2] . "´.</p>
+                     </div>";
+                  die();
          } else {
             echo "
                <div class='2xl:mx-80 xl:mx-60 lg:mx-20 md:mx-10 bg-green-100 border-l-4 border-green-500 text-green-700 p-4' role='alert'>
