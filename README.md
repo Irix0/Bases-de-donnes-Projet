@@ -9,5 +9,3 @@ Implémentation d'une base de données pour le cours `Bases de données - INFO00
 Utiliser la commande ``docker-compose up -d`` pour démarrer les containers.
 
 Utiliser la commande `docker-compose down` pour les éteindre et supprimer.
-
-# TO DO
